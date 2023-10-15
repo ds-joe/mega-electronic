@@ -1,6 +1,6 @@
-# Laravel React Template
+# Mega Electronic
 
-This Laravel React template is a great starting point for building modern, scalable web applications. It uses TypeScript for type safety, Sass for CSS pre-processing, and Tailwind CSS for utility-first CSS.
+This Laravel React e commerce project is a great starting point for building modern, scalable web applications. It uses TypeScript for type safety, Sass for CSS pre-processing, and Tailwind CSS for utility-first CSS.
 
 **The template is pre-configured with everything you need to get started, including:**
 
@@ -18,6 +18,7 @@ This Laravel React template is a great starting point for building modern, scala
 composer install
 npm install
 npm start
+php artisan serve
 ```
 
 **Additional commands:**
