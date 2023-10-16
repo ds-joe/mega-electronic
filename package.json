@@ -6,7 +6,10 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "test:ts": "tsc -w",
-    "build": "vite build"
+    "build": "vite build",
+    "backend:setup": "php artisan migrate --seed",
+    "backend:refresh": "php artisan migrate:fresh --seed",
+    "backend:start": "php artisan serve"
   },
   "devDependencies": {
     "@inertiajs/react": "^1.0.12",

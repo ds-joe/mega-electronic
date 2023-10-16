@@ -24,6 +24,15 @@ php artisan serve
 **Additional commands:**
 
 ```shell
+# run backend server
+npm run backend:start
+
+# setup backend database & default data
+npm run backend:setup
+
+# refresh backend database & default data
+npm run backend:refresh
+
 # test react pages using typescript.
 npm run test:ts
 
