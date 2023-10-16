@@ -1,13 +1,13 @@
 // Dependencies
 import { FC } from "react";
-import { Head } from "@inertiajs/react";
+import Head from "@/Components/Global/Head";
 
 const Home: FC = () => {
   return (
     <main>
       <Head title="Home" />
       <div className="home-page">
-        <button id="lucky">Click Me!</button>
+        Website home page
       </div>
     </main>
   )

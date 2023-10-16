@@ -11,9 +11,9 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "paths": {
-      "@/*": [
-        "./resources/react/*"
-      ]
+      "@/*": ["./resources/react/*"],
+      "~/*": ["./public/*"],
+      "~bootstrap/*": ["./node_modules/bootstrap/scss/*"]
     }
   },
   "include": [

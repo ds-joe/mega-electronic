@@ -14,7 +14,11 @@ export default defineConfig({
   resolve: {
     alias: {
       // @ts-ignore
-      '@/': `${path.resolve(__dirname, './resources/react')}/`, '~/': `${path.resolve(__dirname, './public')}/`,
+      '@/': `${path.resolve(__dirname, './resources/react')}/`,
+      // @ts-ignore
+      '~/': `${path.resolve(__dirname, './public')}/`,
+      // @ts-ignore
+      "~bootstrap/": `${path.resolve(__dirname, './node_modules/bootstrap/scss')}/`
     }
   },
 });

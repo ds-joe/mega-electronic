@@ -14,6 +14,5 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-  return Inertia::render("index");
-});
+require __DIR__ . "/website/web/index.php";
+require __DIR__ . "/dashboard/web/index.php";
