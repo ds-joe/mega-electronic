@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 
+// Core
+@import "./scss/fonts";
+
+// Layouts
 @import "./scss/dashboard/dashboard";
 @import "./scss/auth/auth";
