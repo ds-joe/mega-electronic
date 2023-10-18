@@ -9,7 +9,7 @@ import { LayoutProps } from "@/types/Layouts/Layout";
 
 const DashboardLayout: FC<LayoutProps> = ({ pageTitle, children }) => {
   return (
-    <main>
+    <main className="DASHBOARD_LAYOUT">
       <Head title={`Dashboard - ${pageTitle}`}></Head>
       {children}
     </main>

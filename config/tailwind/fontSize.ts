@@ -1,31 +1,27 @@
 const fontSize = {
   // Dashboard Variables
 
-  dash: {
-    "5xl": ["48px"],
-    "4xl": ["36px"],
-    "3xl": ["30px"],
-    "2xl": ["24px"],
-    "xl": ["20px"],
-    "lg": ["18px"],
-    "md": ["16px"],
-    "sm": ["14px"],
-    "xs": ["12px"],
-  },
+  "d5xl": ["3rem"],
+  "d4xl": ["2.25rem"],
+  "d3xl": ["1.875rem"],
+  "d2xl": ["1.5rem"],
+  "dxl": ["1.25rem"],
+  "dlg": ["1.125rem"],
+  "dmd": ["1rem"],
+  "dsm": ["0.875rem"],
+  "dxs": ["0.75rem"],
 
   // Website Variables
-  web: {
-    "h1": ["36px", "42px"],
-    "h2": ["30px", "35px"],
-    "h3": ["24px", "28px"],
-    "h4": ["20px", "23px"],
-    "h5": ["18px", "21px"],
-    "h6": ["16px", "19px"],
-    "p1": ["14px", "16px"],
-    "p2": ["12px", "14px"],
-    "p3": ["10px", "12px"],
-    "p4": ["9px", "11px"]
-  },
+  "wh1": ["36px", "42px"],
+  "wh2": ["30px", "35px"],
+  "wh3": ["24px", "28px"],
+  "wh4": ["20px", "23px"],
+  "wh5": ["18px", "21px"],
+  "wh6": ["16px", "19px"],
+  "wp1": ["14px", "16px"],
+  "wp2": ["12px", "14px"],
+  "wp3": ["10px", "12px"],
+  "wp4": ["9px", "11px"]
 }
 
 module.exports = fontSize;

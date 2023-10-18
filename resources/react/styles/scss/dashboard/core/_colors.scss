@@ -1,0 +1,11 @@
+.color-default {
+  @apply text-dash-gray-700 dark:text-white;
+}
+
+.color-medium {
+  @apply text-dash-gray-500;
+}
+
+.color-light {
+  @apply text-dash-gray-400;
+}

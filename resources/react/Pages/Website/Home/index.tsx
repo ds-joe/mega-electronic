@@ -6,8 +6,8 @@ const Home: FC = () => {
   return (
     <main>
       <Head title="Home" />
-      <div className="home-page">
-        Website home page
+      <div className="home-page ">
+        <span className="bg-primary-700"> Website home page</span>
       </div>
     </main>
   )

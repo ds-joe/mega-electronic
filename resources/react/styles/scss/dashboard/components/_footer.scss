@@ -1,0 +1,4 @@
+.footer {
+  @extend .color-light;
+  @apply py-10 text-center text-sm;
+}

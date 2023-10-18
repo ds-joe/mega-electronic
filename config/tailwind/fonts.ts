@@ -1,6 +1,8 @@
 const fontFamily = {
   nunito: ['Nunito', 'sans-serif'],
-  roboto: ['Roboto', "sans-serif"]
+  poppins: ['Poppins', "sans-serif"]
 };
 
-module.exports = fontFamily;
+module.exports = {
+  ...fontFamily
+};
