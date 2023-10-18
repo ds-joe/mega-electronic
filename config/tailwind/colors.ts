@@ -217,8 +217,7 @@ const websiteThemeColors = {
   }
 };
 
-
-module.exports = {
+export default {
   dash: dashboardThemeColors,
   web: websiteThemeColors
 }

@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use App\Http\Requests\Auth\RegisterRequest;
 
-use App\Traits\Languages\AuthLayout as AuthLayoutLanguage;
 
 class RegisterController extends Controller
 {
-  use AuthLayoutLanguage;
 
   /**
    * @desc This method using to return sign up view.
@@ -23,9 +21,9 @@ class RegisterController extends Controller
   {
     return Inertia::render(
       "Auth/Signup/index",
-      array_merge(
-        $this->authWords(__("pages/auth/signup"))
-      )
+      [
+        'pageWords' => __("pages/auth/signup")
+      ]
     );
   }
 

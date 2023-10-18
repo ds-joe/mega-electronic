@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
-import {AxiosInstance} from 'axios';
-import ziggyRoute, {Config as ZiggyConfig} from 'ziggy-js';
+import { AxiosInstance } from 'axios';
+import ziggyRoute, { Config as ZiggyConfig } from 'ziggy-js';
 
 declare global {
   interface Window {

@@ -8,12 +8,10 @@ use App\Providers\RouteServiceProvider;
 use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Traits\Languages\AuthLayout as AuthLayoutLanguage;
 
 class LoginController extends Controller
 {
 
-  use AuthLayoutLanguage;
 
   /**
    * @desc This method using to handle login request.
@@ -24,9 +22,9 @@ class LoginController extends Controller
   {
     return Inertia::render(
       "Auth/Signin/index",
-      array_merge(
-        $this->authWords(__("pages/auth/signin"))
-      )
+      [
+        'pageWords' => __("pages/auth/signin")
+      ]
     );
   }
 

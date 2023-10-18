@@ -24,6 +24,19 @@ class HandleInertiaRequests extends Middleware
   }
 
   /**
+   * @desc This function using to define layout words.
+   * @return array
+   */
+  private function layoutWords(): array
+  {
+    return [
+      "auth" => array_merge(
+        __("components/auth/navbar")
+      )
+    ];
+  }
+
+  /**
    * Define the props that are shared by default.
    *
    * @return array<string, mixed>
@@ -32,13 +45,14 @@ class HandleInertiaRequests extends Middleware
   {
     return [
       ...parent::share($request),
+      'layoutsWords' => $this->layoutWords(),
       'auth' => [
         'user' => $request->user(),
       ],
-      'ziggy' => fn() => [
-        ...(new Ziggy)->toArray(),
-        'location' => $request->url(),
-      ],
+      // 'ziggy' => fn() => [
+      //   ...(new Ziggy)->toArray(),
+      //   'location' => $request->url(),
+      // ],
     ];
   }
 }

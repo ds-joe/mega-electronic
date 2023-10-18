@@ -16,7 +16,8 @@
     "paths": {
       "@/*": ["./resources/react/*"],
       "~/*": ["./public/*"],
-      "~bootstrap/*": ["./node_modules/bootstrap/scss/*"]
+      "~bootstrap/*": ["./node_modules/bootstrap/scss/*"],
+      "~tailwind/*": ["./config/tailwind/*"],
     }
   },
   "include": [

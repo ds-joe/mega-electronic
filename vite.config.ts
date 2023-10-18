@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig({
   plugins: [
     laravel({
-      input: ['resources/react/App.tsx'],
+      input: ['resources/react/Main.tsx'],
       refresh: true,
     }),
     react(),
@@ -18,7 +18,9 @@ export default defineConfig({
       // @ts-ignore
       '~/': `${path.resolve(__dirname, './public')}/`,
       // @ts-ignore
-      "~bootstrap/": `${path.resolve(__dirname, './node_modules/bootstrap/scss')}/`
+      "~bootstrap/": `${path.resolve(__dirname, './node_modules/bootstrap/scss')}/`,
+      // @ts-ignore
+      "~tailwind/": `${path.resolve(__dirname, './config/tailwind')}/`
     }
   },
 });
