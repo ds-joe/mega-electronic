@@ -1,0 +1,31 @@
+.form {
+  @apply grid gap-3;
+
+  &.form-lg {
+    @apply gap-6;
+  }
+
+}
+
+.form-double {
+  @apply grid lg:grid-cols-2 gap-3;
+}
+
+
+.form-control,
+.form-select {
+
+  &.hide {
+    @apply hidden;
+  }
+
+  &.fit {
+    @apply w-fit;
+  }
+
+  @apply dark:bg-deep-dark dark:text-white dark:focus:text-white dark:focus:bg-transparent dark:border-primary/50 dark:placeholder:text-gray-500;
+}
+
+.form-label {
+  @apply dark:text-white;
+}

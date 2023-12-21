@@ -1,6 +1,5 @@
 const borderRadius = {
-  "dash-common": "1.25rem",
-  'dash-form-control': "0.5rem"
+  "common": "0.45rem",
 };
 
 module.exports = borderRadius;

@@ -1,0 +1,3 @@
+.container, .container-fluid {
+  @apply sm:px-[#{$container-padding-x-small-screens}] lg:px-[#{$container-padding-x}];
+}

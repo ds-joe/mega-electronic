@@ -1,0 +1,21 @@
+@mixin make-scroll($width: $scroll-width, $height: $scroll-height) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-transparent rounded-common transition cursor-pointer;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: $scroll-background;
+      @apply transition-all dark:bg-[#{$dark-scroll-background}];
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@layer utilities {
+  .text-title {
+    @apply text-gray-800 dark:text-white;
+  }
+  .text-content {
+    @apply text-gray-500;
+  }
+}

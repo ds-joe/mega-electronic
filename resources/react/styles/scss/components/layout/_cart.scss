@@ -1,0 +1,68 @@
+.#{$cart-prefix} {
+  @include stander-width($cart-width);
+  @include stander-height($cart-height);
+  @apply fixed top-0 bg-white dark:bg-dark border-l dark:border-medium-dark transition-all z-50 bottom-0 -right-[#{$cart-width}];
+
+  &.open {
+    @apply right-0;
+  }
+
+  .header {
+    @apply px-5 flex items-center border-b dark:border-medium-dark justify-between;
+    height: $cart-header-height;
+
+    .close-button,
+    .cart-title {
+      @apply dark:text-white text-lg;
+    }
+
+    .close-button {
+      @apply cursor-pointer;
+    }
+
+  }
+
+  .content {
+    @include stander-height($cart-content-height);
+    @include make-scroll();
+    scroll-snap-type: y mandatory;
+    @apply overflow-x-hidden overflow-y-auto flex flex-col gap-1;
+
+    .empty-title {
+      @apply h-full w-full flex items-center text-lg justify-center dark:text-white text-center;
+    }
+
+    .product {
+      scroll-snap-align: start;
+      @apply border-b dark:border-medium-dark h-fit py-4 px-5;
+
+      .product-content {
+        @apply flex items-center gap-3;
+      }
+
+      .product-image {
+        @apply w-16 h-16 rounded object-cover;
+      }
+
+      .product-name {
+        @apply text-white line-clamp-1;
+      }
+
+      .product-price {
+        @apply text-white line-clamp-1 text-sm font-semibold;
+      }
+
+    }
+  }
+
+  .footer {
+    @apply px-5 border-t dark:border-medium-dark py-2;
+    height: $cart-footer-height;
+
+    .form-label {
+      @apply m-0;
+    }
+
+  }
+
+}

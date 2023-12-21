@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::controller(LoginController::class)->group(function () {
   Route::get("/auth/login", "show")->name("auth.login");
   Route::post("/auth/login", 'store');
-  Route::post("/auth/logout", 'destroy');
+  Route::post("/auth/logout", 'destroy')->name('auth.logout');
 });
 
 Route::controller(RegisterController::class)->group(function () {

@@ -16,7 +16,7 @@ return new class extends Migration {
       $table->string('email')->unique();
       $table->string('avatar')->nullable();
       $table->string('password');
-      $table->enum('type', ['customer', 'admin'])->default('customer');
+      $table->enum('type', ['supporter', 'admin'])->default('supporter');
       $table->boolean('verified')->default(false);
       $table->rememberToken();
       $table->timestamps();

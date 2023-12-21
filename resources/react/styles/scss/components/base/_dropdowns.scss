@@ -1,0 +1,36 @@
+.dropdown {
+
+  .dropdown-toggle {
+    @apply cursor-pointer;
+
+    &.toggle-clean {
+
+      &::after,
+      &::before {
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+
+  .dropdown-menu {
+    @apply shadow-common transition-all dark:bg-dark dark:border dark:border-medium-dark;
+
+    .dropdown-item {
+      @apply transition-all dark:text-white dark:hover:bg-primary text-sm;
+      font-weight: $dropdown-line-font-weight;
+
+      &:has(.icon) {
+        @apply flex items-center;
+        gap: $dropdown-icon-space;
+
+        .icon {
+          font-size: $dropdown-icon-font-size;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+.#{$navbar-prefix} {
+  @include stander-height($navbar-height);
+  @apply bg-white dark:bg-dark border-b dark:shadow-md dark:border-b-medium-dark py-0 w-full top-0 z-40 shadow-common flex items-center;
+
+  .#{$navbar-prefix}-container {
+    @apply flex items-center justify-between;
+
+    .dropdown-header {
+      @apply border-b dark:border-[#{$dark-border-color}];
+    }
+
+    .#{$navbar-prefix}-user-dropdown {
+
+      .#{$navbar-prefix}-user-dropdown-toggle {
+        @apply p-0 m-0 flex items-center justify-center;
+      }
+
+      .#{$navbar-prefix}-dropdown-user-information {
+        @apply flex flex-col items-center justify-center gap-2;
+      }
+
+      .#{$navbar-prefix}-dropdown-username {
+        @apply font-semibold text-lg dark:text-white;
+      }
+
+      .#{$navbar-prefix}-dropdown-email {
+        @apply text-sm dark:text-white/70 text-[#{$text-medium-dark-color}];
+      }
+
+
+      .dropdown-menu {
+        @apply min-w-[15rem];
+
+        .dropdown-item {
+          @apply py-2;
+        }
+
+      }
+    }
+
+    .#{$navbar-prefix}-control-buttons {
+      @apply flex items-center gap-4 dark:text-white;
+
+      .#{$navbar-prefix}-sidebar-toggle-button {
+        @apply cursor-pointer text-title lg:hidden;
+      }
+
+      .#{$navbar-prefix}-settings-area {
+        @apply lg:relative lg:shadow-none flex items-center gap-4;
+
+        .setting-block {
+          @apply inline-block font-medium;
+
+          .setting-label-icon {
+            @apply text-lg cursor-pointer;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

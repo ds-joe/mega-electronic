@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Auth;
+use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class LoginController extends Controller
 {
-
 
   /**
    * @desc This method using to handle login request.
@@ -20,8 +21,9 @@ class LoginController extends Controller
    */
   public function show(Request $request): \Inertia\Response
   {
+
     return Inertia::render(
-      "Auth/Signin/index",
+      "Auth/Login/index",
       [
         'pageWords' => __("pages/auth/signin")
       ]
@@ -37,7 +39,7 @@ class LoginController extends Controller
   {
     $request->authenticate();
     $request->session()->regenerate();
-    return redirect()->intended(RouteServiceProvider::HOME);
+    return redirect()->to(RouteServiceProvider::HOME);
   }
 
   /**
@@ -48,6 +50,6 @@ class LoginController extends Controller
     Auth::guard('web')->logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('/');
+    return redirect(RouteServiceProvider::HOME);
   }
 }

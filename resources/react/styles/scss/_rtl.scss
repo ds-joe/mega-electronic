@@ -1,0 +1,39 @@
+body {
+  &:has(.dir-rtl) {
+    direction: rtl;
+
+    /* start-scss-docs sidebar */
+    .#{$sidebar-prefix} {
+      @apply border-l border-r-0;
+
+      &.#{$sidebar-prefix}-open {
+        @apply left-auto right-0 h-full transition-all;
+      }
+    }
+
+    /* end-scss-docs sidebar */
+
+    /* start-scss-docs cart */
+    .#{$cart-prefix} {
+      @apply right-auto -left-[#{$cart-width}];
+
+      &.open {
+        @apply left-0;
+      }
+
+    }
+
+    /* end-scss-docs cart */
+
+
+    /* start-scss-docs cards */
+    .pf-state-icon-card {
+      .pf-state-icon-card-icon {
+        @apply right-auto left-0 #{!important};
+      }
+    }
+
+    /* end-scss-docs cards */
+
+  }
+}

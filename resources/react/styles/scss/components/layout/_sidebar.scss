@@ -1,0 +1,79 @@
+.#{$sidebar-prefix} {
+
+  @include stander-width($sidebar-width);
+  @include stander-height($sidebar-height);
+  left: -$sidebar-width;
+  @apply bg-white dark:bg-dark border-r dark:border-medium-dark transition-all z-50 fixed lg:relative lg:left-0 lg:right-0 top-0 bottom-0;
+
+  .#{$sidebar-prefix}-label {
+    @apply text-xs uppercase font-semibold text-[#{$text-medium-dark-color}] my-2 dark:text-white/60;
+  }
+
+  .#{$sidebar-prefix}-header {
+    @apply px-5 flex items-center border-b dark:border-medium-dark justify-between;
+    height: $sidebar-header-height;
+
+    // .#{$sidebar-prefix}-logo {
+    //   //@apply ;
+    // }
+
+    .#{$sidebar-prefix}-fold-button {
+      @apply text-lg cursor-pointer hidden lg:block text-title;
+    }
+  }
+
+  .#{$sidebar-prefix}-body {
+
+    @include make-scroll();
+
+    @apply shadow-common flex flex-col flex-nowrap py-5 px-4 gap-2 overflow-y-auto;
+    @include stander-height(calc($sidebar-height - $sidebar-header-height));
+
+    .nav-item {
+      @apply select-none transition-all py-2.5 px-2 opacity-75 flex items-center gap-4 text-sm hover:opacity-100 cursor-pointer font-extralight w-full dark:text-white;
+
+      &.active {
+        @apply font-medium opacity-100 shadow-common rounded-common dark:bg-primary;
+
+        [class*="fa-"] {
+          @apply text-white bg-primary;
+        }
+      }
+
+      [class*="fa-"] {
+        @apply min-w-[1.75rem] min-h-[1.75rem] rounded flex items-center justify-center;
+      }
+    }
+  }
+}
+
+// Sidebar Fold Mode
+.#{$sidebar-prefix}-fold {
+  @include stander-width($sidebar-fold-width);
+  @apply overflow-hidden transition-all;
+
+  .#{$sidebar-prefix}-label {
+    @apply hidden;
+  }
+
+  .#{$sidebar-prefix}-header {
+    @apply justify-center;
+
+    .#{$sidebar-prefix}-logo {
+      @apply hidden;
+    }
+  }
+
+  .#{$sidebar-prefix}-body {
+    .nav-item {
+      .nav-item-content {
+        @apply hidden;
+      }
+    }
+  }
+}
+
+// Sidebar Responsive Mode
+.#{$sidebar-prefix}-open {
+  @apply left-0 h-full;
+}

@@ -2,10 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-
 // Core
-@import "./scss/fonts";
+@import "scss/fonts";
+@import "scss/functions";
+@import "~bootstrap/functions";
+@import "scss/variables";
+@import "~bootstrap/variables";
+@import "scss/variables-dark";
+@import "~bootstrap/variables-dark";
+@import "scss/mixins";
+@import "~bootstrap/mixins";
+@import "scss/utilities";
 
-// Layouts
-@import "./scss/dashboard/dashboard";
-@import "./scss/auth/auth";
+// Components
+@import "scss/layout";
+@import "scss/components";
+@import "scss/rtl";
+@import "scss/scroll";
+
+// Bootstrap Components
+@import "~bootstrap/buttons";
+@import "~bootstrap/card";
+@import "~bootstrap/dropdown";
+@import "~bootstrap/forms";
+@import "~bootstrap/tables";
+@import "~bootstrap/modal";

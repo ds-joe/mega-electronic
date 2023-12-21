@@ -1,0 +1,29 @@
+.table-responsive {
+  @include make-scroll();
+}
+
+.table {
+  height: $table-height;
+  @apply dark:border-[#{$dark-table-border-color}];
+
+
+  [tab-effect=""] {
+    display: none !important;
+  }
+
+  [search-effect=""] {
+    display: none !important;
+  }
+
+  // tr:nth-child(even) {
+  //   background-color: #f2f2f2;
+  // }
+
+
+  th,
+  td {
+    @apply text-center justify-center text-sm whitespace-nowrap;
+    @apply dark:text-[#{$dark-table-color}];
+  }
+
+}

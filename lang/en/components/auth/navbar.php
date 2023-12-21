@@ -1,7 +1,7 @@
 <?php
 
 return [
-  "store" => "Store",
+  "profile" => "Profile",
   "sign_up" => "Sign up",
   "sign_in" => "Sign in"
 ];

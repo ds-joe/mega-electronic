@@ -1,1 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+// English Poppins
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 200;
+  font-display: auto;
+  src: url("~/fonts/Poppins/Poppins-Light.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: auto;
+  src: url("~/fonts/Poppins/Poppins-Regular.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: auto;
+  src: url("~/fonts/Poppins/Poppins-Medium.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: auto;
+  src: url("~/fonts/Poppins/Poppins-SemiBold.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: auto;
+  src: url("~/fonts/Poppins/Poppins-Bold.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: auto;
+  src: url("~/fonts/Poppins/Poppins-ExtraBold.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  font-display: auto;
+  src: url("~/fonts/Poppins/Poppins-Black.ttf") format('woff2');
+}
+
+// Arabic Words
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 200;
+  font-display: auto;
+  src: url("~/fonts/Cairo/Cairo-Light.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 300;
+  font-display: auto;
+  src: url("~/fonts/Cairo/Cairo-Regular.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 500;
+  font-display: auto;
+  src: url("~/fonts/Cairo/Cairo-Medium.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 600;
+  font-display: auto;
+  src: url("~/fonts/Cairo/Cairo-SemiBold.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: auto;
+  src: url("~/fonts/Cairo/Cairo-Bold.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 800;
+  font-display: auto;
+  src: url("~/fonts/Cairo/Cairo-ExtraBold.ttf") format('woff2');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-style: normal;
+  font-weight: 900;
+  font-display: auto;
+  src: url("~/fonts/Cairo/Cairo-Black.ttf") format('woff2');
+}

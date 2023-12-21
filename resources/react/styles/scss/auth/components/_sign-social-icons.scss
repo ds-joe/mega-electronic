@@ -1,9 +1,0 @@
-.sign-social-icons {
-  @apply flex items-center justify-center gap-4;
-
-  .social-icon {
-    @extend .color-default;
-    @apply transition-all h-[4.6875rem] w-[4.6875rem] border rounded-dash-form-control text-d2xl flex items-center justify-center cursor-pointer hover:bg-dash-blue hover:text-white hover:shadow-dash-common active:scale-[.9] dark:border-dash-blue/50;
-  }
-
-}

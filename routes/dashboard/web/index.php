@@ -1,7 +1,22 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\Dashboard\HomeController;
+use App\Providers\RouteServiceProvider;
 
-Route::get('/dashboard', function () {
-  return Inertia::render("Dashboard/Home/index");
+
+
+Route::middleware('auth')->group(function () {
+
+  # Home Controller
+  Route::controller(HomeController::class)->group(function () {
+    Route::get(RouteServiceProvider::DASHBOARD_BASE, 'show');
+  });
+
+  require(__DIR__ . "/users.php");
+  require(__DIR__ . "/products.php");
+  require(__DIR__ . "/userSettings.php");
+  require(__DIR__ . "/customers.php");
+  require(__DIR__ . "/profile.php");
+  require(__DIR__ . "/sales.php");
+
 });

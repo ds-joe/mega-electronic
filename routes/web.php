@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +11,5 @@ use Inertia\Inertia;
 |
 */
 
-require __DIR__ . "/website/web/index.php";
 require __DIR__ . "/dashboard/web/index.php";
 require __DIR__ . "/auth/web/index.php";

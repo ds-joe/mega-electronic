@@ -1,0 +1,4 @@
+.form-error {
+  @extend .form-label;
+  color: theme('colors.danger') !important;
+}

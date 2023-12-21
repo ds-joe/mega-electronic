@@ -1,0 +1,12 @@
+.modal {
+
+  .modal-content {
+    @apply dark:bg-dark;
+
+  }
+
+  .modal-title {
+    @apply dark:text-white;
+    font-size: theme('fontSize.xl');
+  }
+}

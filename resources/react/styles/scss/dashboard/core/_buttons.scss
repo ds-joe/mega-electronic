@@ -1,8 +1,0 @@
-.btn {
-  @apply py-3 px-2 transition rounded-dash-form-control text-center uppercase text-dxs cursor-pointer font-semibold active:scale-[.9];
-
-  &:disabled {
-    @apply cursor-not-allowed animate-pulse;
-  }
-
-}

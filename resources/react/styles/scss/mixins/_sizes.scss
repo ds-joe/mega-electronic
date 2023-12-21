@@ -1,0 +1,11 @@
+@mixin stander-width($width){
+  min-width: $width;
+  max-width: $width;
+  width: $width;
+}
+
+@mixin stander-height($height) {
+  min-height: $height;
+  max-height: $height;
+  height: $height;
+}

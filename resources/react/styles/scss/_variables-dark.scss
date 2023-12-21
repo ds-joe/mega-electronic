@@ -1,0 +1,23 @@
+// scss-docs-start colors-variables
+$dark-border-color:                     theme('colors.medium-dark') !default;
+$dark-text-default-color:               theme('colors.white') !default;
+
+// scss-docs-start colors-variables
+
+// scss-docs-start card-variables
+$dark-card-border-color:                 $dark-border-color !default;
+$dark-card-title-color:                  $dark-text-default-color !default;
+$dark-card-text-color:                   $dark-text-default-color !default;
+
+// scss-docs-end card-variables
+
+
+// scss-docs-start scroll-variables
+$dark-scroll-background:                 theme('colors.primary') !default;
+// scss-docs-end scroll-variables
+
+
+// scss-docs-start table-variables
+$dark-table-border-color:                      $dark-border-color !default;
+$dark-table-color:                             theme('colors.white') !default;
+// scss-docs-end table-variables

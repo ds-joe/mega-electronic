@@ -1,0 +1,67 @@
+// scss-docs state-chart-card
+.pf-state-card {
+
+  .pf-state-card-head {
+    @apply flex items-center justify-between mb-3;
+
+    .pf-state-card-title {
+      @apply text-sm uppercase;
+    }
+  }
+
+  .pf-state-card-body {
+
+    .pf-state-card-states-area {
+      @apply flex flex-col gap-1;
+
+      .pf-state-card-value {
+        @apply text-2xl font-semibold whitespace-nowrap dark:text-white;
+      }
+    }
+  }
+}
+
+// scss-docs end-state-chart-card
+
+// scss-docs start-state-icon-card
+
+.pf-state-icon-card {
+
+  .pf-state-icon-card-body {
+    @apply flex items-center justify-between;
+
+    .pf-state-icon-card-state-area {
+      @apply z-10 relative;
+
+      .pf-state-icon-card-value {
+        @apply text-2xl font-medium mb-2 dark:text-white;
+      }
+
+      .pf-state-icon-card-description {
+        @apply uppercase text-xs font-medium dark:text-white;
+      }
+
+    }
+
+    .pf-state-icon-card-icon-area {
+      @apply relative;
+
+      .pf-state-icon-card-icon {
+        @apply text-6xl absolute top-1/2 -translate-y-1/2 right-0 z-0 text-primary dark:opacity-75;
+      }
+
+    }
+
+  }
+
+  .pf-state-icon-card-footer {
+
+    .pf-state-icon-card-time-area {
+      @apply w-full flex items-center gap-2 text-sm uppercase font-medium dark:text-white;
+    }
+
+  }
+
+}
+
+// scss-docs end-state-icon-card

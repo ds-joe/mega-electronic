@@ -1,0 +1,8 @@
+.#{$footer-prefix} {
+  @include stander-height($navbar-height);
+  @apply flex items-center justify-center mt-5 text-sm gap-1 text-[#{$text-default-dark-color}] dark:text-white;
+
+  .company-name {
+    @apply font-medium text-primary;
+  }
+}

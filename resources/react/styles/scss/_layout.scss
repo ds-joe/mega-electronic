@@ -1,0 +1,18 @@
+.#{$layout-prefix} {
+  @include stander-height($layout-height);
+  background: $layout-bg;
+  @apply flex min-w-full overflow-y-auto font-poppins dark:bg-deep-dark;
+
+
+  .#{$layout-prefix}-main-content {
+    @apply w-full max-h-screen overflow-y-auto;
+
+
+    .#{$layout-prefix}-page-content {
+      @apply w-full;
+      margin-top: $layout-margin-top;
+    }
+
+  }
+
+}

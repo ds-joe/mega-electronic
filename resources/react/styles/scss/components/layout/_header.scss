@@ -1,0 +1,11 @@
+.pf-header {
+  @apply flex flex-wrap items-center justify-between py-4 gap-3;
+
+  .pf-header-title {
+    @apply text-xl font-light dark:text-white;
+  }
+
+  .pf-header-buttons {
+    @apply flex items-center gap-2 flex-wrap;
+  }
+}
