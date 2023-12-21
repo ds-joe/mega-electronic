@@ -19,6 +19,7 @@ import { AppProps } from "./types/App";
 
 const App: FC<AppProps> = ({ children, props }) => {
   const dispatch = useDispatch();
+  console.log(props)
 
   useEffect(() => {
     dispatch(setLayoutsWords(props.layoutsWords));

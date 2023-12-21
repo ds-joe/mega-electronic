@@ -9,19 +9,33 @@ type SalesWithAdditionData = Sale & {
 };
 
 export type SalesProps = {
-  sales: Array<SalesWithAdditionData>
+  sales: Array<SalesWithAdditionData>,
+  sales_status_cards: {
+    payment: {
+      total_amount: number,
+      total_discount: number,
+      total_sales: number
+    },
+    cash: {
+      total_amount: number,
+      total_discount: number,
+      total_sales: number
+    }
+  }
 }
 
 export type SalesTableProps = {
   records: SalesProps['sales']
 }
 
+export type SalesStatesCardsProps = SalesProps['sales_status_cards'];
+
 /**
  * Sale Page
  */
 export type SaleProps = {
   products: Array<Product>,
-  customers: Array<Customer>
+  customers: Array<Customer>,
 }
 
 export type SaleProductCardProps = Product;

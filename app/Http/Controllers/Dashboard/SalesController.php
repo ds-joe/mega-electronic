@@ -26,10 +26,32 @@ class SalesController extends Controller
     $sales = Sale::with('owner', 'customer')
       ->get();
 
+    // Payment
+    $paymentTotalAmount = Sale::where('method', 'payment')->sum('amount');
+    $paymentTotalDiscount = Sale::where('method', 'payment')->sum('discount');
+    $paymentTotalSales = Sale::where('method', 'payment')->count();
+
+    // Cash Sales
+    $cashTotalAmount = Sale::where('method', 'cash')->sum('amount');
+    $cashTotalDiscount = Sale::where('method', 'cash')->sum('discount');
+    $cashTotalSales = Sale::where('method', 'cash')->count();
+
     return Inertia::render(
       "Dashboard/Sales/index",
       [
         'sales' => $sales,
+        'sales_status_cards' => [
+          'payment' => [
+            'total_amount' => $paymentTotalAmount,
+            'total_discount' => $paymentTotalDiscount,
+            'total_sales' => $paymentTotalDiscount,
+          ],
+          'cash' => [
+            'total_amount' => $cashTotalAmount,
+            'total_discount' => $cashTotalDiscount,
+            'total_sales' => $cashTotalSales,
+          ]
+        ],
         'pageWords' => __('pages/dashboard/sales')
       ]
     );
