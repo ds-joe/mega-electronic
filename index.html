@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+th, td {
+text-align: left;
+padding: 8px;
+border: 1px solid #ddd;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+</style>
+</head>
+<body>
+
+<input type="text" id="myInput" onkeyup="myFunction()">
+
+<table id="myTable">
+<tr>
+<th>Name</th>
+<th>Country</th>
+</tr>
+<tr>
+<td>John</td>
+<td>Norway</td>
+</tr>
+<tr>
+<td>Mary</td>
+<td>Denmark</td>
+</tr>
+<tr>
+<td>Peter</td>
+<td>Sweden</td>
+</tr>
+</table>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i;
+
+  input = document.getElementById("myInput");
+
+  filter = input.value.toUpperCase();
+
+  table = document.getElementById("myTable");
+
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+
+      if (td.textContent.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>

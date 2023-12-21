@@ -4,7 +4,6 @@
 const colors = require('./config/tailwind/colors');
 const fontSize = require('./config/tailwind/fontSize');
 const fontFamily = require('./config/tailwind/fonts');
-const container = require('./config/tailwind/container');
 const boxShadow = require('./config/tailwind/shadow');
 const borderRadius = require('./config/tailwind/borderRadius');
 
@@ -20,7 +19,6 @@ export default {
     "./storage/framework/views/**/*.php"
   ],
   theme: {
-    container,
     extend: {
       colors,
       fontSize,
