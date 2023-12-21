@@ -42,10 +42,6 @@ export type ProductsTableProps = {
 
 export type ProductsChartProps = {
   chart: {
-    today: {
-      data: Array<number>,
-      labels: Array<string>
-    },
     weekly: {
       data: Array<number>,
       labels: Array<string>

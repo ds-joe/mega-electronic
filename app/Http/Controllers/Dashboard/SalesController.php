@@ -10,12 +10,14 @@ use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleHasProduct;
 use App\Traits\Requests;
+use App\Traits\Utils\Dates;
+use Illuminate\Support\Carbon;
 use Inertia\Inertia;
 
 class SalesController extends Controller
 {
 
-  use Requests;
+  use Requests, Dates;
 
   /**
    * Display sales page.
@@ -44,7 +46,7 @@ class SalesController extends Controller
           'payment' => [
             'total_amount' => $paymentTotalAmount,
             'total_discount' => $paymentTotalDiscount,
-            'total_sales' => $paymentTotalDiscount,
+            'total_sales' => $paymentTotalSales,
           ],
           'cash' => [
             'total_amount' => $cashTotalAmount,
@@ -52,6 +54,7 @@ class SalesController extends Controller
             'total_sales' => $cashTotalSales,
           ]
         ],
+        'chart' => $this->getChartData(),
         'pageWords' => __('pages/dashboard/sales')
       ]
     );
@@ -248,5 +251,68 @@ class SalesController extends Controller
       }
     }
   } // End Method
+
+  /**
+   * Get chart data.
+   * NOTE: This method using only inside this controller.
+   * @return array
+   */
+  private function getChartData(): array
+  {
+    // Cash Chart
+    $cashWeeklyData = $this->getRecordsCountsBetweenDates(Sale::class, Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek(), "SUM(amount) as amount")
+      ->where("method", 'cash')
+      ->get()
+      ->pluck('amount');
+    $cashMonthlyData = $this->getRecordsCountsBetweenDates(Sale::class, Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth(), "SUM(amount) as amount")
+      ->where("method", 'cash')
+      ->pluck('amount');
+    $cashYearlyData = $this->getRecordsCountsBetweenDates(Sale::class, Carbon::now()->startOfYear(), Carbon::now()->endOfYear(), "SUM(amount) as amount")
+      ->where("method", 'cash')
+      ->get()
+      ->pluck('amount');
+
+    // Payment Chart
+    $paymentWeeklyData = $this->getRecordsCountsBetweenDates(Sale::class, Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek(), "SUM(amount) as amount")
+      ->where("method", 'payment')
+      ->get()
+      ->pluck('amount');
+    $paymentMonthlyData = $this->getRecordsCountsBetweenDates(Sale::class, Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth(), "SUM(amount) as amount")
+      ->where("method", 'payment')
+      ->pluck('amount');
+    $paymentYearlyData = $this->getRecordsCountsBetweenDates(Sale::class, Carbon::now()->startOfYear(), Carbon::now()->endOfYear(), "SUM(amount) as amount")
+      ->where("method", 'payment')
+      ->get()
+      ->pluck('amount');
+
+    return [
+      'cash' => [
+        'weekly' => [
+          'data' => $this->fillArray([...$cashWeeklyData], 7, 0),
+        ],
+        'monthly' => [
+          'data' => $this->fillArray([...$cashMonthlyData], 7, 0),
+        ],
+        'yearly' => [
+          'data' => $this->fillArray([...$cashYearlyData], 12, 0),
+        ],
+      ],
+      'payment' => [
+        'weekly' => [
+          'data' => $this->fillArray([...$paymentWeeklyData], 7, 0),
+          'labels' => $this->getCurrentWeekDays()
+        ],
+        'monthly' => [
+          'data' => $this->fillArray([...$paymentMonthlyData], 7, 0),
+          'labels' => $this->getCurrentMonthWeeks()
+        ],
+        'yearly' => [
+          'data' => $this->fillArray([...$paymentYearlyData], 12, 0),
+          'labels' => $this->getCurrentYearMonths()
+        ],
+      ]
+
+    ];
+  }
 
 }

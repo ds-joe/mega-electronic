@@ -12,6 +12,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductHasColor;
+use App\Models\Sale;
 use App\Traits\Images\ImageName;
 use App\Traits\Images\ImagesPaths;
 use App\Traits\Requests;
@@ -247,9 +248,6 @@ class ProductsController extends Controller
    */
   private function productsChartData(): array
   {
-    $todayData = $this->getRecordsCountsBetweenDates(Product::class, Carbon::now()->startOfDay(), Carbon::now()->endOfDay())
-      ->get()
-      ->pluck('count');
     $weeklyData = $this->getRecordsCountsBetweenDates(Product::class, Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek())
       ->get()
       ->pluck('count');
@@ -260,10 +258,6 @@ class ProductsController extends Controller
       ->get()
       ->pluck('count');
     return [
-      'today' => [
-        'data' => $this->fillArray([...$todayData], 24, 0),
-        'labels' => $this->getCurrentDayHours()
-      ],
       'weekly' => [
         'data' => $this->fillArray([...$weeklyData], 7, 0),
         'labels' => $this->getCurrentWeekDays()
@@ -275,7 +269,7 @@ class ProductsController extends Controller
       'yearly' => [
         'data' => $this->fillArray([...$yearlyData], 12, 0),
         'labels' => $this->getCurrentYearMonths()
-      ]
+      ],
     ];
   } // End Method
 

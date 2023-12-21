@@ -18,7 +18,7 @@ return [
   'create' => "Create",
   'products_chart' => "Products Chart",
   'refresh' => "Refresh",
-  "products_chart_description" => "Everything about added products in this (year, month, week, day).",
+  "products_chart_description" => "Everything about added products in this (year, month, week).",
   'today' => "Today",
   "year" => "Year",
   "month" => "Month",

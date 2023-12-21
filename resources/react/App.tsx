@@ -29,6 +29,7 @@ const App: FC<AppProps> = ({ children, props }) => {
     dispatch(setImagesPaths(props.paths.images_paths));
   }, [props]);
 
+
   return (
     <>
       {children}

@@ -83,13 +83,15 @@ trait Dates
    * @param string $model
    * @param string $startDate
    * @param string $endDate
-   * @param mixed $user
    * @return mixed
    */
-  function getRecordsCountsBetweenDates(string $model, string $startDate, string $endDate, $user = null): mixed
+  function getRecordsCountsBetweenDates(string $model, string $startDate, string $endDate, string $query = ""): mixed
   {
+    if ($query !== "") {
+      $query = ", {$query}";
+    }
     return $model::whereBetween('created_at', [$startDate, $endDate])
-      ->selectRaw('DATE(created_at) as record_time, COUNT(*) as count')
+      ->selectRaw("DATE(created_at) as record_time, COUNT(*) as count {$query}")
       ->groupBy('record_time')
       ->orderBy('record_time');
   }

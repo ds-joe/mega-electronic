@@ -8,6 +8,8 @@ type SalesWithAdditionData = Sale & {
   customer: Customer
 };
 
+
+
 export type SalesProps = {
   sales: Array<SalesWithAdditionData>,
   sales_status_cards: {
@@ -21,6 +23,36 @@ export type SalesProps = {
       total_discount: number,
       total_sales: number
     }
+  },
+  chart: {
+    payment: {
+      weekly: {
+        data: Array<number>,
+        labels: Array<string>
+      },
+      monthly: {
+        data: Array<number>,
+        labels: Array<string>
+      },
+      yearly: {
+        data: Array<number>,
+        labels: Array<string>
+      }
+    },
+    cash: {
+      weekly: {
+        data: Array<number>,
+        labels: Array<string>
+      },
+      monthly: {
+        data: Array<number>,
+        labels: Array<string>
+      },
+      yearly: {
+        data: Array<number>,
+        labels: Array<string>
+      }
+    }
   }
 }
 
@@ -29,6 +61,8 @@ export type SalesTableProps = {
 }
 
 export type SalesStatesCardsProps = SalesProps['sales_status_cards'];
+
+export type SalesChartProps = SalesProps['chart'];
 
 /**
  * Sale Page
