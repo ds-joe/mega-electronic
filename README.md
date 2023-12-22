@@ -1,9 +1,10 @@
 # Mega Electronic
 
-A React Laravel e-commerce dashboard to manage your sales, order, expenses, etc.....
+A React Laravel e-commerce dashboard to manage your sales, order, expenses, etc...
 
 **Frameworks and features:**
 
+- Using Diagram to create database structure in `public/docs/database-structure.drawio`.
 - Using Interia for `SSR` Server Side Rendering.
 - Using React for `front-end`.
 - Using Laravel for `backend` .
