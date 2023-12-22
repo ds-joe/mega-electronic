@@ -49,7 +49,7 @@ const TableFilter: RC<TableFilterProps> = ({ allowed_sort_columns, searchPlaceho
           <i className="fas fa-angle-right" />
         </Button>
         <Button variant="primary" className="btn-sm" onClick={toggleReverseTable}>
-          <i className="fas fa-up-down" />
+          <i className="fas fa-sort" />
         </Button>
       </div>
     </div>
