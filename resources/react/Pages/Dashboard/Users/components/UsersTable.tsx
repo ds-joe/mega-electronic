@@ -1,11 +1,7 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-import { useRef } from "react";
 
 // Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleCreateUserModalDisplay, toggleUpdateUserModalDisplay, setUpdatingUser } from "@/redux/slicers/pages/users";
-import { RootState } from "@/redux/store";
 
 // Components
 import { Dropdown, Card, Table, Image } from "react-bootstrap";
@@ -13,21 +9,22 @@ import TableFilter from "@/Components/Tables/TableFilter";
 
 // Hooks
 import useTable from "@/hooks/useTable";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import useToast from "@/hooks/useToast";
 
 // Types
-import { UsersTableProps } from "@/types/Pages/Users";
+import { UsersProps } from "@/types/Pages/Users";
 import { User } from "@/types/Models/User";
 
 // Assets
 import avatar from "~/images/auth/userAvatar.svg";
 
-const UsersTable: FCComponent<UsersTableProps> = ({ pageWords, users }) => {
-  const images_paths = useSelector((state: RootState) => state.paths.images_paths);
+const UsersTable: RC = () => {
+  const { pageWords, paths, pageData } = usePage().props as ServerProps<UsersProps>;
+  const { allowed_sort_columns, available_steps, data } = pageData.users_table;
+  const tableHook = useTable({ routeName: "users.table", allowed_sort_columns, available_steps });
+  const { images_paths } = paths;
   const dispatch = useDispatch();
-  const tableEle = useRef<HTMLTableElement>(null);
-  const tableHook = useTable(tableEle);
   const { patch } = useForm();
   const { confirmationToast } = useToast();
 
@@ -64,7 +61,7 @@ const UsersTable: FCComponent<UsersTableProps> = ({ pageWords, users }) => {
         <TableFilter {...tableHook} searchPlaceholder={pageWords?.search_for_user} />
       </Card.Body>
       <Card.Body>
-        <Table responsive ref={tableEle}>
+        <Table responsive >
           <thead>
             <tr>
               <th>{pageWords?.no}</th>
@@ -79,7 +76,7 @@ const UsersTable: FCComponent<UsersTableProps> = ({ pageWords, users }) => {
           </thead>
           <tbody>
             {
-              users.map((user) => (
+              data?.map((user) => (
                 <tr key={user.id}>
                   <td>{user.id}</td>
                   <td >

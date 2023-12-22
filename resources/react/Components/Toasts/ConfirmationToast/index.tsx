@@ -1,13 +1,10 @@
-// Dependencies
-import { FC } from "react";
-
 // Components
 import { FormGroup, Button } from "react-bootstrap";
 
 // Types
 import { ConfirmationToastProps } from "@/types/Hooks/Toasts";
 
-const ConfirmationToast: FC<ConfirmationToastProps> = ({ onClose, onConfirm, children }) => {
+const ConfirmationToast: RC<ConfirmationToastProps> = ({ onClose, onConfirm, children }) => {
   return (
     <FormGroup className="flex flex-col">
       {children}

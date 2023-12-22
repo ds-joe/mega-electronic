@@ -1,6 +1,6 @@
 .#{$layout-prefix} {
   @include stander-height($layout-height);
-  background: $layout-bg;
+  @apply bg-gray-50;
   @apply flex min-w-full overflow-y-auto font-poppins dark:bg-deep-dark;
 
 

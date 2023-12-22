@@ -1,222 +1,73 @@
 // Dependencies
-import { useState, RefObject } from "react";
+import { useMemo, useState } from "react";
+import { useForm } from "@inertiajs/react";
 
+// Types
+import { UseTableData, UseTableProps } from "@/types/Hooks/useTable";
 
-/**
- * @desc This hook using to control table ( limit, search, .....).
- * @author Dev.Youssef
- * @github https://github.com/dsc-youssef
- * @facebook https://www.facebook.com/YoussefBibawy1/
- * @param { RefObject<HTMLTableElement>} table
- * @returns
- */
-const useTable = (table: RefObject<HTMLTableElement>) => {
+const useTable = ({ routeName, available_steps = 1, allowed_sort_columns }: UseTableProps) => {
+  const [firstLoad, setFirstLoad] = useState<boolean>(false);
+  const [currentStep, setCurrentStep] = useState<UseTableData['currentStep']>(1);
+  const [recordsByStep, setRecordsByStep] = useState<UseTableData['recordsByStep']>(50);
+  const [sortBy, setSortBy] = useState<UseTableData['sortBy']>("id");
+  const [reverse, setReverse] = useState<UseTableData['reverse']>(true);
+  const [searchQuery, setSearchQuery] = useState<UseTableData['searchQuery']>("");
+  const { patch } = useForm();
+  var searchTimer: any;  // @ts-ignore
+  const runData = useMemo(() => {
+    firstLoad && patch(route(routeName, {
+      currentStep,
+      recordsByStep,
+      reverse: reverse ? 1 : 0,
+      searchQuery,
+      sortBy,
+    }));
+    !firstLoad && setFirstLoad(true);
+  }, [currentStep, searchQuery, reverse, recordsByStep, sortBy]);
 
-  const [tableLimit, setTableLimit] = useState<number>(50);
-  const [currentTab, setCurrentTab] = useState<number>(1);
-  const tabAttribute: string = "tab-effect",
-    searchAttribute: string = "search-effect";
 
   /**
-   * Get table rows.
-   * @return { NodeListOf<HTMLTableRowElement> }
-   */
-  const getTableRows = (): NodeListOf<HTMLTableRowElement> => table.current?.querySelectorAll("tbody tr") as NodeListOf<HTMLTableRowElement>;
-
-  /**
-   * Get row cells.
-   * @param { HTMLTableRowElement } row
-   * @return { NodeListOf<HTMLTableCellElement> }
-   */
-  const getRowCells = (row: HTMLTableRowElement): NodeListOf<HTMLTableCellElement> => row.querySelectorAll('td');
-
-  /**
-   * Get unEffected search rows.
-   * @return { NodeListOf<HTMLTableRowElement> }
-   */
-  const getUnEffectedSearchRows = (): NodeListOf<HTMLTableRowElement> => {
-    return table.current?.querySelectorAll(`tbody tr:not([${searchAttribute}])`) as NodeListOf<HTMLTableRowElement>;
-  }
-
-  /**
-   * *****************************************************************
-   * Tab Limit Area
-   * *****************************************************************
-   */
-
-  /**
-   * Get table tabs length.
-   * @return { number }
-   */
-  const getTabsLength = (): number => {
-    const unEffectedRows = getUnEffectedSearchRows()?.length;
-    const limit = tableLimit > 0 ? tableLimit : 1000;
-    return unEffectedRows ? Math.ceil(unEffectedRows / limit) : 1;
-  };
-
-  /**
-   * Remove tab attribute from all table rows.
+   * To next step
    * @return { void }
    */
-  const removeRowsTabAttribute = (): void => {
-    const rows = getTableRows();
-    rows.forEach((row: HTMLTableRowElement) => {
-      row.removeAttribute(tabAttribute);
-    });
-  }
+  const toNextStep = (): void => setCurrentStep((prev) => (prev + 1) <= available_steps ? (prev + 1) : prev);
 
   /**
-   * Add tab attribute for all table rows.
+   * To previous step
    * @return { void }
    */
-  const setRowsTabAttribute = (): void => {
-    getTableRows().forEach((row: HTMLTableRowElement) => {
-      row.setAttribute(tabAttribute, '');
-    });
-  }
+  const toPrevStep = (): void => setCurrentStep((prev) => prev - 1 >= 1 ? (prev - 1) : prev);
 
   /**
-   * Remove row tab attribute.
-   * @param { HTMLTableRowElement } row
+   * Toggle reverse table/
    * @return { void }
    */
-  const removeRowTabAttribute = (row: HTMLTableRowElement): void => {
-    row?.removeAttribute(tabAttribute);
-  }
+  const toggleReverseTable = (): void => setReverse((prev) => !prev);
 
   /**
-   * Get end of display records.
-   * @return { number }
-   */
-  const getEndOfDisplayRecords = (): number => Math.ceil(currentTab * tableLimit);
-
-  /**
-   * Get start of display records.
-   * @return { number }
-   */
-  const getStartOfDisplayRecords = (): number => Math.ceil(getEndOfDisplayRecords() - tableLimit);
-
-  /**
-   * Set tab limit.
+   * Set Table Search
+   * @param { UseTableData['searchQuery'] } e
    * @return { void }
    */
-  const setTabLimit = (): void => {
-    const rows = getUnEffectedSearchRows();
-    setRowsTabAttribute();
-    for (let i = getStartOfDisplayRecords(); i < getEndOfDisplayRecords(); i++) {
-      removeRowTabAttribute(rows[i]);
-    }
+  const tableSearch = (e: UseTableData['searchQuery']): void => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      setSearchQuery(e);
+    }, 500);
   }
-
-  /**
-   * To next tab.
-   * @return { void }
-   */
-  const toNextTab = (): void => {
-    setCurrentTab((prev: number) => {
-      if (prev < getTabsLength()) {
-        return prev + 1;
-      }
-      return prev;
-    });
-  }
-
-  /**
-   * to prev tab.
-   * @return { void }
-   */
-  const toPrevTab = (): void => {
-    setCurrentTab((prev: number) => {
-      if (prev > 1) {
-        return prev - 1;
-      }
-      return prev;
-    });
-  }
-
-  /**
-   * Reset current tab.
-   * @return { void }
-   */
-  const resetCurrentTab = (): void => {
-    setCurrentTab((_prev: number) => 1);
-  }
-
-  /**
-   * *****************************************************************
-   * Search Area
-   * *****************************************************************
-   */
-
-  /**
-   * Remove search attribute from all table rows.
-   * @return { void }
-   */
-  const removeRowsSearchAttribute = (): void => {
-    const rows = getTableRows();
-    rows.forEach((row: HTMLTableRowElement) => {
-      row.removeAttribute(searchAttribute);
-    });
-  }
-
-  /**
-   * Set search attribute to a row.
-   * @param { HTMLTableRowElement } row
-   * @return { void }
-   */
-  const setRowSearchAttribute = (row: HTMLTableRowElement): void => {
-    row.setAttribute(searchAttribute, "");
-  }
-
-  /**
-   * Search in table.
-   * @param { string } needle
-   * @return { void }
-   */
-  const tableSearch = (needle: string = ""): void => {
-    const rows = getTableRows();
-
-
-    // Clear all effect attributes.
-    removeRowsTabAttribute();
-    removeRowsSearchAttribute();
-    resetCurrentTab();
-
-    // Loop in table rows.
-    rows.forEach((row: HTMLTableRowElement) => {
-      var isFound: boolean = false;
-      const cells = getRowCells(row);
-
-      // Search inside row cells
-      cells.forEach((cell: HTMLTableCellElement) => {
-        const searchQuery = cell.textContent?.toUpperCase().search(needle.toUpperCase());
-
-        if (searchQuery !== undefined && searchQuery >= 0) {
-          isFound = true;
-        }
-      });
-
-      // check if needle is found or not.
-      if (!isFound) {
-        setRowSearchAttribute(row);
-      }
-    });
-    setTabLimit();
-  }
-
 
   return {
-    currentTab,
-    setTableLimit,
+    toNextStep,
+    toPrevStep,
+    toggleReverseTable,
+    setSortBy,
+    setRecordsByStep,
     tableSearch,
-    setTabLimit,
-    toNextTab,
-    toPrevTab,
-    tableLimit,
-    resetCurrentTab,
-    getTabsLength
-  }
+    currentStep,
+    recordsByStep,
+    available_steps,
+    allowed_sort_columns
+  };
 }
-
 
 export default useTable;

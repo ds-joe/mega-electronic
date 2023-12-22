@@ -13,6 +13,7 @@ return [
   'last_name' => "Last Name",
   'created_by' => "Created by",
   'created_at' => "Created at",
+  'id' => "ID",
   'email' => "Email",
   "address" => "Address",
   'phone' => "Phone",

@@ -1,5 +1,5 @@
 // Dependencies
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 
 // Components
 import { Card, Row, Col, Table, Dropdown } from "react-bootstrap";
@@ -13,7 +13,7 @@ import { toggleCreateBrandModalDisplay, toggleUpdateBrandModalDisplay, setUpdati
 // Hooks
 import useChart from "@/hooks/useChart";
 import useToast from "@/hooks/useToast";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import useTable from "@/hooks/useTable";
 
 // Utils
@@ -21,17 +21,18 @@ import colors from "~tailwind/colors";
 import { barChartDataset, barChartOptions } from "@/utils/chart/custom/barChart";
 
 // Types
-import { FCComponent } from "@/types/App";
-import { BrandsDataProps } from "@/types/Pages/Products";
+import { ProductsProps } from "@/types/Pages/Products";
 import { Brand } from "@/types/Models/Brand";
 
-const BrandsArea: FCComponent<BrandsDataProps> = ({ pageWords, table, chart }) => {
+const BrandsArea: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
   const dispatch = useDispatch();
+  const { allowed_sort_columns, available_steps, data } = pageData.brands_table;
+  const chart = pageData.brands_chart;
   const { createDatasetObject, createDataObject, createDatasetsArray } = useChart();
   const { patch } = useForm();
   const { confirmationToast } = useToast();
-  const tableEle = useRef<HTMLTableElement>(null);
-  const tableHook = useTable(tableEle);
+  const tableHook = useTable({ routeName: "brands.table", allowed_sort_columns, available_steps });
 
   // Handle open create brand modal function.
   const handleOpenCreateBrandModal = () => {
@@ -83,7 +84,7 @@ const BrandsArea: FCComponent<BrandsDataProps> = ({ pageWords, table, chart }) =
             <TableFilter {...tableHook} searchPlaceholder={pageWords?.search_for_brand} />
           </Card.Body>
           <Card.Body className="max-h-[300px] overflow-y-auto make-scroll">
-            <Table responsive ref={tableEle} >
+            <Table responsive >
               <thead>
                 <tr>
                   <th>{pageWords?.no}</th>
@@ -95,11 +96,11 @@ const BrandsArea: FCComponent<BrandsDataProps> = ({ pageWords, table, chart }) =
               </thead>
               <tbody>
                 {
-                  table.map((brand) => (
+                  data?.map((brand) => (
                     <tr key={brand?.id}>
                       <td>{brand?.id}</td>
                       <td>{brand.name}</td>
-                      <td>{brand.created_owner.full_name}</td>
+                      <td>{brand.owner.full_name}</td>
                       <td>{brand.created_at}</td>
                       <td>
                         <Dropdown>

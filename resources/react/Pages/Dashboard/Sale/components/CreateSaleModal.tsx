@@ -1,6 +1,3 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -8,7 +5,7 @@ import { toggleCreateSaleModal } from "@/redux/slicers/pages/sales";
 import { clearCart } from "@/redux/slicers/components/cart";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 // Components
 import { Modal, Form, FormGroup, Button, FormSelect, FormControl, FormLabel } from "react-bootstrap";
@@ -17,7 +14,8 @@ import { Modal, Form, FormGroup, Button, FormSelect, FormControl, FormLabel } fr
 import { CreateSaleModalProps } from "@/types/Pages/Sales";
 import { ChangeEvent, FormEventHandler, useEffect } from "react";
 
-const CreateSaleModal: FCComponent<CreateSaleModalProps> = ({ pageWords, customers }) => {
+const CreateSaleModal: RC<CreateSaleModalProps> = ({ customers }) => {
+  const { pageWords } = usePage().props as ServerProps;
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.salesPage.createSaleModalDisplay);
   const cartProducts = useSelector((state: RootState) => state.cart.products);

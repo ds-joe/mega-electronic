@@ -1,14 +1,13 @@
+import { UseTableResponseData } from "../Hooks/useTable";
 import { Customer } from "../Models/Customer";
 import { User } from "../Models/User";
 
 type CustomersWithOwner = Customer & {
   owner: User
 };
+export type CustomersTableProps = UseTableResponseData<CustomersWithOwner>;
 
 export type CustomersProps = {
-  customers: Array<CustomersWithOwner>
+  customers_table: CustomersTableProps,
 }
 
-export type CustomersTableProps = {
-  records: CustomersProps['customers']
-}

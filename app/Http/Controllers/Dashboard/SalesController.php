@@ -11,13 +11,17 @@ use App\Models\Sale;
 use App\Models\SaleHasProduct;
 use App\Traits\Requests;
 use App\Traits\Utils\Dates;
+use App\Utils\Table;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SalesController extends Controller
 {
 
   use Requests, Dates;
+  private array $allowedSortColumns = ['id', 'method', 'amount', 'discount', 'created_at'];
+  private array $allowedSearchColumns = ['method'];
 
   /**
    * Display sales page.
@@ -25,8 +29,8 @@ class SalesController extends Controller
    */
   public function show(): \Inertia\Response
   {
-    $sales = Sale::with('owner', 'customer')
-      ->get();
+
+    $sales = Table::defaultTable(Sale::class, ['owner', 'customer'], $this->allowedSortColumns, $this->allowedSearchColumns);
 
     // Payment
     $paymentTotalAmount = Sale::where('method', 'payment')->sum('amount');
@@ -38,26 +42,23 @@ class SalesController extends Controller
     $cashTotalDiscount = Sale::where('method', 'cash')->sum('discount');
     $cashTotalSales = Sale::where('method', 'cash')->count();
 
-    return Inertia::render(
-      "Dashboard/Sales/index",
-      [
-        'sales' => $sales,
-        'sales_status_cards' => [
-          'payment' => [
-            'total_amount' => $paymentTotalAmount,
-            'total_discount' => $paymentTotalDiscount,
-            'total_sales' => $paymentTotalSales,
-          ],
-          'cash' => [
-            'total_amount' => $cashTotalAmount,
-            'total_discount' => $cashTotalDiscount,
-            'total_sales' => $cashTotalSales,
-          ]
+    return $this->appendPage("Dashboard/Sales/index", __('pages/dashboard/sales'), [
+      'sales_table' => $sales,
+      'sales_status_cards' => [
+        'payment' => [
+          'total_amount' => $paymentTotalAmount,
+          'total_discount' => $paymentTotalDiscount,
+          'total_sales' => $paymentTotalSales,
         ],
-        'chart' => $this->getChartData(),
-        'pageWords' => __('pages/dashboard/sales')
-      ]
-    );
+        'cash' => [
+          'total_amount' => $cashTotalAmount,
+          'total_discount' => $cashTotalDiscount,
+          'total_sales' => $cashTotalSales,
+        ]
+      ],
+      'sales_chart' => $this->getChartData(),
+    ]);
+
   } // End Method
 
   /**
@@ -87,15 +88,24 @@ class SalesController extends Controller
   {
     $sale = Sale::with('products', 'customer', 'owner')->findOrFail($id);
     $customers = Customer::all();
-    return Inertia::render(
-      'Dashboard/UpdateSale/index',
-      [
-        'sale' => $sale,
-        'customers' => $customers,
-        'pageWords' => __('pages/dashboard/sales')
-      ]
-    );
+    return $this->appendPage('Dashboard/UpdateSale/index', __('pages/dashboard/sales'), [
+      'sale' => $sale,
+      'customers' => $customers,
+    ]);
   }
+
+  /**
+   * Get sales table data.
+   * @param Request $request
+   * @return void
+   */
+  public function getSalesTable(Request $request): void
+  {
+    $table = Table::handleResponse($request, Sale::class, ['customer', 'owner'], $this->allowedSortColumns, $this->allowedSearchColumns);
+    $this->setPageData([
+      'sales_table' => $table
+    ]);
+  } // End Method
 
   /**
    * Create sale.

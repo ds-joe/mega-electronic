@@ -1,9 +1,12 @@
 <?php
+use App\Utils\Table;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\SalesController;
 use App\Providers\RouteServiceProvider;
 
+
 Route::controller(SalesController::class)->group(function () {
+  Table::createRoute(RouteServiceProvider::DASHBOARD_BASE . "/sales/table", 'getSalesTable', "sales.table");
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/sales", 'show')->name('sales.show');
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/sales/create/sale", 'sale')->name('sales.create.show');
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/sales/update/sale/{id}", 'updateSale')->name('sales.update.show');

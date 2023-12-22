@@ -1,6 +1,3 @@
-// Dependencies
-import { FC } from "react";
-
 // Redux
 import { useSelector } from "react-redux";
 
@@ -11,7 +8,7 @@ import SidebarBody from "./Components/Body";
 // Types
 import { RootState } from "@/redux/store";
 
-const Sidebar: FC = () => {
+const Sidebar: RC = () => {
   const { isOpen, isFold } = useSelector((state: RootState) => state.sidebar);
 
   return (

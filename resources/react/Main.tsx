@@ -15,19 +15,15 @@ import { store } from "./redux/store";
 // Utils
 import colors from "~tailwind/colors";
 
-// Types
-import { ServerProps } from "./types/Server";
-
 createInertiaApp({
   title: (title) => `${title}`,
   resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx')),
   setup({ el, App, props }) {
     const root = createRoot(el);
-    const pageProps: ServerProps = props.initialPage.props as unknown as ServerProps;
 
     root.render(
       <Provider store={store}>
-        <AppContainer props={pageProps}>
+        <AppContainer >
           <ToastContainer />
           <App {...props} />
         </AppContainer>

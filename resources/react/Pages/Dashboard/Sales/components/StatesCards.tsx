@@ -1,13 +1,15 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Components
 import StateIconCard from "@/Components/Cards/StateIconCard";
 
 // Types
-import { SalesStatesCardsProps } from "@/types/Pages/Sales";
+import { SalesProps } from "@/types/Pages/Sales";
 
-const StatesCards: FCComponent<SalesStatesCardsProps> = ({ pageWords, payment, cash }) => {
+const StatesCards: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<SalesProps>;
+  const { cash, payment } = pageData.sales_status_cards;
   return (
     <>
       <StateIconCard value={`$ ${cash.total_amount}`} description={pageWords?.cash_amount} icon={"fa-dollar"} time={pageWords?.total} />

@@ -1,10 +1,12 @@
 <?php
+use App\Utils\Table;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\UsersController;
 use App\Providers\RouteServiceProvider;
 
 # Products Controller
 Route::controller(UsersController::class)->group(function () {
+  Table::createRoute(RouteServiceProvider::DASHBOARD_BASE . "/users/table", 'getUsersTable', 'users.table');
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/users", 'show')->name('users.show');
   Route::post(RouteServiceProvider::DASHBOARD_BASE . "/users/create", 'store')->name('users.create');
   Route::post(RouteServiceProvider::DASHBOARD_BASE . "/users/update", 'update')->name('users.update');

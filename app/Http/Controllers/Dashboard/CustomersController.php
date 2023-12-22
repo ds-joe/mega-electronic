@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Customer\CreateCustomerRequest;
 use App\Http\Requests\Dashboard\Customer\UpdateCustomerRequest;
 use App\Models\Customer;
+use App\Utils\Table;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Traits\Requests;
 
@@ -14,6 +16,9 @@ class CustomersController extends Controller
 {
   use Requests;
 
+  private array $allowedSortColumns = ['id', 'first_name', 'last_name', 'phone', 'email', 'created_at'];
+  private array $allowedSearchColumns = ['first_name', 'last_name', "phone", 'email'];
+
   /**
    * Display customers page.
    * @return \Inertia\Response
@@ -21,9 +26,23 @@ class CustomersController extends Controller
   public function show(): \Inertia\Response
   {
     # Customers data
-    $customers = Customer::with('owner')->get();
+    $customers_table = Table::defaultTable(Customer::class, ['owner'], $this->allowedSortColumns, $this->allowedSearchColumns);
+
     return $this->appendPage('Dashboard/Customers/index', __("pages/dashboard/customers"), [
-      'customers' => $customers
+      'customers_table' => $customers_table
+    ]);
+  } // End Method
+
+  /**
+   * Get customers table data.
+   * @param Request $request
+   * @return void
+   */
+  public function getCustomersTable(Request $request): void
+  {
+    $table = Table::handleResponse($request, Customer::class, ['owner'], $this->allowedSortColumns, $this->allowedSearchColumns);
+    $this->setPageData([
+      'customers_table' => $table
     ]);
   } // End Method
 

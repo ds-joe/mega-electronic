@@ -7,18 +7,20 @@ import { Card } from "react-bootstrap";
 
 // Hooks
 import useChart from "@/hooks/useChart";
+import { usePage } from "@inertiajs/react";
 
 // Utils
 import colors from "~tailwind/colors";
 import { lineChartDataset, lineChartOptions } from "@/utils/chart/custom/lineChart";
 
 // Types
-import { FCComponent } from "@/types/App";
-import { ProductsChartProps } from "@/types/Pages/Products";
+import { ProductsProps } from "@/types/Pages/Products";
 
-const ProductsChart: FCComponent<ProductsChartProps> = ({ pageWords, chart }) => {
+const ProductsChart: RC = () => {
   const { createDatasetObject, createDataObject, createDatasetsArray, createLinearGradient } = useChart();
   const [selectedTime, setSelectedTime] = useState<'weekly' | 'monthly' | 'yearly'>('weekly');
+  const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
+  const chart = pageData.products_chart;
 
   const chartData = useMemo(() => createDataObject({
     ...createDataObject(),
@@ -27,7 +29,7 @@ const ProductsChart: FCComponent<ProductsChartProps> = ({ pageWords, chart }) =>
         ...lineChartDataset,
         data: chart[`${selectedTime}`].data,
         borderColor: colors.primary,
-        backgroundColor: createLinearGradient(`${colors.primary}40`, `${colors.info}40`),
+        backgroundColor: createLinearGradient(`${colors.primary}40`, `${colors.primary}40`),
         fill: true
       })
     ]),

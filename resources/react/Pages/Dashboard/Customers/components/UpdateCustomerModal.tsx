@@ -6,20 +6,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleUpdateCustomerModalDisplay } from "@/redux/slicers/pages/customers";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 // Components
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import FormError from "@/Components/Form/FormError";
 
 // Types
-import { FCComponent } from "@/types/App";
 import { RootState } from "@/redux/store";
 
-const UpdateCustomerModal: FCComponent = ({ pageWords }) => {
+const UpdateCustomerModal: RC = () => {
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.customersPage.updateCustomerModalDisplay);
   const updatingCustomerData = useSelector((state: RootState) => state.customersPage.updatingCustomer);
+  const { pageWords } = usePage().props as ServerProps;
 
   const { data, setData, errors, processing, wasSuccessful, reset, post } = useForm({
     id: updatingCustomerData?.id,

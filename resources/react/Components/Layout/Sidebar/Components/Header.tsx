@@ -1,6 +1,3 @@
-// Dependencies
-import { FC } from "react";
-
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { toggleFold } from "@/redux/slicers/components/sidebar";
@@ -8,15 +5,18 @@ import { toggleFold } from "@/redux/slicers/components/sidebar";
 // Types
 import { RootState } from "@/redux/store";
 
+// Hooks
+import { usePage } from "@inertiajs/react";
+
 // Assets
 import logoLight from "~/images/logo/logo-light-full.png";
 import logoDark from "~/images/logo/logo-dark-full.png";
 import { Image } from "react-bootstrap";
 
-const SidebarHeader: FC = () => {
+const SidebarHeader: RC = () => {
+  const { settings } = usePage().props as ServerProps;
   const dispatch = useDispatch();
   const { isFold } = useSelector((state: RootState) => state.sidebar);
-  const settings = useSelector((state: RootState) => state.layout.settings);
 
 
   // Handle Fold Sidebar

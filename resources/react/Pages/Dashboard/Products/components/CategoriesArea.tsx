@@ -1,5 +1,5 @@
 // Dependencies
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 
 // Components
 import { Card, Row, Col, Table, Dropdown } from "react-bootstrap";
@@ -13,7 +13,7 @@ import { toggleCreateCategoryModalDisplay, toggleUpdateCategoryModalDisplay, set
 // Hooks
 import useChart from "@/hooks/useChart";
 import useToast from "@/hooks/useToast";
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import useTable from "@/hooks/useTable";
 
 // Utils
@@ -21,17 +21,19 @@ import colors from "~tailwind/colors";
 import { barChartDataset, barChartOptions } from "@/utils/chart/custom/barChart";
 
 // Types
-import { FCComponent } from "@/types/App";
-import { CategoriesDataProps } from "@/types/Pages/Products";
+import { ProductsProps } from "@/types/Pages/Products";
 import { Category } from "@/types/Models/Category";
 
-const CategoriesArea: FCComponent<CategoriesDataProps> = ({ pageWords, table, chart }) => {
+const CategoriesArea: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
+  const { allowed_sort_columns, available_steps, data } = pageData.categories_table;
+  const chart = pageData.categories_chart;
   const dispatch = useDispatch();
   const { createDatasetObject, createDataObject, createDatasetsArray } = useChart();
   const { patch } = useForm();
   const { confirmationToast } = useToast();
-  const tableEle = useRef<HTMLTableElement>(null);
-  const tableHook = useTable(tableEle);
+
+  const tableHook = useTable({ routeName: "categories.table", allowed_sort_columns, available_steps });
 
 
   // Handle open create category modal function.
@@ -97,7 +99,7 @@ const CategoriesArea: FCComponent<CategoriesDataProps> = ({ pageWords, table, ch
             <TableFilter {...tableHook} searchPlaceholder={pageWords?.search_for_category} />
           </Card.Body>
           <Card.Body className="max-h-[300px] overflow-y-auto make-scroll">
-            <Table responsive ref={tableEle}>
+            <Table responsive >
               <thead>
                 <tr>
                   <th>{pageWords?.no}</th>
@@ -109,11 +111,11 @@ const CategoriesArea: FCComponent<CategoriesDataProps> = ({ pageWords, table, ch
               </thead>
               <tbody>
                 {
-                  table.map((category) => (
+                  data?.map((category) => (
                     <tr key={category?.id}>
                       <td>{category?.id}</td>
                       <td>{category.name}</td>
-                      <td>{category.created_owner.full_name}</td>
+                      <td>{category.owner.full_name}</td>
                       <td>{category.created_at}</td>
                       <td>
                         <Dropdown>

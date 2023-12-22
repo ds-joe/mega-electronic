@@ -6,7 +6,7 @@
     @apply flex items-center justify-between;
 
     .dropdown-header {
-      @apply border-b dark:border-[#{$dark-border-color}];
+      @apply border-b;
     }
 
     .#{$navbar-prefix}-user-dropdown {

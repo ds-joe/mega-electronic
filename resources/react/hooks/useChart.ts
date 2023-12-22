@@ -71,7 +71,6 @@ const useChart = () => {
     return gradient;
   }
 
-
   return {
     structure,
     utils,

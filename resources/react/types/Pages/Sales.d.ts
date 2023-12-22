@@ -2,67 +2,63 @@ import { Customer } from "../Models/Customer";
 import { Product } from "../Models/Product";
 import { Sale } from "../Models/Sale";
 import { User } from "../Models/User";
+import { UseTableResponseData } from "../Hooks/useTable";
 
-type SalesWithAdditionData = Sale & {
+type SalesOwnerCustomer = Sale & {
   owner: User,
   customer: Customer
 };
 
+export type SalesTableProps = UseTableResponseData<SalesOwnerCustomer>;
+export type SalesStatusCardsProps = {
+  payment: {
+    total_amount: number,
+    total_discount: number,
+    total_sales: number
+  },
+  cash: {
+    total_amount: number,
+    total_discount: number,
+    total_sales: number
+  }
+};
 
-
-export type SalesProps = {
-  sales: Array<SalesWithAdditionData>,
-  sales_status_cards: {
-    payment: {
-      total_amount: number,
-      total_discount: number,
-      total_sales: number
+export type SalesChartProps = {
+  payment: {
+    weekly: {
+      data: Array<number>,
+      labels: Array<string>
     },
-    cash: {
-      total_amount: number,
-      total_discount: number,
-      total_sales: number
+    monthly: {
+      data: Array<number>,
+      labels: Array<string>
+    },
+    yearly: {
+      data: Array<number>,
+      labels: Array<string>
     }
   },
-  chart: {
-    payment: {
-      weekly: {
-        data: Array<number>,
-        labels: Array<string>
-      },
-      monthly: {
-        data: Array<number>,
-        labels: Array<string>
-      },
-      yearly: {
-        data: Array<number>,
-        labels: Array<string>
-      }
+  cash: {
+    weekly: {
+      data: Array<number>,
+      labels: Array<string>
     },
-    cash: {
-      weekly: {
-        data: Array<number>,
-        labels: Array<string>
-      },
-      monthly: {
-        data: Array<number>,
-        labels: Array<string>
-      },
-      yearly: {
-        data: Array<number>,
-        labels: Array<string>
-      }
+    monthly: {
+      data: Array<number>,
+      labels: Array<string>
+    },
+    yearly: {
+      data: Array<number>,
+      labels: Array<string>
     }
   }
+};
+
+export type SalesProps = {
+  sales_table: SalesTableProps,
+  sales_status_cards: SalesStatusCardsProps,
+  sales_chart: SalesChartProps
 }
-
-export type SalesTableProps = {
-  records: SalesProps['sales']
-}
-
-export type SalesStatesCardsProps = SalesProps['sales_status_cards'];
-
-export type SalesChartProps = SalesProps['chart'];
 
 /**
  * Sale Page

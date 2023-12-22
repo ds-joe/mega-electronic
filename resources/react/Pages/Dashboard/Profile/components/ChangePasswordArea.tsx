@@ -1,16 +1,15 @@
 // Dependencies
 import { ChangeEvent, FormEvent, useEffect } from "react";
-import { FCComponent } from "@/types/App";
 
 // Components
 import { Card, FormControl, Button, Form, FormGroup, FormLabel } from "react-bootstrap";
 import FormError from "@/Components/Form/FormError";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
-const ChangePasswordArea: FCComponent = ({ pageWords }) => {
-
+const ChangePasswordArea: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
   const { data, errors, setData, processing, reset, wasSuccessful, post } = useForm({
     old_password: "",
     new_password: "",

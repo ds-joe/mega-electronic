@@ -5,6 +5,7 @@ return [
   "category_name" => "Category Name",
   "brands" => "Brands",
   'total' => "Total",
+  'id' => "ID",
   'categories_chart_description' => "Everything about added categories this week.",
   'categories_table' => "Categories Table",
   'categories_table_description' => "You can edit and remove any category you want, also you can sort and search for any category.",

@@ -1,12 +1,16 @@
 // Components
 import StateIconCard from "@/Components/Cards/StateIconCard";
 
+// Hooks
+import { usePage } from "@inertiajs/react";
+
 // Types
-import { FCComponent } from "@/types/App";
-import { StateCardsProps } from "@/types/Pages/Products";
+import { ProductsProps } from "@/types/Pages/Products";
 
 
-const StateCards: FCComponent<StateCardsProps> = ({ pageWords, products, categories, brands }) => {
+const StatusCards: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
+  const { products, categories, brands } = pageData.status_cards;
   return (
     <>
       <StateIconCard value={products} description={pageWords?.products} icon={"fa-shopping-cart"} time={pageWords?.total} />
@@ -16,4 +20,4 @@ const StateCards: FCComponent<StateCardsProps> = ({ pageWords, products, categor
   )
 }
 
-export default StateCards;
+export default StatusCards;

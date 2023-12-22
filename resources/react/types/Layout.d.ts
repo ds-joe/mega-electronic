@@ -1,4 +1,4 @@
-import { ServerLayoutWords } from "./Server";
+import { ServerWords } from "./Server";
 
 export interface LayoutSettings {
   language: "en" | "ar";
@@ -7,7 +7,7 @@ export interface LayoutSettings {
 }
 
 export interface DashboardLayoutProps {
-  pageWords: ServerLayoutWords,
+  pageWords: ServerWords,
   url: string,
   settings: LayoutSettings
 }

@@ -23,7 +23,7 @@
     @apply w-fit;
   }
 
-  @apply dark:bg-deep-dark dark:text-white dark:focus:text-white dark:focus:bg-transparent dark:border-primary/50 dark:placeholder:text-gray-500;
+  @apply dark:bg-deep-dark dark:text-white dark:focus:text-white dark:focus:bg-dark dark:border-primary/50 dark:placeholder:text-gray-500;
 }
 
 .form-label {

@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setProductQuantity, removeProduct } from "@/redux/slicers/components/cart";
 
+// Hooks
+import { usePage } from "@inertiajs/react";
+
 // Components
 import { Button, FormControl, FormGroup, Image } from "react-bootstrap";
 import useToast from "@/hooks/useToast";
@@ -15,11 +18,12 @@ import { CartProductProps } from "@/types/Components/Layout/Cart";
 
 // Assets
 import fakeImage from "~/images/global/product-placeholder.png";
-import { FCComponent } from "@/types/App";
 
-const CartProduct: FCComponent<CartProductProps> = ({ pageWords, id, price, image, name }) => {
+const CartProduct: RC<CartProductProps> = ({ id, price, image, name }) => {
   const dispatch = useDispatch();
-  const paths = useSelector((state: RootState) => state.paths.images_paths);
+  const page = usePage().props as ServerProps;
+  const { pageWords } = page;
+  const paths = page.paths.images_paths;
   const productImage = image ? `${paths?.root}/${paths?.products}/${image}` : fakeImage;
   const product = useSelector((state: RootState) => state.cart.products).filter((product) => product.id === id)[0];
   const { toast } = useToast();

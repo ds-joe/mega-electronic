@@ -13,6 +13,7 @@ A React Laravel e-commerce dashboard to manage your sales, order, expenses, etc.
 - Sass support for CSS pre-processing
 - Tailwind CSS support for utility-first CSS
 - Vitest support for valid ui to avoid any bugs
+- Custom `react` hooks like for charts.
 
 **To use the template, simply clone the repository and run the following commands:**
 

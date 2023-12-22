@@ -1,10 +1,7 @@
-// Dependencies
-import { FC } from "react";
-
 // Types
 import { CheckRadioProps } from "@/types/Components/Form/CheckRadio";
 
-const CheckRadio: FC<CheckRadioProps> = ({ type, className, label, onChange, id, name, checked }) => {
+const CheckRadio: RC<CheckRadioProps> = ({ type, className, label, onChange, id, name, checked }) => {
   return (
     <label className={`${type} ${className}`}>
       <input type={type === 'switch' ? 'checkbox' : type} id={id} name={name} onChange={onChange} checked={checked} />

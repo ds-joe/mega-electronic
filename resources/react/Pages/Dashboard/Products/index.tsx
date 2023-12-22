@@ -1,11 +1,11 @@
-// Dependencies
-import { FCPage } from "@/types/App";
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Components
 import Dashboard from "@/Layout/Dashboard";
 import Header from "@/Components/Layout/Header";
 import { Col, Row } from "react-bootstrap";
-import StateCards from "./components/StateCards";
+import StatusCards from "./components/StatusCards";
 import CategoriesArea from "./components/CategoriesArea";
 import CreateCategoryModal from "./components/CreateCategoryModal";
 import ProductsChart from "./components/ProductsChart";
@@ -16,37 +16,35 @@ import UpdateCategoryModal from "./components/UpdateCategoryModal";
 import CreateProductModal from "./components/CreateProduct";
 import UpdateBrandModal from "./components/UpdateBrandModal";
 
-// Types
-import { ProductsProps } from "@/types/Pages/Products";
-
-const Products: FCPage<ProductsProps> = ({ notification, pageWords, state_cards, categories, brands, products }) => {
+const Products: RP = () => {
+  const { pageWords } = usePage().props as ServerProps;
 
   return (
-    <Dashboard pageTitle="Products" notification={notification}>
-      <CreateCategoryModal pageWords={pageWords} />
-      <UpdateCategoryModal pageWords={pageWords} />
-      <CreateBrandModal pageWords={pageWords} />
-      <UpdateBrandModal pageWords={pageWords} />
-      <CreateProductModal pageWords={pageWords} brands={brands.table} categories={categories.table} />
+    <Dashboard pageTitle={pageWords?.products}>
+      <CreateCategoryModal />
+      <UpdateCategoryModal />
+      <CreateBrandModal />
+      <UpdateBrandModal />
+      <CreateProductModal />
 
       <Row className="gap-7">
         <Col xs="12">
           <Header title={pageWords?.products} />
         </Col>
         <Col xs='12' className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <StateCards pageWords={pageWords} products={state_cards.products} categories={state_cards.categories} brands={state_cards.brands} />
+          <StatusCards />
         </Col>
         <Col xs='12'>
-          <CategoriesArea pageWords={pageWords} table={categories.table} chart={categories.chart} />
+          <CategoriesArea />
         </Col>
         <Col xs="12">
-          <ProductsChart pageWords={pageWords} chart={products.chart} />
+          <ProductsChart />
         </Col>
         <Col xs="12">
-          <BrandsArea pageWords={pageWords} table={brands.table} chart={brands.chart} />
+          <BrandsArea />
         </Col>
         <Col xs="12">
-          <ProductsTable pageWords={pageWords} table={products.table} />
+          <ProductsTable />
         </Col>
       </Row>
 

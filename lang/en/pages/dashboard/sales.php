@@ -10,6 +10,7 @@ return [
   'total' => "Total",
   'quantity' => "Quantity",
   "year" => "Year",
+  'id' => "ID",
   "month" => "Month",
   "week" => "Week",
   'method' => "Method",

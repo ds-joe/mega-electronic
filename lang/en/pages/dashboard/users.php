@@ -3,6 +3,7 @@ return [
   'users' => "Users",
   'active_users' => "Active Users",
   'no' => "No",
+  'id' => 'ID',
   'full_name' => "Full Name",
   'email' => "Email",
   "phone" => "Phone",

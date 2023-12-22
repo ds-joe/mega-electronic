@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleCreateUserModalDisplay } from "@/redux/slicers/pages/users";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 // Components
 import { Button, Form, FormControl, FormGroup, FormLabel, FormSelect, Modal, Image } from "react-bootstrap";
@@ -14,13 +14,13 @@ import FormError from "@/Components/Form/FormError";
 import CheckRadio from "@/Components/Form/CheckRadio";
 
 // Types
-import { FCComponent } from "@/types/App";
 import { RootState } from "@/redux/store";
 
 // Assets
 import fakeAvatar from "~/images/auth/userAvatar.svg";
 
-const CreateUserModal: FCComponent = ({ pageWords }) => {
+const CreateUserModal: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.usersPage.createUserModalDisplay);
   const [avatar, setAvatar] = useState<string>(fakeAvatar);

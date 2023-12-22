@@ -1,13 +1,16 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-
 // Components
 import StateIconCard from "@/Components/Cards/StateIconCard";
 
-// Types
-import { UsersStatesCardsProps } from "@/types/Pages/Users";
+// Hooks
+import { usePage } from "@inertiajs/react";
 
-const StatesCards: FCComponent<UsersStatesCardsProps> = ({ pageWords, total_active_users, total_disabled_users, total_users }) => {
+// Types
+import { UsersProps } from "@/types/Pages/Users";
+
+const StatusCards: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<UsersProps>;
+  const { total_active_users, total_disabled_users, total_users } = pageData.users_status_cards;
+
   return (
     <>
       <StateIconCard value={total_users} description={pageWords?.users} icon={"fa-users"} time={pageWords?.total} />
@@ -17,4 +20,4 @@ const StatesCards: FCComponent<UsersStatesCardsProps> = ({ pageWords, total_acti
   )
 }
 
-export default StatesCards;
+export default StatusCards;

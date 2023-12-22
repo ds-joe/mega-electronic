@@ -6,17 +6,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleCreateBrandModalDisplay } from "@/redux/slicers/pages/products";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 // Components
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import FormError from "@/Components/Form/FormError";
 
 // Types
-import { FCComponent } from "@/types/App";
 import { RootState } from "@/redux/store";
 
-const CreateBrandModal: FCComponent = ({ pageWords }) => {
+const CreateBrandModal: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.productsPage.createBrandModalDisplay);
 

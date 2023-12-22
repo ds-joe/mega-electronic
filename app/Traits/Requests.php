@@ -1,21 +1,23 @@
 <?php
 namespace App\Traits;
 
+use App\Http\Middleware\HandleInertiaRequests;
 use Inertia\Inertia;
 
 trait Requests
 {
 
   /**
-   * Generate Request Data
-   * @param array|string|float|int|null $data
-   * @return array
+   * Update | add page data
+   * @param array $data
+   * @return void
    */
-  protected function createRequestData(array|string|float|int|null $data): array
+  protected function setPageData(array $data = []): void
   {
-    return [
-      'request-data' => $data
-    ];
+    if (session()->has(HandleInertiaRequests::$session_names['page_data'])) {
+      session()->remove(HandleInertiaRequests::$session_names['page_data']);
+    }
+    session()->push(HandleInertiaRequests::$session_names['page_data'], $data);
   }
 
   /**
@@ -47,12 +49,20 @@ trait Requests
    */
   protected function appendPage(string $page, array|null|string $pageWords, array $data = []): \Inertia\Response
   {
+    $sessionData = [];
+    if (session()->has(HandleInertiaRequests::$session_names['page_data'])) {
+      $sessionData = session()->get(HandleInertiaRequests::$session_names['page_data'])[0];
+      session()->remove(HandleInertiaRequests::$session_names['page_data']);
+    }
     return Inertia::render(
       $page,
-      array(
+      [
         'pageWords' => $pageWords,
-        ...$data
-      )
+        'pageData' => array_merge(
+          $data,
+          $sessionData
+        )
+      ]
     );
   }
 

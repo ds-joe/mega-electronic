@@ -2,12 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Product;
 use App\Models\User;
 use App\Traits\Images\ImagesPaths;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-use Tightenco\Ziggy\Ziggy;
+
+// use Tightenco\Ziggy\Ziggy;
 
 
 class HandleInertiaRequests extends Middleware
@@ -21,6 +21,11 @@ class HandleInertiaRequests extends Middleware
    * @var string
    */
   protected $rootView = 'app';
+  public static array $session_names = [
+    'page_data' => "pageData",
+    'notification' => "notification"
+  ];
+
 
   /**
    * Determine the current asset version.
@@ -29,7 +34,6 @@ class HandleInertiaRequests extends Middleware
   {
     return parent::version($request);
   }
-
 
   /** Get user settings
    * @param Request $request
@@ -47,29 +51,25 @@ class HandleInertiaRequests extends Middleware
    */
   private function layoutWords(): array
   {
-    return [
-      "auth" => array_merge(
-        __("components/auth/navbar"),
-      ),
-      'dashboard' => array_unique(
-        array_merge(
-          __('components/dashboard/navbar'),
-          __('components/dashboard/sidebar'),
-          __('components/dashboard/cart'),
-          __('components/dashboard/header'),
-          __('components/dashboard/stateCard'),
-        )
+    return array_unique(
+      array_merge(
+        __('components/dashboard/navbar'),
+        __('components/dashboard/sidebar'),
+        __('components/dashboard/cart'),
+        __('components/dashboard/header'),
+        __('components/dashboard/stateCard'),
+        __("components/auth/navbar")
       )
-    ];
+    );
   }
 
   /**
    * Define Session Data
    * @return mixed
    */
-  private function sessionData()
+  private function sessionPageData(): array
   {
-    return session()->has('request-data') ? session()->get('request-data') : null;
+    return session()->has(self::$session_names['page_data']) ? session()->get(self::$session_names['page_data']) : [];
   }
 
   /**
@@ -113,15 +113,15 @@ class HandleInertiaRequests extends Middleware
    */
   public function share(Request $request): array
   {
+
     return [
       ...parent::share($request),
-
       'layoutsWords' => $this->layoutWords(),
       'auth' => $this->userAuth($request),
       'settings' => $this->getUserSettings($request),
-      'request-data' => $this->sessionData(),
+      'pageData' => $this->sessionPageData(),
       'notification' => $this->sessionNotification(),
-      'paths' => $this->paths()
+      'paths' => $this->paths(),
 
       // 'ziggy' => fn() => [
       //   ...(new Ziggy)->toArray(),

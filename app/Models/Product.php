@@ -51,7 +51,7 @@ class Product extends Model
    * Get created owner
    * @return BelongsTo
    */
-  public function createdOwner(): BelongsTo
+  public function owner(): BelongsTo
   {
     return $this->belongsTo(User::class, 'created_by');
   }

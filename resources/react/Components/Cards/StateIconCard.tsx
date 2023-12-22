@@ -1,13 +1,10 @@
-// Dependencies
-import { FC } from "react";
-
 // Components
 import { Card } from "react-bootstrap";
 
 // Types
 import { StateIconCardProps } from "@/types/Components/Cards/StateIconCard";
 
-const StateIconCard: FC<StateIconCardProps> = ({ value, description, icon, time }) => {
+const StateIconCard: RC<StateIconCardProps> = ({ value, description, icon, time }) => {
 
   return (
     <Card className="pf-state-icon-card">

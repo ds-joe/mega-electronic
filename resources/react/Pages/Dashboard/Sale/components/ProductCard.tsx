@@ -1,14 +1,13 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-
 // Redux
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch } from "react-redux";
 import { addProduct } from "@/redux/slicers/components/cart";
 
 // Components
 import { Button, Card, FormGroup } from "react-bootstrap";
+
+// Hooks
 import useToast from "@/hooks/useToast";
+import { usePage } from "@inertiajs/react";
 
 // Types
 import { SaleProductCardProps } from "@/types/Pages/Sales";
@@ -16,12 +15,13 @@ import { SaleProductCardProps } from "@/types/Pages/Sales";
 // Assets
 import fakeImage from "~/images/global/product-placeholder.png";
 
-const ProductCard: FCComponent<SaleProductCardProps> = (props) => {
+const ProductCard: RC<SaleProductCardProps> = (props) => {
+  const { pageWords, paths } = usePage().props as ServerProps;
   const dispatch = useDispatch();
-  const paths = useSelector((state: RootState) => state.paths.images_paths);
-  const { pageWords, price, name, image, id } = props;
+  const path = paths.images_paths;
+  const { price, name, image, id } = props;
   const { toast } = useToast();
-  const productImage = image ? `${paths?.root}/${paths?.products}/${image}` : fakeImage;
+  const productImage = image ? `${path?.root}/${path?.products}/${image}` : fakeImage;
 
   // Handle add product
   const handleAddProduct = () => {

@@ -1,9 +1,5 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-
-// Redux
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Components
 import { Card, Image } from "react-bootstrap";
@@ -14,9 +10,10 @@ import avatar from "~/images/auth/userAvatar.svg";
 // Types
 import { ProfileHeaderCardProps } from "@/types/Pages/Profile";
 
-const HeaderCard: FCComponent<ProfileHeaderCardProps> = ({ pageWords, data }) => {
-  const user = useSelector((state: RootState) => state.auth.user);
-  const images_paths = useSelector((state: RootState) => state.paths.images_paths);
+const HeaderCard: RC<ProfileHeaderCardProps> = ({ data }) => {
+  const { pageWords, paths, auth } = usePage().props as ServerProps;
+  const user = auth.user;
+  const images_paths = paths.images_paths;
   const userAvatar = user?.avatar ? `${images_paths?.root}/${images_paths?.profile}/${user.avatar}` : avatar;
 
   return (

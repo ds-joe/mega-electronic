@@ -1,6 +1,5 @@
 // Dependencies
 import { ChangeEvent, FormEvent, useEffect } from "react";
-import { FCComponent } from "@/types/App";
 
 // Components
 import { Card, FormControl, Button, Form, FormGroup, FormLabel } from "react-bootstrap";
@@ -10,10 +9,10 @@ import FormError from "@/Components/Form/FormError";
 import { ProfileDetailsAreaProps } from "@/types/Pages/Profile";
 
 // Types
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
-const DetailsArea: FCComponent<ProfileDetailsAreaProps> = ({ pageWords, user }) => {
-
+const DetailsArea: RC<ProfileDetailsAreaProps> = ({ user }) => {
+  const { pageWords } = usePage().props as ServerProps;
   const { data, errors, setData, processing, reset, wasSuccessful, post } = useForm({
     full_name: "",
     email: "",

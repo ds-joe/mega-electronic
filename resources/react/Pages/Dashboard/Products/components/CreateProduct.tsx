@@ -6,20 +6,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleCreateProductModalDisplay } from "@/redux/slicers/pages/products";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 // Components
 import { Button, Form, FormControl, FormGroup, FormLabel, FormSelect, Modal } from "react-bootstrap";
 import FormError from "@/Components/Form/FormError";
 
 // Types
-import { FCComponent } from "@/types/App";
 import { RootState } from "@/redux/store";
-import { CreateProductModalProps } from "@/types/Pages/Products";
+import { ProductsProps } from "@/types/Pages/Products";
 import { Category } from "@/types/Models/Category";
 import { Brand } from "@/types/Models/Brand";
 
-const CreateProductModal: FCComponent<CreateProductModalProps> = ({ pageWords, categories, brands }) => {
+const CreateProductModal: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
+  const { brands, categories } = pageData;
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.productsPage.createProductModalDisplay);
   const colorsInput = useRef<HTMLInputElement>(null);

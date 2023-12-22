@@ -2,11 +2,8 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 
 // Slicers
-import layout from './slicers/layout';
 import sidebar from './slicers/components/sidebar';
 import cart from "./slicers/components/cart";
-import auth from './slicers/auth';
-import paths from './slicers/paths';
 import productsPage from './slicers/pages/products';
 import customersPage from './slicers/pages/customers';
 import usersPage from "./slicers/pages/users";
@@ -17,9 +14,6 @@ import salesPage from "./slicers/pages/sales";
 const reducers = combineReducers({
   sidebar,
   cart,
-  layout,
-  auth,
-  paths,
   productsPage,
   customersPage,
   usersPage,

@@ -1,10 +1,11 @@
-// Dependencies
-import { FCPage } from "@/types/App";
 import Dashboard from "@/Layout/Dashboard";
 
 // Redux
 import { useDispatch } from "react-redux";
 import { toggleCreateSaleModal } from "@/redux/slicers/pages/sales";
+
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Components
 import { Row, Col, Button } from "react-bootstrap";
@@ -15,8 +16,9 @@ import CreateSaleModal from "./components/CreateSaleModal";
 // Types
 import { SaleProps } from "@/types/Pages/Sales";
 
-const Sale: FCPage<SaleProps> = ({ pageWords, notification, products, customers }) => {
+const Sale: RP<SaleProps> = ({ products, customers }) => {
   const dispatch = useDispatch();
+  const { pageWords } = usePage().props as ServerProps;
 
   // Handle open create sale modal.
   const handleOpenCreateSaleModal = () => {
@@ -24,8 +26,8 @@ const Sale: FCPage<SaleProps> = ({ pageWords, notification, products, customers 
   }
 
   return (
-    <Dashboard pageTitle={pageWords?.new_sale} notification={notification}>
-      <CreateSaleModal pageWords={pageWords} customers={customers} />
+    <Dashboard pageTitle={pageWords?.new_sale} >
+      <CreateSaleModal customers={customers} />
       <Row className="gap-7">
         <Col xs='12'>
           <Header title={pageWords?.new_sale}>
@@ -37,7 +39,7 @@ const Sale: FCPage<SaleProps> = ({ pageWords, notification, products, customers 
         </Col>
         <Col xs="12" className="flex gap-3 flex-wrap">
           {
-            products.map((product) => <ProductCard key={product.id} pageWords={pageWords} {...product} />)
+            products.map((product) => <ProductCard key={product.id}  {...product} />)
           }
         </Col>
       </Row>

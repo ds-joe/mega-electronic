@@ -1,16 +1,12 @@
-// Dependencies
-import { FC } from "react";
-
-// Redux
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Types
 import { HeaderProps } from "@/types/Components/Layout/Header";
 import { Link } from "@inertiajs/react";
 
-const Header: FC<HeaderProps> = ({ title, children }) => {
-  const words = useSelector((state: RootState) => state.layout.layoutsWords.dashboard);
+const Header: RC<HeaderProps> = ({ title, children }) => {
+  const { layoutsWords } = usePage().props as ServerProps;
 
   return (
     <header className={"pf-header"}>
@@ -18,12 +14,12 @@ const Header: FC<HeaderProps> = ({ title, children }) => {
       <div className={'pf-header-buttons'}>
         <button className={"btn btn-outline-primary btn-icon"} onClick={() => window.history.back()}>
           <i className={"fal fa-angle-left"} />
-          <span>{words?.back}</span>
+          <span>{layoutsWords?.back}</span>
         </button>
         <Link href={route('sales.create.show')}>
           <button className={"btn btn-success btn-icon"}>
             <i className={"fal fa-cart-plus "} />
-            <span>{words?.new_sale}</span>
+            <span>{layoutsWords?.new_sale}</span>
           </button>
         </Link>
         {children}

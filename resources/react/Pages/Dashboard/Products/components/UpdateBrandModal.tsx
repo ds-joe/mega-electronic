@@ -6,18 +6,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleUpdateBrandModalDisplay } from "@/redux/slicers/pages/products";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 // Components
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import FormError from "@/Components/Form/FormError";
 
 // Types
-import { FCComponent } from "@/types/App";
 import { RootState } from "@/redux/store";
 import { Brand } from "@/types/Models/Brand";
 
-const UpdateBrandModal: FCComponent = ({ pageWords }) => {
+const UpdateBrandModal: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.productsPage.updateBrandModalDisplay);
   const updatingBrandData = useSelector((state: RootState) => state.productsPage.updatingBrand);

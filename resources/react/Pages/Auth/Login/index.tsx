@@ -1,6 +1,5 @@
 // Dependencies
 import { ChangeEvent, FormEventHandler, useEffect } from "react";
-import { FCPage } from "@/types/App";
 
 // Components
 import Head from "@/Components/Layout/Head";
@@ -12,7 +11,7 @@ import { useForm } from "@inertiajs/react";
 // Assets
 import logo from "~/images/logo/logo-light-full.png";
 
-const Login: FCPage = () => {
+const Login: RP = () => {
   const { data, setData, errors, post, processing, reset } = useForm({
     email: "",
     remember_me: false,

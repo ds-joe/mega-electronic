@@ -1,6 +1,3 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-import { useRef } from "react";
 
 // Components
 import { Dropdown, Card, Table } from "react-bootstrap";
@@ -9,15 +6,17 @@ import { Link } from "@inertiajs/react";
 
 // Hooks
 import useTable from "@/hooks/useTable";
+import { usePage } from "@inertiajs/react";
 
 // Types
-import { SalesTableProps } from "@/types/Pages/Sales";
+import { SalesProps } from "@/types/Pages/Sales";
 import { useForm } from "@inertiajs/react";
 import useToast from "@/hooks/useToast";
 
-const SalesTable: FCComponent<SalesTableProps> = ({ pageWords, records }) => {
-  const tableEle = useRef<HTMLTableElement>(null);
-  const tableHook = useTable(tableEle);
+const SalesTable: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<SalesProps>;
+  const { data, available_steps, allowed_sort_columns } = pageData.sales_table;
+  const tableHook = useTable({ routeName: "sales.table", available_steps, allowed_sort_columns });
   const { patch } = useForm();
   const { confirmationToast } = useToast();
 
@@ -45,7 +44,7 @@ const SalesTable: FCComponent<SalesTableProps> = ({ pageWords, records }) => {
         <TableFilter {...tableHook} searchPlaceholder={pageWords?.search_for_sale} />
       </Card.Body>
       <Card.Body>
-        <Table responsive ref={tableEle}>
+        <Table responsive >
           <thead>
             <tr>
               <th>{pageWords?.no}</th>
@@ -61,7 +60,7 @@ const SalesTable: FCComponent<SalesTableProps> = ({ pageWords, records }) => {
           </thead>
           <tbody>
             {
-              records.map((sale) => (
+              data?.map((sale) => (
                 <tr key={sale?.id}>
                   <td>{sale?.id}</td>
                   <td>{pageWords[`${sale?.method}`] && pageWords[`${sale?.method}`]}</td>

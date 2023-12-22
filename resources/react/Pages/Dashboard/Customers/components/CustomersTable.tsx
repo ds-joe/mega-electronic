@@ -1,7 +1,3 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-import { useRef } from "react";
-
 // Redux
 import { useDispatch } from "react-redux";
 import { toggleCreateCustomerModalDisplay, setUpdatingCustomer, toggleUpdateCustomerModalDisplay } from "@/redux/slicers/pages/customers";
@@ -12,17 +8,19 @@ import TableFilter from "@/Components/Tables/TableFilter";
 
 // Hooks
 import useTable from "@/hooks/useTable";
+import { usePage } from "@inertiajs/react";
+import useToast from "@/hooks/useToast";
+import { useForm } from "@inertiajs/react";
 
 // Types
-import { CustomersTableProps } from "@/types/Pages/Customers";
+import { CustomersProps } from "@/types/Pages/Customers";
 import { Customer } from "@/types/Models/Customer";
-import { useForm } from "@inertiajs/react";
-import useToast from "@/hooks/useToast";
 
-const CustomersTable: FCComponent<CustomersTableProps> = ({ pageWords, records }) => {
+const CustomersTable: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<CustomersProps>;
+  const { allowed_sort_columns, available_steps, data } = pageData.customers_table;
   const dispatch = useDispatch();
-  const tableEle = useRef<HTMLTableElement>(null);
-  const tableHook = useTable(tableEle);
+  const tableHook = useTable({ routeName: "customers.table", allowed_sort_columns, available_steps });
   const { patch } = useForm();
   const { confirmationToast } = useToast();
 
@@ -59,7 +57,7 @@ const CustomersTable: FCComponent<CustomersTableProps> = ({ pageWords, records }
         <TableFilter {...tableHook} searchPlaceholder={pageWords?.search_for_customer} />
       </Card.Body>
       <Card.Body>
-        <Table responsive ref={tableEle}>
+        <Table responsive >
           <thead>
             <tr>
               <th>{pageWords?.no}</th>
@@ -74,7 +72,7 @@ const CustomersTable: FCComponent<CustomersTableProps> = ({ pageWords, records }
           </thead>
           <tbody>
             {
-              records.map((customer) => (
+              data?.map((customer) => (
                 <tr key={customer?.id}>
                   <td>{customer?.id}</td>
                   <td>{customer?.first_name}</td>

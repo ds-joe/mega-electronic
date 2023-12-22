@@ -1,23 +1,17 @@
-// Dependencies
-import { FC } from "react";
-
 // Components
 import { Card, Col, Dropdown, Row } from "react-bootstrap";
 import { Bar, Line } from "react-chartjs-2";
 
-// Redux
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-
 // Hooks
 import useChart from "@/hooks/useChart";
+import { usePage } from "@inertiajs/react";
 
 // Types
 import { StateChartCardProps } from "@/types/Components/Cards/StateChartCard";
 
-const StateChartCard: FC<StateChartCardProps> = ({ title, chartType, chartData, value }) => {
+const StateChartCard: RC<StateChartCardProps> = ({ title, chartType, chartData, value }) => {
   const { createOptionsObject, structure } = useChart();
-  const words = useSelector((state: RootState) => state.layout.layoutsWords.dashboard);
+  const { layoutsWords } = usePage().props as ServerProps;
 
   const chartOptions = createOptionsObject({
     ...structure.options,
@@ -51,7 +45,7 @@ const StateChartCard: FC<StateChartCardProps> = ({ title, chartType, chartData, 
             <Dropdown.Menu>
               <Dropdown.Item>
                 <i className="far fa-refresh icon" />
-                {words?.refresh}
+                {layoutsWords?.refresh}
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

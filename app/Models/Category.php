@@ -23,7 +23,7 @@ class Category extends Model
    * Get category created owner.
    * @return BelongsTo
    */
-  public function createdOwner(): BelongsTo
+  public function owner(): BelongsTo
   {
     return $this->belongsTo(User::class, 'created_by');
   }

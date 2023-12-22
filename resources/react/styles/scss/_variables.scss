@@ -1,129 +1,127 @@
 // Text Colors
 
 // scss-docs-start text-color-variables
-$text-default-dark-color:           theme("colors.gray.800") !default;
-$text-medium-dark-color:            theme("colors.gray.500") !default;
-$text-default-light-color:          theme("colors.white") !default;
+$text-default-dark-color: theme("colors.gray.800") !default;
+$text-medium-dark-color: theme("colors.gray.500") !default;
+$text-default-light-color: theme("colors.white") !default;
 // scss-docs-end text-color-variables
 
 // scss-docs-start border-color-variables
-$default-border-color:              theme('colors.gray.300');
+$default-border-color: theme('colors.gray.300');
 // scss-docs-end border-color-variables
 
 // scss-docs-start scroll-variables
-$scroll-width:                      0.35rem !default;
-$scroll-height:                     0.35rem !default;
-$scroll-background:                 theme('colors.primary') !default;
+$scroll-width: 0.35rem !default;
+$scroll-height: 0.35rem !default;
+$scroll-background: theme('colors.primary') !default;
 // scss-docs-end scroll-variables
 
 // scss-docs-start sidebar-variables
-$sidebar-prefix:                    "pf-sidebar" !default;
-$sidebar-width:                     240px !default;
-$sidebar-fold-width:                85px !default;
-$sidebar-header-height:             60px !default;
-$sidebar-height:                    100vh !default;
+$sidebar-prefix: "pf-sidebar" !default;
+$sidebar-width: 240px !default;
+$sidebar-fold-width: 85px !default;
+$sidebar-header-height: 60px !default;
+$sidebar-height: 100vh !default;
 // scss-docs-end sidebar-variables
 
 // scss-docs-start cart-variables
-$cart-prefix:                       'pf-cart' !default;
-$cart-width:                        280px !default;
-$cart-header-height:                $sidebar-header-height !default;
-$cart-height:                       $sidebar-height !default;
-$cart-footer-height:                110px !default;
-$cart-content-height:               calc($cart-height - calc($cart-header-height + $cart-footer-height));
+$cart-prefix: 'pf-cart' !default;
+$cart-width: 280px !default;
+$cart-header-height: $sidebar-header-height !default;
+$cart-height: $sidebar-height !default;
+$cart-footer-height: 110px !default;
+$cart-content-height: calc($cart-height - calc($cart-header-height + $cart-footer-height));
 // scss-docs-end cart-variables
 
 //scss-docs-start navbar-variables
-$navbar-prefix:                     "pf-navbar" !default;
-$navbar-height:                     $sidebar-header-height !default;
+$navbar-prefix: "pf-navbar" !default;
+$navbar-height: $sidebar-header-height !default;
 
 //scss-docs-end navbar-variables
-$footer-prefix:                     "pf-footer" !default;
+$footer-prefix: "pf-footer" !default;
 //scss-docs-start footer-variables
 
 //scss-docs-end footer-variables
 
 // scss-docs-start layout-variables
-$layout-prefix:                     "pf-dashboard-layout" !default;
-$layout-margin-top:                 calc(1rem) !default; // 1rem + $navbar-height
-$layout-height:                     100vh !default;
-$layout-bg:                         theme('colors.light');
+$layout-prefix: "pf-dashboard-layout" !default;
+$layout-margin-top: calc(1rem) !default; // 1rem + $navbar-height
+$layout-height: 100vh !default;
 
 // scss-docs-end layout-variables
 
 // scss-docs-start card-variables
-$card-title-color:                  $text-default-dark-color !default;
-$card-title-spacer-y:               0 !default;
-$card-title-font-size:              theme('fontSize.lg') !default;
-$card-subtitle-color:               $text-medium-dark-color !default;
-$card-text-color:                   $text-medium-dark-color !default;
-$card-spacer-x:                     1.5rem !default;
-$card-spacer-y:                     1.5rem !default;
-$card-text-font-size:               .8rem !default;
-$card-border-color:                 $default-border-color !default;
-$card-footer-border:                0px solid transparent !default;
-$card-inner-border-radius:          0px !default;
-$card-bg:                           null !default;
-$card-box-shadow:                   theme('boxShadow.common') !default;
-$card-border-radius:                theme('borderRadius.common') !default;
-$card-parts-bg:                     theme('colors.transparent') !default;
-$card-height:                       100% !default;
-$card-display:                      block !default;
-$card-inside-border-width:          0 !default;
+$card-title-color: $text-default-dark-color !default;
+$card-title-spacer-y: 0 !default;
+$card-title-font-size: theme('fontSize.lg') !default;
+$card-subtitle-color: $text-medium-dark-color !default;
+$card-text-color: $text-medium-dark-color !default;
+$card-spacer-x: 1.5rem !default;
+$card-spacer-y: 1.5rem !default;
+$card-text-font-size: .8rem !default;
+$card-border-color: $default-border-color !default;
+$card-footer-border: 0px solid transparent !default;
+$card-inner-border-radius: 0px !default;
+$card-bg: null !default;
+$card-box-shadow: theme('boxShadow.common') !default;
+$card-border-radius: theme('borderRadius.common') !default;
+$card-parts-bg: theme('colors.transparent') !default;
+$card-height: 100% !default;
+$card-display: block !default;
+$card-inside-border-width: 0 !default;
 // scss-docs-end card-variables
 
 // scss-docs-start container-variables
-$container-padding-x:                          1.4rem !default;
-$container-padding-x-small-screens:            1rem !default;
+$container-padding-x: 1.4rem !default;
+$container-padding-x-small-screens: 1rem !default;
 // scss-docs-end container-variables
 
 // scss-docs-start dropdown-variables
-$dropdown-border-color:             theme('colors.transparent') !default;
-$dropdown-padding-x:                theme('space.1') !default;
-$dropdown-border-width:             0 !default;
-$dropdown-font-size:                theme('fontSize.sm') !default;
-$dropdown-color:                    $text-default-dark-color !default;
-$dropdown-link-hover-color:         var(--bs-primary);
-$dropdown-link-color:               $text-default-dark-color !default;
-$dropdown-icon-font-size:           $dropdown-font-size !default;
-$dropdown-icon-space:               theme('space.3') !default;
-$dropdown-line-font-weight:         theme("fontWeight.light") !default;
+$dropdown-border-color: theme('colors.transparent') !default;
+$dropdown-padding-x: theme('space.1') !default;
+$dropdown-border-width: 0 !default;
+$dropdown-font-size: theme('fontSize.sm') !default;
+$dropdown-color: $text-default-dark-color !default;
+$dropdown-link-hover-color: var(--bs-primary);
+$dropdown-link-color: $text-default-dark-color !default;
+$dropdown-icon-font-size: $dropdown-font-size !default;
+$dropdown-icon-space: theme('space.3') !default;
+$dropdown-line-font-weight: theme("fontWeight.light") !default;
 // scss-docs-end dropdown-variables
 
 
 // scss-docs-start form-label-variables
-$form-label-margin-bottom:              .5rem !default;
-$form-label-font-size:                  theme('fontSize.sm') !default;
-$form-label-font-style:                 null !default;
-$form-label-font-weight:                null !default;
-$form-label-color:                      $text-default-dark-color !default;
+$form-label-margin-bottom: .5rem !default;
+$form-label-font-size: theme('fontSize.sm') !default;
+$form-label-font-style: null !default;
+$form-label-font-weight: null !default;
+$form-label-color: $text-default-dark-color !default;
 // scss-docs-end form-label-variables
 
 // scss-docs-start form-input-variables
-$input-font-size:                         theme('fontSize.sm') !default;
-$input-border-radius:                     theme('borderRadius.sm') !default;
-$input-focus-box-shadow:                  none !default;
+$input-font-size: theme('fontSize.sm') !default;
+$input-border-radius: theme('borderRadius.sm') !default;
+$input-focus-box-shadow: none !default;
 // scss-docs-end form-input-variables
 
 // scss-docs-start table-variables
-$table-color:                             $text-default-dark-color !default;
-$table-cell-vertical-align:               middle !default;
-$table-border-color:                      $default-border-color !default;
-$table-height:                            100% !default;
+$table-color: $text-default-dark-color !default;
+$table-cell-vertical-align: middle !default;
+$table-border-color: $default-border-color !default;
+$table-height: 100% !default;
 // scss-docs-end table-variables
 
 // scss-docs-start modal-variables
-$modal-content-color:                     $text-default-dark-color !default;
-$modal-header-border-color:               transparent !default;
-$modal-header-border-width:               0 !default;
+$modal-content-color: $text-default-dark-color !default;
+$modal-header-border-color: transparent !default;
+$modal-header-border-width: 0 !default;
 // scss-docs-end modal-variables
 
 // scss-docs-start table-variables
-$table-bg:                   transparent !default;
-$table-border-color:         theme('colors.gray.500') !default;
+$table-bg: transparent !default;
+$table-border-color: theme('colors.gray.500') !default;
 // scss-docs-end table-variables
 
 // scss-docs-start button-variables
-$btn-font-weight:             theme('fontWeight.light') !default;
+$btn-font-weight: theme('fontWeight.light') !default;
 // scss-docs-end button-variables
-

@@ -7,18 +7,20 @@ import { Card } from "react-bootstrap";
 
 // Hooks
 import useChart from "@/hooks/useChart";
+import { usePage } from "@inertiajs/react";
 
 // Utils
 import colors from "~tailwind/colors";
 import { lineChartDataset, lineChartOptions } from "@/utils/chart/custom/lineChart";
 
 // Types
-import { FCComponent } from "@/types/App";
-import { SalesChartProps } from "@/types/Pages/Sales";
+import { SalesProps } from "@/types/Pages/Sales";
 
-const SalesChart: FCComponent<SalesChartProps> = ({ pageWords, payment, cash }) => {
+const SalesChart: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<SalesProps>;
   const { createDatasetObject, createDataObject, createDatasetsArray, createLinearGradient } = useChart();
   const [selectedTime, setSelectedTime] = useState<'weekly' | 'monthly' | 'yearly'>('weekly');
+  const { payment, cash } = pageData.sales_chart;
 
   const chartData = useMemo(() => createDataObject({
     ...createDataObject(),
@@ -27,7 +29,7 @@ const SalesChart: FCComponent<SalesChartProps> = ({ pageWords, payment, cash }) 
         ...lineChartDataset,
         data: payment[`${selectedTime}`].data,
         borderColor: colors.primary,
-        backgroundColor: createLinearGradient(`${colors.primary}40`, `${colors.info}40`),
+        backgroundColor: createLinearGradient(`${colors.primary}40`, `${colors.primary}40`),
         fill: true,
         label: pageWords?.payment
       }),

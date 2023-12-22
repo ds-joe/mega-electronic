@@ -1,6 +1,8 @@
 // Dependencies
 import Dashboard from "@/Layout/Dashboard";
-import { FCPage } from "@/types/App";
+
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Components
 import { Row, Col } from "react-bootstrap";
@@ -9,20 +11,19 @@ import CreateCustomerModal from "./components/CreateCustomerModal";
 import Header from "@/Components/Layout/Header";
 import UpdateCustomerModal from "./components/UpdateCustomerModal";
 
-// Types
-import { CustomersProps } from "@/types/Pages/Customers";
+const Customers: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
 
-const Customers: FCPage<CustomersProps> = ({ pageWords, customers, notification }) => {
   return (
-    <Dashboard pageTitle={pageWords?.customers} notification={notification}>
-      <CreateCustomerModal pageWords={pageWords} />
-      <UpdateCustomerModal pageWords={pageWords} />
+    <Dashboard pageTitle={pageWords?.customers} >
+      <CreateCustomerModal />
+      <UpdateCustomerModal />
       <Row className="gap-7">
         <Col xs='12'>
           <Header title={pageWords?.customers} />
         </Col>
         <Col xs='12'>
-          <CustomersTable pageWords={pageWords} records={customers} />
+          <CustomersTable />
         </Col>
       </Row>
     </Dashboard>

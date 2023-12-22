@@ -12,11 +12,11 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductHasColor;
-use App\Models\Sale;
 use App\Traits\Images\ImageName;
 use App\Traits\Images\ImagesPaths;
 use App\Traits\Requests;
 use App\Traits\Utils\Dates;
+use App\Utils\Table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -27,6 +27,13 @@ class ProductsController extends Controller
 {
   use ImageName, Requests, Dates, ImagesPaths;
 
+  private array $productsAllowedSortColumns = ["id", 'sku', 'name', 'price', 'rate', 'created_at'];
+  private array $productsAllowedSearchColumns = ['sku', 'name', 'price', 'rate', 'created_at'];
+  private array $categoriesAllowedSortColumns = ['id', 'name', 'created_at'];
+  private array $categoriesAllowedSearchColumns = ['name'];
+  private array $brandsAllowedSortColumns = ['id', 'name', 'created_at'];
+  private array $brandsAllowedSearchColumns = ['name'];
+
   /**
    * display products page.
    * @param Request $request
@@ -35,56 +42,83 @@ class ProductsController extends Controller
   public function show(Request $request): \Inertia\Response
   {
 
-    # State cards data
-    $categoriesStateCard = Category::count();
-    $brandsStateCard = Brand::count();
-    $productsStateCard = Product::count();
-
-    # Categories Data
-    $categoriesTableData = Category::with('createdOwner')->get();
     $categoriesWeeklyChartData = $this->getRecordsCountsBetweenDates(Category::class, Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek())
       ->get()
       ->pluck('count');
-
-    # Brands Data
-    $brandsTableData = Brand::with('createdOwner')->get();
     $brandsWeeklyChartData = $this->getRecordsCountsBetweenDates(Brand::class, Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek())
       ->get()
       ->pluck('count');
 
-    # Products Data
-    $productsTableData = Product::with('category', 'brand', 'createdOwner')->get();
 
     return $this->appendPage(
       "Dashboard/Products/index",
       __("pages/dashboard/products"),
       [
-        "state_cards" => [
-          "categories" => $categoriesStateCard,
-          "brands" => $brandsStateCard,
-          'products' => $productsStateCard
+        'products_chart' => $this->productsChartData(),
+        'products_table' => Table::defaultTable(Product::class, ['owner', 'brand', 'category'], $this->productsAllowedSortColumns, $this->productsAllowedSearchColumns),
+
+        'categories_table' => Table::defaultTable(Category::class, ['owner'], $this->categoriesAllowedSortColumns, $this->categoriesAllowedSearchColumns),
+        'categories_chart' => [
+          'labels' => $this->getCurrentWeekDays(),
+          'data' => $categoriesWeeklyChartData
         ],
-        "categories" => [
-          "table" => $categoriesTableData,
-          'chart' => [
-            'labels' => $this->getCurrentWeekDays(),
-            'data' => $categoriesWeeklyChartData
-          ]
+
+        'brands_table' => Table::defaultTable(Brand::class, ['owner'], $this->brandsAllowedSortColumns, $this->brandsAllowedSearchColumns),
+        'brands_chart' => [
+          'labels' => $this->getCurrentWeekDays(),
+          'data' => $brandsWeeklyChartData
         ],
-        'brands' => [
-          'table' => $brandsTableData,
-          'chart' => [
-            'labels' => $this->getCurrentWeekDays(),
-            'data' => $brandsWeeklyChartData
-          ]
+
+        "status_cards" => [
+          "categories" => Category::count(),
+          "brands" => Brand::count(),
+          'products' => Product::count()
         ],
-        'products' => [
-          'table' => $productsTableData,
-          'chart' => $this->productsChartData()
-        ]
+        'brands' => Brand::select('name', 'id')->get(),
+        'categories' => Brand::select('name', 'id')->get(),
       ]
     );
   } // End Method
+
+
+  /**
+   * Get products table.
+   * @param Request $request
+   * @return void
+   */
+  public function getProductsTable(Request $request): void
+  {
+    $table = Table::handleResponse($request, Product::class, ['owner', 'brand', 'category'], $this->productsAllowedSortColumns, $this->productsAllowedSearchColumns);
+    $this->setPageData([
+      'products_table' => $table
+    ]);
+  }
+
+  /**
+   * Get brands table.
+   * @param Request $request
+   * @return void
+   */
+  public function getBrandsTable(Request $request): void
+  {
+    $table = Table::handleResponse($request, Brand::class, ['owner'], $this->brandsAllowedSortColumns, $this->brandsAllowedSearchColumns);
+    $this->setPageData([
+      'brands_table' => $table
+    ]);
+  }
+
+  /**
+   * Get categories table.
+   * @param Request $request
+   * @return void
+   */
+  public function getCategoriesTable(Request $request): void
+  {
+    $table = Table::handleResponse($request, Category::class, ['owner'], $this->categoriesAllowedSortColumns, $this->categoriesAllowedSearchColumns);
+    $this->setPageData([
+      'categories_table' => $table
+    ]);
+  }
 
   /**
    * create brand.

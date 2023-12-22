@@ -5,13 +5,9 @@ import {
   TypeOptions,
 } from "react-toastify";
 import { useMemo, ReactNode, createElement } from "react";
-
+import { usePage } from "@inertiajs/react";
 
 // Components
-
-// Redux
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import ConfirmationToast from "@/Components/Toasts/ConfirmationToast";
 
 /**
@@ -20,7 +16,7 @@ import ConfirmationToast from "@/Components/Toasts/ConfirmationToast";
  * @returns
  */
 const useToast = () => {
-  const settings = useSelector((state: RootState) => state.layout.settings);
+  const { settings } = usePage().props as ServerProps;
   const toastOptions = useMemo(
     (): ToastOptions => ({
       position: settings.direction === "rtl" ? "top-left" : "top-right",

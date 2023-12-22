@@ -1,5 +1,5 @@
-// Dependencies
-import { FCPage } from "@/types/App";
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Components
 import Dashboard from "@/Layout/Dashboard";
@@ -9,7 +9,8 @@ import StateCards from "./components/StateCards";
 import Header from "@/Components/Layout/Header";
 
 // Types
-const Home: FCPage = ({ pageWords }) => {
+const Home: RP = () => {
+  const { pageWords } = usePage().props as ServerProps;
 
   return (
     <Dashboard pageTitle={pageWords?.dashboard}>
@@ -18,10 +19,10 @@ const Home: FCPage = ({ pageWords }) => {
           <Header title={pageWords?.dashboard} />
         </Col>
         <Col xs="12" className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <StateCards pageWords={pageWords} />
+          <StateCards />
         </Col>
         <Col xs="12">
-          {/* <StateChart pageWords={pageWords} /> */}
+          {/* <StateChart /> */}
         </Col>
       </Row>
     </Dashboard>

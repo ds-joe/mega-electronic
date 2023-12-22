@@ -1,8 +1,5 @@
-// Dependencies
-import { FC } from "react";
 // Redux
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch } from "react-redux";
 import { toggleOpen as toggleSidebar } from "@/redux/slicers/components/sidebar";
 import { toggleOpen as toggleCart } from "@/redux/slicers/components/cart";
 
@@ -10,12 +7,12 @@ import { toggleOpen as toggleCart } from "@/redux/slicers/components/cart";
 import { FormGroup } from "react-bootstrap";
 
 // Hooks
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 
-const ControlButtons: FC = () => {
+const ControlButtons: RC = () => {
   const dispatch = useDispatch();
-  const settings = useSelector((state: RootState) => state.layout.settings);
+  const { settings } = usePage().props as ServerProps;
 
   // Handle Open Sidebar
   const toggleOpenSidebar = () => {

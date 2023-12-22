@@ -1,6 +1,3 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
-import { useRef } from "react";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -12,14 +9,16 @@ import TableFilter from "@/Components/Tables/TableFilter";
 
 // Hooks
 import useTable from "@/hooks/useTable";
+import { usePage } from "@inertiajs/react";
 
 // Types
-import { ProductsTableProps } from "@/types/Pages/Products";
+import { ProductsProps } from "@/types/Pages/Products";
 
-const ProductsTable: FCComponent<ProductsTableProps> = ({ pageWords, table }) => {
+const ProductsTable: RC = () => {
   const dispatch = useDispatch();
-  const tableEle = useRef<HTMLTableElement>(null);
-  const tableHook = useTable(tableEle);
+  const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
+  const { allowed_sort_columns, available_steps, data } = pageData.products_table;
+  const tableHook = useTable({ routeName: "products.table", allowed_sort_columns, available_steps, });
 
   const handleOpenCreateModal = () => {
     dispatch(toggleCreateProductModalDisplay());
@@ -38,7 +37,7 @@ const ProductsTable: FCComponent<ProductsTableProps> = ({ pageWords, table }) =>
         <TableFilter {...tableHook} searchPlaceholder={pageWords?.search_for_product} />
       </Card.Body>
       <Card.Body>
-        <Table responsive ref={tableEle}>
+        <Table responsive >
           <thead>
             <tr>
               <th>{pageWords?.no}</th>
@@ -55,7 +54,7 @@ const ProductsTable: FCComponent<ProductsTableProps> = ({ pageWords, table }) =>
           </thead>
           <tbody>
             {
-              table.map((product) => (
+              data?.map((product) => (
                 <tr key={product?.id}>
                   <td>{product?.id}</td>
                   <td>{product?.sku}</td>
@@ -64,7 +63,7 @@ const ProductsTable: FCComponent<ProductsTableProps> = ({ pageWords, table }) =>
                   <td>{product.rate}</td>
                   <td>{product.category.name}</td>
                   <td>{product.brand.name}</td>
-                  <td>{product.created_owner.full_name}</td>
+                  <td>{product.owner.full_name}</td>
                   <td>{product.created_at}</td>
                   <td>
                     <Dropdown>

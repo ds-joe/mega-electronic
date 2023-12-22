@@ -6,19 +6,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { toggleCreateCategoryModalDisplay } from "@/redux/slicers/pages/products";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 
 // Components
 import { Button, Form, FormControl, FormGroup, FormLabel, Modal } from "react-bootstrap";
 import FormError from "@/Components/Form/FormError";
 
 // Types
-import { FCComponent } from "@/types/App";
 import { RootState } from "@/redux/store";
 
-const CreateCategoryModal: FCComponent = ({ pageWords }) => {
+const CreateCategoryModal: RC = () => {
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.productsPage.createCategoryModalDisplay);
+  const { pageWords } = usePage().props as ServerProps;
 
   const { data, setData, errors, post, processing, wasSuccessful, reset } = useForm({
     name: "",

@@ -1,4 +1,4 @@
-import { ServerLayoutWords } from "./Server";
+import { ServerWords } from "./Server";
 
 declare global {
   interface Route {
@@ -10,7 +10,7 @@ declare global {
     permissions: Array<string> // the permissions can access to this route.
   }
   type Routes = Array<Route>;
-  type RoutesFun = (words: ServerLayoutWords) => Routes;
+  type RoutesFun = (words: ServerWords) => Routes;
 }
 
 

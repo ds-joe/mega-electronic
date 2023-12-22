@@ -1,21 +1,20 @@
 // Dependencies
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 
 // Components
 import { Line } from "react-chartjs-2";
+import { Card, Dropdown } from "react-bootstrap";
 
 // Hooks
 import useChart from "@/hooks/useChart";
 import useNumbers from "@/hooks/useNumbers";
-import { Card, Dropdown } from "react-bootstrap";
+import { usePage } from "@inertiajs/react";
 
 // Utils
 import colors from "~tailwind/colors";
 
-// Types
-import { PageWords } from "@/types/Server";
-
-const StateChart: FC<PageWords> = ({ pageWords }) => {
+const StateChart: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
   const { randNumbers } = useNumbers();
   const { structure, createOptionsObject, createDatasetObject, createDataObject, createDatasetsArray, utils } = useChart();
 
@@ -26,7 +25,7 @@ const StateChart: FC<PageWords> = ({ pageWords }) => {
         ...createDatasetObject(),
         data: randNumbers(1000, 20421, true, 7),
         label: pageWords?.expenses,
-        borderColor: colors.info,
+        borderColor: colors.primary,
         borderWidth: 2,
         pointBorderWidth: 0,
         backgroundColor: 'transparent',

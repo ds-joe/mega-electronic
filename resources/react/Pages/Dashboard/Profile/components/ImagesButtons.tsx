@@ -1,20 +1,18 @@
-// Dependencies
-import { FCComponent } from "@/types/App";
 import { ChangeEvent, useEffect } from "react";
 
 // Components
 import { Card, FormLabel, FormGroup, FormControl } from "react-bootstrap";
 
 // Hooks
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
 import useToast from "@/hooks/useToast";
 
-const ImagesButtons: FCComponent = ({ pageWords }) => {
+const ImagesButtons: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
   const { data, setData, wasSuccessful, reset, post } = useForm({
     avatar: null
   });
   const { confirmationToast } = useToast();
-
   // Handle upload avatar
   const handleUploadAvatar = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;

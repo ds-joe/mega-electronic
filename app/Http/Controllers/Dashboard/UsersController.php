@@ -10,6 +10,7 @@ use App\Models\UserSetting;
 use App\Traits\Images\ImageName;
 use App\Traits\Images\ImagesPaths;
 use App\Traits\Requests;
+use App\Utils\Table;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +20,8 @@ class UsersController extends Controller
 {
 
   use Requests, ImageName, ImagesPaths;
+  private array $allowedSortColumns = ['id', 'full_name', 'email', 'type', 'verified', 'created_at'];
+  private array $allowedSearchColumns = ['full_name', 'email', 'type', 'verified'];
 
   /**
    * Display users page.
@@ -26,15 +29,30 @@ class UsersController extends Controller
    */
   public function show(): \Inertia\Response
   {
-    $users = User::all();
-    return Inertia::render("Dashboard/Users/index", [
-      'pageWords' => __('pages/dashboard/users'),
-      "users" => $users,
-      "total_users" => $users->count(),
-      "total_disabled_users" => $users->where('verified', false)->count(),
-      "total_active_users" => $users->where('verified', true)->count(),
+    $users_table = Table::defaultTable(User::class, [], $this->allowedSortColumns, $this->allowedSearchColumns);
+
+    return $this->appendPage("Dashboard/Users/index", __('pages/dashboard/users'), [
+      "users_table" => $users_table,
+      "users_status_cards" => [
+        "total_users" => User::count(),
+        "total_disabled_users" => User::where('verified', false)->count(),
+        "total_active_users" => User::where('verified', true)->count(),
+      ]
     ]);
   } // End Method
+
+  /**
+   * Get users table.
+   * @param Request $request
+   * @return void
+   */
+  public function getUsersTable(Request $request): void
+  {
+    $table = Table::handleResponse($request, User::class, [], $this->allowedSortColumns, $this->allowedSearchColumns);
+    $this->setPageData([
+      'users_table' => $table
+    ]);
+  }
 
   /**
    * Create user.

@@ -1,7 +1,4 @@
-// Dependencies
-import { FC } from "react";
-
-const Footer: FC = () => {
+const Footer: RC = () => {
   const currentData = new Date().getFullYear();
 
   return (

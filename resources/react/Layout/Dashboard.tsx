@@ -1,12 +1,9 @@
 // Dependencies
 import { FC, useEffect } from "react";
 
-// Redux
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-
 // Hooks
 import useToast from "@/hooks/useToast";
+import { usePage } from "@inertiajs/react";
 
 // Components
 import Head from "@/Components/Layout/Head";
@@ -20,8 +17,8 @@ import Cart from "@/Components/Layout/Cart";
 import { LayoutProps } from "@/types/Layouts/Layout";
 import { Container } from "react-bootstrap";
 
-const Dashboard: FC<LayoutProps> = ({ children, pageTitle, notification }) => {
-  const settings = useSelector((state: RootState) => state.layout.settings);
+const Dashboard: FC<LayoutProps> = ({ children, pageTitle }) => {
+  const { settings, notification } = usePage().props as ServerProps;
   const { toast } = useToast();
 
   useEffect(() => {

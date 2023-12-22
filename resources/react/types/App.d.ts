@@ -1,10 +1,11 @@
 import { ReactNode, FC } from "react";
-import { ServerPageProps, PageWords, ServerProps } from "./Server";
 
-export interface AppProps {
-  children: ReactNode,
-  props: ServerProps
+declare global {
+  type RC<P = {}> = FC<P>;
+  type RP<P = {}> = FC<P>;
 }
 
-export type FCPage<P = {}> = FC<ServerPageProps & P>;
-export type FCComponent<P = {}> = FC<PageWords & P>;
+export interface AppProps {
+  children: ReactNode
+}
+

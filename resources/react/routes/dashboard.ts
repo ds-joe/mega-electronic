@@ -1,7 +1,7 @@
 // Types
-import { ServerLayoutWords } from "@/types/Server";
+import { ServerWords } from "@/types/Server";
 
-const dashboardRoutes: RoutesFun = (words: ServerLayoutWords): Routes => {
+const dashboardRoutes: RoutesFun = (words: ServerWords): Routes => {
   const DASHBOARD_BASE = "/dashboard";
 
   return [

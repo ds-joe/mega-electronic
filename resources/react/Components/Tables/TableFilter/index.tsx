@@ -1,24 +1,19 @@
 // Dependencies
-import { ChangeEvent, FC, useEffect } from "react";
+import { ChangeEvent } from "react";
 
 // Components
-import { FormControl, Button } from "react-bootstrap";
+import { FormControl, Button, FormSelect } from "react-bootstrap";
+
+// Hooks
+import { usePage } from "@inertiajs/react";
 
 // Types
 import { TableFilterProps } from "@/types/Components/Tables/TableFilter";
 
-const TableFilter: FC<TableFilterProps> = ({ setTabLimit, setTableLimit, tableSearch, currentTab, toNextTab, toPrevTab, tableLimit, searchPlaceholder, resetCurrentTab, getTabsLength }) => {
-
-  useEffect(() => {
-    setTabLimit();
-  }, [currentTab, tableLimit]);
-
-  useEffect(() => {
-    resetCurrentTab();
-  }, [tableLimit]);
-
+const TableFilter: RC<TableFilterProps> = ({ allowed_sort_columns, searchPlaceholder, tableSearch, toNextStep, recordsByStep, currentStep, toPrevStep, setRecordsByStep, toggleReverseTable, setSortBy }) => {
+  const { pageWords } = usePage().props as ServerProps;
   const search = (e: ChangeEvent<HTMLInputElement>) => tableSearch(e.target.value);
-  const limit = (e: ChangeEvent<HTMLInputElement>) => setTableLimit(Number(e.target.value));
+  const limit = (e: ChangeEvent<HTMLInputElement>) => setRecordsByStep(Number(e.target.value));
 
   return (
     <div className="w-full flex flex-col gap-2">
@@ -33,19 +28,28 @@ const TableFilter: FC<TableFilterProps> = ({ setTabLimit, setTableLimit, tableSe
           step={1}
           min={1}
           max={1000}
-          value={tableLimit}
+          size="sm"
+          value={recordsByStep}
           className="fit"
         />
+        <FormSelect className="fit" size="sm" onChange={(e: ChangeEvent<HTMLSelectElement>) => setSortBy(e.target.value)}>
+          {
+            allowed_sort_columns?.map((column: string) => (
+              <option key={column} value={column}>{pageWords[`${column}`] ? pageWords[`${column}`] : ""}</option>
+            ))
+          }
+        </FormSelect>
       </div>
       <div className="flex justify-end flex-wrap items-center gap-2">
-        <Button className="btn-sm" onClick={toNextTab}>
+        <Button className="btn-sm" onClick={toNextStep}>
           <i className="fas fa-angle-left" />
         </Button>
-        <p className="px-3 py-1 rounded bg-primary text-white">
-          <span className="text-warning">{getTabsLength()}</span> ~ {currentTab}
-        </p>
-        <Button className="btn-sm" onClick={toPrevTab}>
+        <p className="flex items-center justify-center px-3 py-1 rounded border border-primary dark:text-white">{currentStep}</p>
+        <Button className="btn-sm" onClick={toPrevStep}>
           <i className="fas fa-angle-right" />
+        </Button>
+        <Button variant="primary" className="btn-sm" onClick={toggleReverseTable}>
+          <i className="fas fa-up-down" />
         </Button>
       </div>
     </div>

@@ -1,25 +1,26 @@
+import { UseTableResponseData } from "../Hooks/useTable"
 import { Brand } from "../Models/Brand"
 import { Category } from "../Models/Category"
 import { Product } from "../Models/Product"
 import { User } from "../Models/User"
 
 // Categories
-export type CategoriesDataProps = {
-  table: Array<Category & {
-    created_owner: User
+type CategoriesProps = {
+  categories_table: UseTableResponseData<Category & {
+    owner: User
   }>,
-  chart: {
+  categories_chart: {
     labels: Array<string>,
     data: Array<number>
   }
 }
 
 // Brands
-export type BrandsDataProps = {
-  table: Array<Brand & {
-    created_owner: User
+type BrandsProps = {
+  brands_table: UseTableResponseData<Brand & {
+    owner: User
   }>,
-  chart: {
+  brands_chart: {
     labels: Array<string>,
     data: Array<number>
   }
@@ -27,21 +28,21 @@ export type BrandsDataProps = {
 
 
 // Products
-export type CreateProductModalProps = {
+type CreateProductModalProps = {
   categories: Array<Category>;
   brands: Array<Brand>
 }
 
-export type ProductsTableProps = {
-  table: Array<Product & {
+type ProductsTableProps = {
+  products_table: UseTableResponseData<Product & {
     category: Category,
     brand: Brand,
-    created_owner: User
+    owner: User
   }>,
 }
 
-export type ProductsChartProps = {
-  chart: {
+type ProductsChartProps = {
+  products_chart: {
     weekly: {
       data: Array<number>,
       labels: Array<string>
@@ -57,21 +58,12 @@ export type ProductsChartProps = {
   }
 }
 
-export type ProductsDataProps = ProductsTableProps & ProductsChartProps;
-
-// Special
-
-export type StateCardsProps = {
-  categories: number,
-  brands: number,
-  products: number
+type StatusCardsProps = {
+  status_cards: {
+    categories: number,
+    brands: number,
+    products: number
+  }
 }
 
-export type ProductsProps = {
-  state_cards: StateCardsProps,
-  categories: CategoriesDataProps,
-  brands: BrandsDataProps,
-  products: ProductsDataProps
-}
-
-
+export type ProductsProps = CategoriesProps & ProductsChartProps & CreateProductModalProps & StatusCardsProps & BrandsProps & ProductsTableProps & ProductsChartProps;

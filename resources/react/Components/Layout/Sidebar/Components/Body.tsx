@@ -5,24 +5,22 @@ import { FC } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from "@inertiajs/react";
 
-// Redux
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-
 // Hooks
 import useRoute from "@/hooks/useRoute";
+import { usePage } from "@inertiajs/react";
 
 // Routes
 import dashboardRoutes from "@/routes/dashboard";
 
 const SidebarBody: FC = () => {
-  const words = useSelector((state: RootState) => state.layout.layoutsWords.dashboard);
+  const { layoutsWords } = usePage().props as ServerProps;
   const { isUsed, categoriesContainer } = useRoute();
+
   return (
     <Nav className="pf-sidebar-body">
 
       {
-        categoriesContainer(dashboardRoutes(words)).map((container, key: number) => (
+        categoriesContainer(dashboardRoutes(layoutsWords)).map((container, key: number) => (
           <span key={key}>
             <h3 className={"pf-sidebar-label"}>{container.category}</h3>
             {

@@ -1,10 +1,14 @@
 <?php
+use App\Utils\Table;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Providers\RouteServiceProvider;
 
 # Products Controller
 Route::controller(ProductsController::class)->group(function () {
+  Table::createRoute(RouteServiceProvider::DASHBOARD_BASE . "/products/table", 'getProductsTable', 'products.table');
+  Table::createRoute(RouteServiceProvider::DASHBOARD_BASE . "/brands/table", 'getBrandsTable', 'brands.table');
+  Table::createRoute(RouteServiceProvider::DASHBOARD_BASE . "/categories/table", 'getCategoriesTable', 'categories.table');
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/products", 'show')->name('products.show');
   Route::post(RouteServiceProvider::DASHBOARD_BASE . "/brands/create", "createBrand")->name('brands.create');
   Route::post(RouteServiceProvider::DASHBOARD_BASE . "/brands/update", "updateBrand")->name('brands.update');

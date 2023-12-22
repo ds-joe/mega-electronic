@@ -1,18 +1,19 @@
 // Dependencies
-import { FC, useMemo } from "react";
+import { useMemo } from "react";
 
 // Hooks
 import useChart from "@/hooks/useChart";
 import useNumbers from "@/hooks/useNumbers";
+import { usePage } from "@inertiajs/react";
 
 // Utils
 import colors from "~tailwind/colors";
 import StateChartCard from "@/Components/Cards/StateChartCard";
 
-// Types
-import { PageWords } from "@/types/Server";
 
-const StateCards: FC<PageWords> = ({ pageWords }) => {
+
+const StateCards: RC = () => {
+  const { pageWords } = usePage().props as ServerProps;
   const { createDataObject, createLinearGradient, createDatasetObject, createDatasetsArray, utils } = useChart();
   const { randNumbers, formatNumber } = useNumbers();
 
