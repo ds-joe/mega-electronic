@@ -30,7 +30,13 @@
     @include stander-height(calc($sidebar-height - $sidebar-header-height));
 
     .nav-item {
-      @apply select-none rounded-common hover:text-base-color transition-all py-2.5 px-2 text-light-color flex items-center gap-4 text-sm cursor-pointer font-light w-full;
+
+
+      @apply select-none rounded-common hover:text-base-color transition-all py-2.5 px-2 text-light-color flex items-center gap-4 text-sm cursor-pointer font-light w-full whitespace-nowrap;
+
+      .disabled-route {
+        @apply text-xs font-normal bg-danger px-1 py-0.5 rounded text-white ml-auto;
+      }
 
       &.active {
         @apply font-medium shadow-common bg-primary text-white;

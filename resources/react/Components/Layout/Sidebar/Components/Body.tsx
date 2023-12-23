@@ -25,9 +25,12 @@ const SidebarBody: FC = () => {
             <h3 className={"pf-sidebar-label"}>{container.category}</h3>
             {
               container.routes.map((route: Route) => (
-                <Link href={route.url} className={`nav-item ${isUsed(route) && "active"}`} key={route.url}>
+                <Link href={route.available ? route.url : location.href} className={`nav-item ${isUsed(route) && "active"}`} key={route.url}>
                   <i className={route.icon} />
                   <span className="nav-item-content">{route.name}</span>
+                  {
+                    !route.available && <span className="disabled-route">{layoutsWords?.closed}</span>
+                  }
                 </Link>
               ))
             }

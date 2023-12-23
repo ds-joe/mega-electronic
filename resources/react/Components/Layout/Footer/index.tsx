@@ -3,7 +3,7 @@ const Footer: RC = () => {
 
   return (
     <footer className="pf-footer">
-      Copyright © {currentData} <span className="company-name"> Mega Electronic</span>.
+      Copyright © {currentData} <span className="company-name"> Mega Electronic</span> Created by <span className="dev-name">Dev.youssef</span>.
     </footer>
   )
 }

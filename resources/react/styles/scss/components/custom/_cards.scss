@@ -55,6 +55,7 @@
   }
 
   .pf-state-icon-card-footer {
+    @apply pt-0;
 
     .pf-state-icon-card-time-area {
       @apply w-full flex items-center gap-2 text-sm uppercase font-medium text-base-color;

@@ -12,5 +12,8 @@ return [
   "users" => "Users",
   "products" => "Products",
   "settings" => "Settings",
-  'tasks' => "Tasks"
+  'tasks' => "Tasks",
+  'profile' => "Profile",
+  'permissions' => "Permissions",
+  'closed' => "closed"
 ];

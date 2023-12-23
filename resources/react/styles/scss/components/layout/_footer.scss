@@ -5,4 +5,20 @@
   .company-name {
     @apply font-medium text-primary;
   }
+
+  .dev-name {
+    @apply font-medium;
+    animation: dev-name-effect 1s infinite alternate;
+  }
+
+  @keyframes dev-name-effect {
+    from {
+      @apply text-primary;
+    }
+
+    to {
+      @apply text-warning;
+    }
+  }
+
 }
