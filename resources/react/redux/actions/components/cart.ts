@@ -9,7 +9,7 @@ export const cartActions = {
   addProduct: (state: CartSlicerState, action: PayloadAction<CartProductProps>) => {
     const product = state.products.findIndex((product) => product.id === action.payload.id);
     if (product >= 0) {
-      state.products[product].quantity = state.products[product].quantity + 1;
+      state.products[product].quantity = Number(state.products[product].quantity) + 1;
     } else {
       state.products = [...state.products, action.payload];
     }
@@ -26,7 +26,7 @@ export const cartActions = {
   setProductQuantity: (state: CartSlicerState, action: PayloadAction<CartProductProps>) => {
     state.products = state.products.filter((product) => {
       if (product.id === action.payload.id) {
-        product.quantity = action.payload.quantity;
+        product.quantity = Number(action.payload.quantity);
       }
       return product;
     })

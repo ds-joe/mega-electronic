@@ -187,6 +187,13 @@ class SalesController extends Controller
 
     $this->createSaleProducts($sale->id, $products);
 
+    # Update products quantity.
+    foreach ($products as $product) {
+      SaleHasProduct::where('sale_id', $sale->id)
+        ->where('product_id', $product['id'])
+        ->update(['quantity' => $product['quantity']]);
+    }
+
     return back()->with($this->createRequestNotification(__("pages/dashboard/sales.sale_updated_successfully"), 'success'));
   } // End Method
 

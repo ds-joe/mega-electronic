@@ -32,7 +32,7 @@ const UpdateSalePage: RP = () => {
     dispatch(clearCart());
     dispatch(setCartMode('update'));
     sale.products.map((product) => {
-      dispatch(addProduct({ ...product, quantity: product.pivot.quantity }));
+      dispatch(addProduct({ ...product, quantity: Number(product.pivot.quantity) }));
     });
 
     // Clean up the cart when user leave page.
