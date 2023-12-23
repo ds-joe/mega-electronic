@@ -1,8 +1,9 @@
 // English Poppins
+
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 200;
+  font-weight: 300;
   font-display: auto;
   src: url("~/fonts/Poppins/Poppins-Light.ttf") format('woff2');
 }
@@ -10,7 +11,7 @@
 @font-face {
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   font-display: auto;
   src: url("~/fonts/Poppins/Poppins-Regular.ttf") format('woff2');
 }
@@ -57,10 +58,12 @@
 
 // Arabic Words
 
+
+
 @font-face {
   font-family: 'Cairo';
   font-style: normal;
-  font-weight: 200;
+  font-weight: 300;
   font-display: auto;
   src: url("~/fonts/Cairo/Cairo-Light.ttf") format('woff2');
 }

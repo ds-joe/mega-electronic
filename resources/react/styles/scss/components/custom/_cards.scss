@@ -15,7 +15,7 @@
       @apply flex flex-col gap-1;
 
       .pf-state-card-value {
-        @apply text-2xl font-semibold whitespace-nowrap dark:text-white;
+        @apply text-2xl font-semibold whitespace-nowrap text-base-color;
       }
     }
   }
@@ -34,11 +34,11 @@
       @apply z-10 relative;
 
       .pf-state-icon-card-value {
-        @apply text-2xl font-medium mb-2 dark:text-white;
+        @apply text-2xl font-medium mb-2 text-base-color;
       }
 
       .pf-state-icon-card-description {
-        @apply uppercase text-xs font-medium dark:text-white;
+        @apply uppercase text-xs font-medium text-light-color;
       }
 
     }
@@ -57,7 +57,7 @@
   .pf-state-icon-card-footer {
 
     .pf-state-icon-card-time-area {
-      @apply w-full flex items-center gap-2 text-sm uppercase font-medium dark:text-white;
+      @apply w-full flex items-center gap-2 text-sm uppercase font-medium text-base-color;
     }
 
   }

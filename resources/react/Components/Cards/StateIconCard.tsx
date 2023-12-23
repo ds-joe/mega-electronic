@@ -10,8 +10,8 @@ const StateIconCard: RC<StateIconCardProps> = ({ value, description, icon, time 
     <Card className="pf-state-icon-card">
       <Card.Body className="pf-state-icon-card-body">
         <div className="pf-state-icon-card-state-area">
-          <h3 className={`pf-state-icon-card-value`}>{value}</h3>
-          <p className="pf-state-icon-card-description">{description}</p>
+          <h3 className={`pf-state-icon-card-value `}>{value}</h3>
+          <p className="pf-state-icon-card-description ">{description}</p>
         </div>
         <div className="pf-state-icon-card-icon-area">
           <i className={`fal ${icon}  pf-state-icon-card-icon `} />

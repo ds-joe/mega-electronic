@@ -8,8 +8,7 @@ export default {
   'dark': "#0c1427",
   'light': "#f8f9fa",
   'medium-dark': "#1f2937",
-  'deep-dark': "#070d19"
-
+  'deep-dark': "#070d19",
 
   // 'primary': "#AC87C5",
   // 'secondary': "#6c757d",

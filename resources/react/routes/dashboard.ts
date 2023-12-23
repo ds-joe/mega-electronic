@@ -10,7 +10,7 @@ const dashboardRoutes: RoutesFun = (words: ServerWords): Routes => {
       'category': "dashboard",
       "permissions": [],
       "url": `${DASHBOARD_BASE}`,
-      "icon": "far fa-rocket",
+      "icon": "far fa-house",
     },
     {
       name: words?.sales,
@@ -59,7 +59,7 @@ const dashboardRoutes: RoutesFun = (words: ServerWords): Routes => {
       category: "dashboard",
       permissions: [],
       url: `${DASHBOARD_BASE}/products`,
-      icon: "far fa-gifts"
+      icon: "far fa-box"
     },
     {
       'name': words?.tasks,

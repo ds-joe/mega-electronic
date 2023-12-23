@@ -1,0 +1,27 @@
+@layer base {
+
+  /* start-scss-docs text */
+  .text-base-color {
+    @apply text-gray-700 dark:text-white;
+  }
+
+  .text-light-color {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+
+  /* end-scss-docs text */
+
+  /* start-scss-docs backgrounds */
+  .bg-base {
+    @apply bg-white dark:bg-dark;
+  }
+
+  /* end-scss-docs borders */
+  .border-base-color {
+    @apply border-gray-200/90 dark:border-medium-dark;
+  }
+
+  /* start-scss-docs borders */
+
+
+}

@@ -3,14 +3,14 @@
   @include stander-width($sidebar-width);
   @include stander-height($sidebar-height);
   left: -$sidebar-width;
-  @apply bg-white dark:bg-dark border-r dark:border-medium-dark transition-all z-50 fixed lg:relative lg:left-0 lg:right-0 top-0 bottom-0;
+  @apply bg-base border-r border-base-color transition-all z-50 fixed lg:relative lg:left-0 lg:right-0 top-0 bottom-0;
 
   .#{$sidebar-prefix}-label {
-    @apply text-xs uppercase font-semibold text-[#{$text-medium-dark-color}] my-2 dark:text-white/60;
+    @apply text-xs uppercase font-medium text-light-color my-2;
   }
 
   .#{$sidebar-prefix}-header {
-    @apply px-5 flex items-center border-b dark:border-medium-dark justify-between;
+    @apply px-5 flex items-center border-b border-base-color justify-between;
     height: $sidebar-header-height;
 
     // .#{$sidebar-prefix}-logo {
@@ -26,14 +26,14 @@
 
     @include make-scroll();
 
-    @apply shadow-common flex flex-col flex-nowrap py-5 px-4 gap-2 overflow-y-auto;
+    @apply flex flex-col flex-nowrap py-5 px-4 gap-2 overflow-y-auto;
     @include stander-height(calc($sidebar-height - $sidebar-header-height));
 
     .nav-item {
-      @apply select-none transition-all py-2.5 px-2 opacity-75 flex items-center gap-4 text-sm hover:opacity-100 cursor-pointer font-extralight w-full dark:text-white;
+      @apply select-none rounded-common hover:text-base-color transition-all py-2.5 px-2 text-light-color flex items-center gap-4 text-sm cursor-pointer font-light w-full;
 
       &.active {
-        @apply font-medium opacity-100 shadow-common rounded-common dark:bg-primary;
+        @apply font-medium shadow-common bg-primary text-white;
 
         [class*="fa-"] {
           @apply text-white bg-primary;

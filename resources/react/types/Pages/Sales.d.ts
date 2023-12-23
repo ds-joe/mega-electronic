@@ -64,7 +64,7 @@ export type SalesProps = {
  * Sale Page
  */
 export type SaleProps = {
-  products: Array<Product>,
+  products: UseTableResponseData<Product>,
   customers: Array<Customer>,
 }
 

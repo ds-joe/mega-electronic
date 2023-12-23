@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 
 Route::controller(SalesController::class)->group(function () {
   Table::createRoute(RouteServiceProvider::DASHBOARD_BASE . "/sales/table", 'getSalesTable', "sales.table");
+  Table::createRoute(RouteServiceProvider::DASHBOARD_BASE . "/sale/products", 'getSalePageProducts', "sale.products");
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/sales", 'show')->name('sales.show');
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/sales/create/sale", 'sale')->name('sales.create.show');
   Route::get(RouteServiceProvider::DASHBOARD_BASE . "/sales/update/sale/{id}", 'updateSale')->name('sales.update.show');

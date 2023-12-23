@@ -67,16 +67,13 @@ class SalesController extends Controller
    */
   public function sale(): \Inertia\Response
   {
-    $products = Product::all();
+    $products = Table::defaultTable(Product::class, [], ['id'], ['name', 'sku', 'price', 'rate', 'description', 'created_at']);
     $customers = Customer::all();
-    return Inertia::render(
-      "Dashboard/Sale/index",
-      [
-        'products' => $products,
-        'customers' => $customers,
-        'pageWords' => __('pages/dashboard/sales')
-      ]
-    );
+    return $this->appendPage("Dashboard/Sale/index", __('pages/dashboard/sales'), [
+      'products' => $products,
+      'customers' => $customers,
+    ]);
+
   }
 
   /**
@@ -104,6 +101,19 @@ class SalesController extends Controller
     $table = Table::handleResponse($request, Sale::class, ['customer', 'owner'], $this->allowedSortColumns, $this->allowedSearchColumns);
     $this->setPageData([
       'sales_table' => $table
+    ]);
+  } // End Method
+
+  /**
+   * Get sale page products.
+   * @param Request $request
+   * @return void
+   */
+  public function getSalePageProducts(Request $request): void
+  {
+    $table = Table::handleResponse($request, Product::class, [], ['name'], ['name', 'sku', 'price', 'rate', 'description', 'created_at']);
+    $this->setPageData([
+      'products' => $table
     ]);
   } // End Method
 

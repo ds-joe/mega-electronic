@@ -1,34 +1,22 @@
-.card {
-  box-shadow: $card-box-shadow;
-  background: $card-bg;
-  display: $card-display !important;
-  @apply dark:bg-dark overflow-hidden;
-  @apply dark:bg-dark dark:border-[#{$dark-card-border-color}];
+@layer base {
+  .card {
+    @apply bg-white dark:bg-dark border border-base-color rounded-common dark:shadow-common block overflow-hidden h-full;
 
-  .card-title {
-    font-size: $card-title-font-size;
-    @apply dark:text-[#{$dark-card-title-color}];
-  }
+    .card-title {
+      @apply text-lg text-base-color font-medium;
+    }
 
-  .card-text {
-    color: $card-text-color;
-    font-size: $card-text-font-size ;
-    @apply dark:opacity-60 dark:text-[#{$dark-card-text-color}];
-  }
+    .card-text {
+      @apply text-sm text-light-color font-light;
+    }
 
-  .card-header,
-  .card-body,
-  .card-footer {
-    background: $card-parts-bg;
-  }
-
-  .card-header {
-    border: $card-footer-border;
+    .card-body,
+    .card-footer,
+    .card-header {
+      @apply py-6 px-6;
+    }
 
   }
 
-  .card-footer {
-    border: $card-footer-border;
-  }
 
 }

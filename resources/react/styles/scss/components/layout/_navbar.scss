@@ -1,12 +1,12 @@
 .#{$navbar-prefix} {
   @include stander-height($navbar-height);
-  @apply bg-white dark:bg-dark border-b dark:shadow-md dark:border-b-medium-dark py-0 w-full top-0 z-40 shadow-common flex items-center;
+  @apply bg-base border-b dark:shadow-md border-base-color py-0 w-full top-0 z-40 flex items-center;
 
   .#{$navbar-prefix}-container {
     @apply flex items-center justify-between;
 
     .dropdown-header {
-      @apply border-b;
+      @apply border-b border-base-color;
     }
 
     .#{$navbar-prefix}-user-dropdown {
@@ -20,11 +20,11 @@
       }
 
       .#{$navbar-prefix}-dropdown-username {
-        @apply font-semibold text-lg dark:text-white;
+        @apply font-semibold text-lg text-base-color;
       }
 
       .#{$navbar-prefix}-dropdown-email {
-        @apply text-sm dark:text-white/70 text-[#{$text-medium-dark-color}];
+        @apply text-sm text-light-color;
       }
 
 
@@ -39,7 +39,7 @@
     }
 
     .#{$navbar-prefix}-control-buttons {
-      @apply flex items-center gap-4 dark:text-white;
+      @apply flex items-center gap-4 text-base-color;
 
       .#{$navbar-prefix}-sidebar-toggle-button {
         @apply cursor-pointer text-title lg:hidden;

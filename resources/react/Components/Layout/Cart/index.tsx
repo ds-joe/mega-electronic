@@ -13,7 +13,7 @@ import { usePage } from "@inertiajs/react";
 // Components
 import CartProduct from "./components/Product";
 import { CartProductProps } from "@/types/Components/Layout/Cart";
-import { Button, FormGroup } from "react-bootstrap";
+import { FormGroup } from "react-bootstrap";
 import { Link } from "@inertiajs/react";
 
 const Cart: FC = () => {
@@ -58,11 +58,11 @@ const Cart: FC = () => {
           <p className="form-label">{layoutsWords?.quantity}: <span>{cartQuantity.toFixed(2)}</span></p>
         </FormGroup>
         <FormGroup className="flex items-center gap-2 mt-3">
-          <Button size="sm" variant="danger" onClick={resetCart}>{layoutsWords?.clear}</Button>
+          <button className="btn btn-outline-danger btn-sm" onClick={resetCart}>{layoutsWords?.clear}</button>
           {
             cartMode === "create" && (
               <Link href={route('sales.create.show')} onClick={closeCart}>
-                <Button size="sm">{layoutsWords?.confirm}</Button>
+                <button className="btn btn-outline-primary btn-sm" >{layoutsWords?.confirm}</button>
               </Link>
             )
           }

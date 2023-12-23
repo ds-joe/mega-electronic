@@ -17,18 +17,19 @@
   }
 
   .dropdown-menu {
-    @apply shadow-common transition-all dark:bg-dark dark:border dark:border-medium-dark;
+    @apply bg-base border border-base-color transition-all;
+
+
 
     .dropdown-item {
-      @apply transition-all dark:text-white dark:hover:bg-primary text-sm;
-      font-weight: $dropdown-line-font-weight;
+      @apply transition-all text-base-color dark:hover:bg-primary text-sm;
+
 
       &:has(.icon) {
-        @apply flex items-center;
-        gap: $dropdown-icon-space;
+        @apply flex items-center gap-2;
 
         .icon {
-          font-size: $dropdown-icon-font-size;
+          @apply text-sm;
         }
       }
     }

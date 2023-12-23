@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "@/redux/slicers/components/cart";
 
 // Components
-import { Button, Card, FormGroup } from "react-bootstrap";
+import { Card, FormGroup } from "react-bootstrap";
 
 // Hooks
 import useToast from "@/hooks/useToast";
@@ -39,15 +39,15 @@ const ProductCard: RC<SaleProductCardProps> = (props) => {
     <Card className="w-48">
       <Card.Img className=" object-center w-[190px] h-[190px]" src={productImage}></Card.Img>
       <Card.Body>
-        <h1 className="dark:text-white line-clamp-1">{name} </h1>
-        <p className="flex items-center gap-1 dark:text-white mt-1 text-sm font-semibold line-clamp-1">
-          <i className="fal fa-dollar" />
+        <h1 className="text-base-color line-clamp-1 font-medium">{name} </h1>
+        <p className="flex items-center gap-1 text-base-color mt-1 text-sm font-semibold line-clamp-1">
+          <i className="fas fa-dollar" />
           <span>{Number(price)?.toFixed(2)}</span>
         </p>
         <FormGroup className="mt-3">
-          <Button size="sm" className="w-full" onClick={handleAddProduct}>
+          <button className="w-full btn-sm btn btn-outline-primary" onClick={handleAddProduct}>
             {pageWords?.add_to_cart}
-          </Button>
+          </button>
         </FormGroup>
       </Card.Body>
     </Card>

@@ -2,28 +2,32 @@
   @include make-scroll();
 }
 
-.table {
-  height: $table-height;
-  @apply dark:border-[#{$dark-table-border-color}];
+.table,
+table {
+  @apply bg-transparent h-full;
 
-
-  [tab-effect=""] {
-    display: none !important;
+  tr:nth-child(even) {
+    @apply dark:bg-deep-dark/80 bg-light;
   }
 
-  [search-effect=""] {
-    display: none !important;
+  thead,
+  tbody,
+  tfoot {
+
+    th {
+      @apply font-semibold;
+    }
+
+    td {
+      @apply dark:opacity-90 dark:font-light;
+    }
+
+    th,
+    td {
+      @apply text-base-color border-base-color text-center justify-center text-sm whitespace-nowrap;
+    }
   }
 
-  // tr:nth-child(even) {
-  //   @apply dark:bg-deep-dark;
-  // }
 
-
-  th,
-  td {
-    @apply text-center justify-center text-sm whitespace-nowrap;
-    @apply dark:text-[#{$dark-table-color}];
-  }
 
 }

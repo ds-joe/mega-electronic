@@ -57,7 +57,7 @@ class HandleInertiaRequests extends Middleware
         __('components/dashboard/sidebar'),
         __('components/dashboard/cart'),
         __('components/dashboard/header'),
-        __('components/dashboard/stateCard'),
+        __('components/dashboard/components'),
         __("components/auth/navbar")
       )
     );

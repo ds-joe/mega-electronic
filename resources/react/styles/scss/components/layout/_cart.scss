@@ -1,19 +1,19 @@
 .#{$cart-prefix} {
   @include stander-width($cart-width);
   @include stander-height($cart-height);
-  @apply fixed top-0 bg-white dark:bg-dark border-l dark:border-medium-dark transition-all z-50 bottom-0 -right-[#{$cart-width}];
+  @apply fixed top-0 bg-base border-l border-base-color transition-all z-50 bottom-0 -right-[#{$cart-width}];
 
   &.open {
     @apply right-0;
   }
 
   .header {
-    @apply px-5 flex items-center border-b dark:border-medium-dark justify-between;
+    @apply px-5 flex items-center border-b border-base-color justify-between;
     height: $cart-header-height;
 
     .close-button,
     .cart-title {
-      @apply dark:text-white text-lg;
+      @apply text-base-color text-lg;
     }
 
     .close-button {
@@ -29,12 +29,12 @@
     @apply overflow-x-hidden overflow-y-auto flex flex-col gap-1;
 
     .empty-title {
-      @apply h-full w-full flex items-center text-lg justify-center dark:text-white text-center;
+      @apply h-full w-full flex items-center text-lg justify-center text-base-color text-center;
     }
 
     .product {
       scroll-snap-align: start;
-      @apply border-b dark:border-medium-dark h-fit py-4 px-5;
+      @apply border-b border-base-color h-fit py-4 px-5;
 
       .product-content {
         @apply flex items-center gap-3;
@@ -45,18 +45,18 @@
       }
 
       .product-name {
-        @apply text-white line-clamp-1;
+        @apply text-base-color line-clamp-1;
       }
 
       .product-price {
-        @apply text-white line-clamp-1 text-sm font-semibold;
+        @apply text-base-color line-clamp-1 text-sm font-semibold;
       }
 
     }
   }
 
   .footer {
-    @apply px-5 border-t dark:border-medium-dark py-2;
+    @apply px-5 border-t border-base-color py-2;
     height: $cart-footer-height;
 
     .form-label {

@@ -24,6 +24,10 @@ const useTable = ({ routeName, available_steps = 1, allowed_sort_columns }: UseT
     }));
     !firstLoad && setFirstLoad(true);
   }, [currentStep, searchQuery, reverse, recordsByStep, sortBy]);
+  // @ts-ignore
+  const resetSteps = useMemo(() => {
+    firstLoad && setCurrentStep(1);
+  }, [recordsByStep]);
 
 
   /**

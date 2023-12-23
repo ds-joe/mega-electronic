@@ -4,6 +4,7 @@ return [
   'sales_table' => "Sales Table",
   "sales_table_description" => "You can control any sale you want, edit and remove, also you can sort and search for any sale.",
   "search_for_sale" => "Search for sale",
+  "search_for_product" => "Search for product",
   'select_customer' => "Select Customer",
   'confirm_sale' => "Confirm Sale",
   'amount' => "Amount",
