@@ -10,7 +10,7 @@ import { usePage } from "@inertiajs/react";
 // Components
 import { Row, Col, Button } from "react-bootstrap";
 import Header from "@/Components/Layout/Header";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "../../../Components/Cards/ProductCard";
 import CreateSaleModal from "./components/CreateSaleModal";
 import FilterProductsContainer from "@/Components/Containers/FilterProductsContainer";
 

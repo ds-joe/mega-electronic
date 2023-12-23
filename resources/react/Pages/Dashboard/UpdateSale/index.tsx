@@ -13,7 +13,7 @@ import { usePage } from "@inertiajs/react";
 import useTable from "@/hooks/useTable";
 import { useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import ProductCard from "../Sale/components/ProductCard";
+import ProductCard from "../../../Components/Cards/ProductCard";
 import Header from "@/Components/Layout/Header";
 import UpdateSaleModal from "./components/UpdateSaleModal";
 
