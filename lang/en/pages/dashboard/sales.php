@@ -45,5 +45,7 @@ return [
   'sale_updated_successfully' => "Sale Updated Successfully.",
   'sale_removed_successfully' => "Sale Removed Successfully.",
   'invalid_selected_products' => "Invalid Selected Products.",
-  'invalid_selected_customer' => "Invalid Selected Customer."
+  'invalid_selected_customer' => "Invalid Selected Customer.",
+  'update_sale' => "Update Sale",
+  'confirm_update' => "Confirm Update"
 ];

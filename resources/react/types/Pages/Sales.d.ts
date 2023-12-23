@@ -4,6 +4,7 @@ import { Sale } from "../Models/Sale";
 import { User } from "../Models/User";
 import { UseTableResponseData } from "../Hooks/useTable";
 
+
 type SalesOwnerCustomer = Sale & {
   owner: User,
   customer: Customer
@@ -71,4 +72,25 @@ export type SaleProps = {
 export type SaleProductCardProps = Product;
 export type CreateSaleModalProps = {
   customers: Array<Customer>
+}
+
+
+/**
+ * Update Sale Page
+ */
+
+type SaleWithAdditionData = Sale & {
+  customer: Customer,
+  owner: User,
+  products: Array<Product & {
+    pivot: {
+      quantity: number
+    }
+  }>
+}
+
+export type UpdateSaleProps = {
+  customers: Array<Customer>,
+  sale: SaleWithAdditionData,
+  products: UseTableResponseData<Product>
 }

@@ -1,4 +1,5 @@
 
 export type SalesSlicerState = {
-  createSaleModalDisplay: boolean
+  createSaleModalDisplay: boolean,
+  updateSaleModalDisplay: boolean
 }

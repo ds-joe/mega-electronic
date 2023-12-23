@@ -23,7 +23,7 @@ import { SaleProps } from "@/types/Pages/Sales";
 const Sale: RP = () => {
   const dispatch = useDispatch();
   const { pageWords, pageData } = usePage().props as ServerProps<SaleProps>;
-  const { products, customers } = pageData;
+  const { products } = pageData;
   const tableHook = useTable({ routeName: "sale.products", available_steps: products.available_steps, allowed_sort_columns: products.allowed_sort_columns });
 
   // Handle open create sale modal.
@@ -33,7 +33,7 @@ const Sale: RP = () => {
 
   return (
     <Dashboard pageTitle={pageWords?.new_sale} >
-      <CreateSaleModal customers={customers} />
+      <CreateSaleModal />
       <Row className="gap-7">
         <Col xs='12'>
           <Header title={pageWords?.new_sale}>

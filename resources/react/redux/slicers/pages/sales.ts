@@ -17,4 +17,4 @@ const salesSlicer = createSlice({
 });
 
 export default salesSlicer.reducer;
-export const { toggleCreateSaleModal } = salesSlicer.actions;
+export const { toggleCreateSaleModal, toggleUpdateSaleModal } = salesSlicer.actions;

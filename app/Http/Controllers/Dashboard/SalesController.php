@@ -84,10 +84,12 @@ class SalesController extends Controller
   public function updateSale(int $id): \Inertia\Response
   {
     $sale = Sale::with('products', 'customer', 'owner')->findOrFail($id);
+    $products = Table::defaultTable(Product::class, []);
     $customers = Customer::all();
     return $this->appendPage('Dashboard/UpdateSale/index', __('pages/dashboard/sales'), [
       'sale' => $sale,
       'customers' => $customers,
+      'products' => $products
     ]);
   }
 

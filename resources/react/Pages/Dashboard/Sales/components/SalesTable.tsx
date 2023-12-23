@@ -35,11 +35,6 @@ const SalesTable: RC = () => {
         <Card.Title>{pageWords?.sales_table}</Card.Title>
         <div className="mt-1 flex items-center justify-between gap-5 mb-4">
           <Card.Text>{pageWords?.sales_table_description}</Card.Text>
-          <div className="btn-group w-fit text-end">
-            <Link href={route("sales.create.show")}>
-              <button className="btn btn-outline-primary w-fit btn-sm whitespace-nowrap">{pageWords?.new_sale}</button>
-            </Link>
-          </div>
         </div>
         <TableFilter {...tableHook} searchPlaceholder={pageWords?.search_for_sale} />
       </Card.Body>
@@ -76,7 +71,11 @@ const SalesTable: RC = () => {
                         <i className="fas fa-list-timeline" />
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
-                        <Dropdown.Item>{pageWords?.edit}</Dropdown.Item>
+                        <Link className="dropdown-item" href={route("sales.update.show", {
+                          id: sale.id
+                        })} as="button">
+                          {pageWords?.edit}
+                        </Link>
                         <Dropdown.Item onClick={() => handleRemoveSale(sale.id as number)}>{pageWords?.delete}</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>

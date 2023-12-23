@@ -1,7 +1,7 @@
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
-import { toggleCreateSaleModal } from "@/redux/slicers/pages/sales";
+import { toggleUpdateSaleModal } from "@/redux/slicers/pages/sales";
 import { clearCart } from "@/redux/slicers/components/cart";
 
 // Hooks
@@ -11,33 +11,34 @@ import { useForm, usePage } from "@inertiajs/react";
 import { Modal, Form, FormGroup, Button, FormSelect, FormControl, FormLabel } from "react-bootstrap";
 
 // Types
-import { SaleProps } from "@/types/Pages/Sales";
+import { UpdateSaleProps } from "@/types/Pages/Sales";
 import { ChangeEvent, FormEventHandler, useEffect } from "react";
 
-const CreateSaleModal: RC = () => {
-  const { pageWords, pageData } = usePage().props as ServerProps<SaleProps>;
-  const { customers } = pageData;
+const UpdateSaleModal: RC = () => {
+  const { pageWords, pageData } = usePage().props as ServerProps<UpdateSaleProps>;
+  const { customers, sale } = pageData;
   const dispatch = useDispatch();
-  const modalDisplay = useSelector((state: RootState) => state.salesPage.createSaleModalDisplay);
+  const modalDisplay = useSelector((state: RootState) => state.salesPage.updateSaleModalDisplay);
   const cartProducts = useSelector((state: RootState) => state.cart.products);
-  const cartQuantity: number = useSelector((state: RootState) => state.cart.products).reduce((a, b) => a + b.quantity, 0);
-  const cartAmount: number = useSelector((state: RootState) => state.cart.products).reduce((a, b) => a + ((b.price as number) * b.quantity), 0);
-  const { setData, post, wasSuccessful, reset } = useForm({
-    method: 'cash',
-    customer_id: 0,
-    discount: 0,
+  const cartQuantity: number = useSelector((state: RootState) => state.cart.products).reduce((a, b) => a + Number(b.quantity), 0);
+  const cartAmount: number = useSelector((state: RootState) => state.cart.products).reduce((a, b) => a + (Number(b.price as number) * Number(b.quantity)), 0);
+  const { setData, post, wasSuccessful } = useForm({
+    ...sale,
+    method: sale.method,
+    customer_id: sale.customer_id,
+    discount: sale.discount,
     products: cartProducts
   });
 
   // Handle close modal.
   const handleCloseModal = () => {
-    dispatch(toggleCreateSaleModal());
+    dispatch(toggleUpdateSaleModal());
   }
 
   // Handle submit
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    post(route('sales.create'));
+    post(route('sales.update'));
   }
 
   // Set cart products
@@ -50,17 +51,13 @@ const CreateSaleModal: RC = () => {
     if (wasSuccessful) {
       dispatch(clearCart());
       handleCloseModal();
-      reset();
-    }
-    return () => {
-      reset();
     }
   }, [wasSuccessful]);
 
   return (
     <Modal show={modalDisplay} onHide={handleCloseModal}>
       <Modal.Header>
-        <Modal.Title>{pageWords?.new_sale}</Modal.Title>
+        <Modal.Title>{pageWords?.update_sale}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className="form" onSubmit={handleSubmit}>
@@ -68,11 +65,11 @@ const CreateSaleModal: RC = () => {
             <FormGroup>
               <FormLabel>{pageWords?.method}</FormLabel>
               <FormSelect
-                onChange={(e: ChangeEvent<HTMLSelectElement>) => setData('method', e.target.value)}
+                onChange={(e: ChangeEvent<HTMLSelectElement>) => setData('method', e.target.value as any)}
                 required
               >
-                <option value="cash">{pageWords?.cash}</option>
-                <option value="payment">{pageWords?.payment}</option>
+                <option value="cash" selected={sale.method === 'cash'}>{pageWords?.cash}</option>
+                <option value="payment" selected={sale.method === 'payment'}>{pageWords?.payment}</option>
               </FormSelect>
             </FormGroup>
             <FormGroup>
@@ -84,7 +81,7 @@ const CreateSaleModal: RC = () => {
                 <option value="" defaultValue={''} disabled selected>{pageWords?.select_customer}</option>
                 {
                   customers.map((customer) => (
-                    <option key={customer.id} value={customer.id}>{customer.first_name} {customer.last_name}</option>
+                    <option key={customer.id} selected={customer.id === sale.customer_id} value={customer.id}>{customer.first_name} {customer.last_name}</option>
                   ))
                 }
               </FormSelect>
@@ -95,6 +92,7 @@ const CreateSaleModal: RC = () => {
             <FormControl
               type='number'
               step={0.01}
+
               onChange={(e: ChangeEvent<HTMLInputElement>) => setData('discount', Number(e.target.value))}
               placeholder={pageWords?.discount}
             />
@@ -113,4 +111,4 @@ const CreateSaleModal: RC = () => {
   )
 }
 
-export default CreateSaleModal;
+export default UpdateSaleModal;
