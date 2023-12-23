@@ -180,7 +180,7 @@ class Table
       $request->sortBy,
       $request->reverse,
       !empty($request->searchQuery) ? $request->searchQuery : "",
-      array_merge($validSortColumns, ['id']),
+      array_unique([...$validSortColumns, ...['id']]),
       $validSearchColumns
     );
     return $table->getTableData();
@@ -208,7 +208,7 @@ class Table
    */
   public static function defaultTable(string $model, array $with, array $validSortColumns = ['id'], array|null $validSearchColumns = null): array
   {
-    $table = new Table($model, $with, 1, 50, 'id', true, '', array_merge($validSortColumns, ['id']), $validSearchColumns);
+    $table = new Table($model, $with, 1, 50, 'id', true, '', array_unique([...$validSortColumns, ...['id']]), $validSearchColumns);
     return $table->getTableData();
   }
 
