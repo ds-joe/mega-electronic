@@ -17,4 +17,4 @@ const productsSlicer = createSlice({
 });
 
 export default productsSlicer.reducer;
-export const { toggleCreateCategoryModalDisplay, toggleCreateBrandModalDisplay, toggleCreateProductModalDisplay, toggleUpdateCategoryModalDisplay, setUpdatingCategory, setUpdatingBrand, toggleUpdateBrandModalDisplay } = productsSlicer.actions;
+export const { toggleCreateCategoryModalDisplay, toggleUpdateProductModalDisplay, toggleCreateBrandModalDisplay, toggleCreateProductModalDisplay, toggleUpdateCategoryModalDisplay, setUpdatingCategory, setUpdatingBrand, toggleUpdateBrandModalDisplay, setUpdatingProduct } = productsSlicer.actions;

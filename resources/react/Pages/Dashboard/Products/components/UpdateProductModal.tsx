@@ -3,7 +3,7 @@ import { ChangeEvent, FormEventHandler, useEffect } from "react";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
-import { toggleCreateProductModalDisplay } from "@/redux/slicers/pages/products";
+import { toggleUpdateProductModalDisplay } from "@/redux/slicers/pages/products";
 
 // Hooks
 import { useForm, usePage } from "@inertiajs/react";
@@ -17,22 +17,15 @@ import { RootState } from "@/redux/store";
 import { ProductsProps } from "@/types/Pages/Products";
 import { Category } from "@/types/Models/Category";
 import { Brand } from "@/types/Models/Brand";
+import { Product } from "@/types/Models/Product";
 
-const CreateProductModal: RC = () => {
+const UpdateProductModal: RC = () => {
   const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
   const { brands, categories } = pageData;
   const dispatch = useDispatch();
-  const modalDisplay = useSelector((state: RootState) => state.productsPage.createProductModalDisplay);
-
-  const { data, setData, errors, post, processing, wasSuccessful, reset } = useForm({
-    name: "",
-    price: "",
-    rate: "",
-    brand: null,
-    category: null,
-    description: "",
-    image: null
-  });
+  const modalDisplay = useSelector((state: RootState) => state.productsPage.updateProductModalDisplay);
+  const updatingProduct = useSelector((state: RootState) => state.productsPage.updatingProduct);
+  const { data, setData, errors, post, processing, wasSuccessful } = useForm<Product>(updatingProduct);
 
   // Handle upload image
   const handleUploadImage = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,24 +33,29 @@ const CreateProductModal: RC = () => {
     setData('image', file as any);
   }
 
+  console.log(pageData)
+
   // Handle close modal function
   const handleCloseModal = () => {
-    dispatch(toggleCreateProductModalDisplay());
+    dispatch(toggleUpdateProductModalDisplay());
   }
 
   // Handle form submit
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    post(route('products.create'), {
+    post(route('products.update'), {
       forceFormData: true
     });
   }
+
+  useEffect(() => {
+    setData(updatingProduct);
+  }, [updatingProduct])
 
   // Clean up
   useEffect(() => {
     if (wasSuccessful) {
       handleCloseModal();
-      reset();
     }
   }, [wasSuccessful]);
 
@@ -65,7 +63,7 @@ const CreateProductModal: RC = () => {
   return (
     <Modal show={modalDisplay} onHide={handleCloseModal}>
       <Modal.Header>
-        <Modal.Title >{pageWords?.create_product}</Modal.Title>
+        <Modal.Title >{pageWords?.update_product}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className={'form'} onSubmit={handleSubmit}>
@@ -91,7 +89,7 @@ const CreateProductModal: RC = () => {
                 min={0}
                 step={0.01}
                 placeholder={pageWords?.price}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setData('price', e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setData('price', Number(e.target.value))}
                 value={data.price}
                 required
               />
@@ -107,7 +105,7 @@ const CreateProductModal: RC = () => {
                 min={0}
                 step={0.05}
                 placeholder={pageWords?.rate}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setData('rate', e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setData('rate', Number(e.target.value))}
                 value={data.rate}
                 required
               />
@@ -130,36 +128,36 @@ const CreateProductModal: RC = () => {
               <FormLabel className={"form-label"}>{pageWords?.category}</FormLabel>
               <FormSelect
                 className="form-control"
-                onChange={(e: ChangeEvent<HTMLSelectElement>) => setData('category', e.target.value as any)}
+                onChange={(e: ChangeEvent<HTMLSelectElement>) => setData('category_id', e.target.value as any)}
                 name="category"
                 required
               >
                 <option disabled selected value={""}>{pageWords.select_category}</option>
                 {
                   categories.map((category: Category) => (
-                    <option key={category.id} value={category.id}>{category.name}</option>
+                    <option key={category.id} value={category.id} selected={category.id === data.category_id}>{category.name}</option>
                   ))
                 }
               </FormSelect>
-              <FormError message={errors.category} />
+              <FormError message={errors.category_id} />
             </FormGroup>
 
             <FormGroup>
               <FormLabel className={"form-label"}>{pageWords?.brand}</FormLabel>
               <FormSelect
                 className="form-control"
-                onChange={(e: ChangeEvent<HTMLSelectElement>) => setData('brand', e.target.value as any)}
+                onChange={(e: ChangeEvent<HTMLSelectElement>) => setData('brand_id', e.target.value as any)}
                 name="brand"
                 required
               >
                 <option disabled selected value={""}>{pageWords.select_brand}</option>
                 {
                   brands.map((brand: Brand) => (
-                    <option key={brand.id} value={brand.id}>{brand.name}</option>
+                    <option key={brand.id} value={brand.id} selected={brand.id === data.brand_id}>{brand.name} </option>
                   ))
                 }
               </FormSelect>
-              <FormError message={errors.brand} />
+              <FormError message={errors.brand_id} />
             </FormGroup>
           </div>
           <FormGroup>
@@ -174,10 +172,9 @@ const CreateProductModal: RC = () => {
             />
             <FormError message={errors.description} />
           </FormGroup>
-
           <FormGroup className="flex items-center gap-2">
             <Button type="submit" disabled={processing} >
-              {pageWords?.create}
+              {pageWords?.update}
             </Button>
             <Button type="button" className="btn-danger" onClick={handleCloseModal}>
               {pageWords?.cancel}
@@ -189,4 +186,4 @@ const CreateProductModal: RC = () => {
   )
 }
 
-export default CreateProductModal;
+export default UpdateProductModal;

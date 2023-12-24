@@ -2,6 +2,7 @@ import { Category } from "@/types/Models/Category";
 import { ProductsSlicerState } from "../../types/pages/products";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { Brand } from "@/types/Models/Brand";
+import { Product } from "@/types/Models/Product";
 
 
 export const productsActions = {
@@ -17,6 +18,9 @@ export const productsActions = {
   toggleUpdateCategoryModalDisplay: (state: ProductsSlicerState) => {
     state.updateCategoryModalDisplay = !state.updateCategoryModalDisplay
   },
+  toggleUpdateProductModalDisplay: (state: ProductsSlicerState) => {
+    state.updateProductModalDisplay = !state.updateProductModalDisplay;
+  },
   setUpdatingCategory: (state: ProductsSlicerState, action: PayloadAction<Category>) => {
     state.updatingCategory = action.payload;
   },
@@ -25,5 +29,8 @@ export const productsActions = {
   },
   setUpdatingBrand: (state: ProductsSlicerState, action: PayloadAction<Brand>) => {
     state.updatingBrand = action.payload;
+  },
+  setUpdatingProduct: (state: ProductsSlicerState, action: PayloadAction<Product>) => {
+    state.updatingProduct = action.payload;
   }
 }

@@ -5,9 +5,8 @@ namespace App\Http\Requests\Dashboard\Product;
 use App\Traits\Images\ImagesValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateProductRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
-
   use ImagesValidation;
 
   /**
@@ -25,14 +24,17 @@ class CreateProductRequest extends FormRequest
    */
   public function rules(): array
   {
+
+    $id = $this->id;
     return [
-      'name' => "required|string|max:250|unique:products,name",
+      'id' => "required|numeric",
+      'name' => "required|string|max:250|unique:products,name,{$id}",
       'price' => "required|numeric",
       'rate' => "required|numeric|max:5",
       'image' => "sometimes|nullable|" . $this->imageRules,
       'description' => "sometimes|nullable",
-      'brand' => "required|numeric",
-      'category' => "required|numeric"
+      'brand_id' => "required|numeric",
+      'category_id' => "required|numeric"
     ];
   }
 }

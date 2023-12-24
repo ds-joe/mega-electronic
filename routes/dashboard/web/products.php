@@ -15,6 +15,9 @@ Route::controller(ProductsController::class)->group(function () {
   Route::post(RouteServiceProvider::DASHBOARD_BASE . "/categories/create", "createCategory")->name('categories.create');
   Route::post(RouteServiceProvider::DASHBOARD_BASE . "/categories/update", "updateCategory")->name('categories.update');
   Route::post(RouteServiceProvider::DASHBOARD_BASE . "/products/create", "createProduct")->name('products.create');
+  Route::post(RouteServiceProvider::DASHBOARD_BASE . "/products/update", "updateProduct")->name('products.update');
   Route::patch(RouteServiceProvider::DASHBOARD_BASE . "/category/delete/{id}", "deleteCategory")->name('category.delete');
   Route::patch(RouteServiceProvider::DASHBOARD_BASE . "/brand/delete/{id}", "deleteBrand")->name('brand.delete');
+  Route::patch(RouteServiceProvider::DASHBOARD_BASE . "/product/delete/{id}", "deleteProduct")->name('product.delete');
+
 });

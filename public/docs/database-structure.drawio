@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-12-23T15:23:10.756Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="f95WLqiVccoPooQyHCln" version="22.0.2" type="device" pages="4">
+<mxfile host="Electron" modified="2023-12-24T11:40:20.655Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="vpcnGSiWEq76Jvc18_iN" version="22.0.2" type="device" pages="4">
   <diagram name="Database Map" id="6O3sYQY15cstD4i7R7Sd">
-    <mxGraphModel dx="3064" dy="2222" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1732" dy="1511" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -591,7 +591,7 @@
         <mxCell id="DuqUnk5I1svx-O3KKz7u-158" value="-&amp;nbsp; id &lt;font color=&quot;#0066cc&quot;&gt;&lt;b&gt;BIGINT&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;b&gt;(AI, PK)&lt;/b&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=1;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=12;movable=1;resizable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="DuqUnk5I1svx-O3KKz7u-157" vertex="1">
           <mxGeometry y="26" width="320" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="TiVLr7nfp4YlVT-9Xlkk-1" value="-&amp;nbsp; quantity&amp;nbsp;&lt;font color=&quot;#0066cc&quot;&gt;&lt;b&gt;DECIMAL(12, 2)&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;b&gt;( DF ) 1&lt;/b&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=1;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=12;movable=1;resizable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="DuqUnk5I1svx-O3KKz7u-157">
+        <mxCell id="TiVLr7nfp4YlVT-9Xlkk-1" value="-&amp;nbsp; quantity&amp;nbsp;&lt;font color=&quot;#0066cc&quot;&gt;&lt;b&gt;DECIMAL(12, 2)&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;b&gt;( DF ) 1&lt;/b&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=1;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=12;movable=1;resizable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="DuqUnk5I1svx-O3KKz7u-157" vertex="1">
           <mxGeometry y="52" width="320" height="26" as="geometry" />
         </mxCell>
         <mxCell id="DuqUnk5I1svx-O3KKz7u-160" value="-&amp;nbsp; product_id&amp;nbsp;&lt;font color=&quot;#0066cc&quot;&gt;&lt;b&gt;BIGINT&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;b&gt;( FK = products )&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/b&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=1;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontSize=12;movable=1;resizable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="DuqUnk5I1svx-O3KKz7u-157" vertex="1">
@@ -609,11 +609,11 @@
         <mxCell id="QKbTtT5mdxbwkjuNgeuE-11" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.worker_role;fontFamily=Helvetica;fontSize=11;fontColor=default;" parent="1" vertex="1">
           <mxGeometry x="2283" y="1000" width="50" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="RlhM4mjVORjWn1v9F0ds-1" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.check;fontFamily=Helvetica;fontSize=11;fontColor=default;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
-          <mxGeometry x="1884" y="1253" width="46.25" height="37" as="geometry" />
-        </mxCell>
-        <mxCell id="RlhM4mjVORjWn1v9F0ds-2" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.check;fontFamily=Helvetica;fontSize=11;fontColor=default;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+        <mxCell id="RlhM4mjVORjWn1v9F0ds-2" value="" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#3B8DF1;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;shape=mxgraph.gcp2.check;fontFamily=Helvetica;fontSize=11;fontColor=default;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
           <mxGeometry x="1215" y="1271" width="46.25" height="37" as="geometry" />
+        </mxCell>
+        <mxCell id="tDyx_r5JxXyOtSZcJiUy-2" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.worker_role;fontFamily=Helvetica;fontSize=11;fontColor=default;" vertex="1" parent="1">
+          <mxGeometry x="2276" y="1251.5" width="50" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

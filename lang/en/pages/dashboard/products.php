@@ -65,5 +65,8 @@ return [
   'do_you_want_delete_this_category' => "Do you want delete this category ?",
   'do_you_want_delete_this_brand' => "Do you want delete this brand ?",
   'search_for_product' => "Search for a product",
-
+  'product_updated_successfully' => "Product Updated Successfully.",
+  'do_you_want_delete_this_product' => "Do you want delete this product ?",
+  'update_product' => "Update Product",
+  'update' => "Update"
 ];

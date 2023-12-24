@@ -6,7 +6,9 @@ export const initialState: ProductsSlicerState = {
   createBrandModalDisplay: false,
   createProductModalDisplay: false,
   updateCategoryModalDisplay: false,
+  updateProductModalDisplay: false,
   updatingCategory: {},
   updateBrandModalDisplay: false,
-  updatingBrand: {}
+  updatingBrand: {},
+  updatingProduct: {}
 }

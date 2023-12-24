@@ -8,6 +8,7 @@ use App\Http\Requests\Dashboard\Brand\UpdateBrandRequest;
 use App\Http\Requests\Dashboard\Category\CreateCategoryRequest;
 use App\Http\Requests\Dashboard\Category\UpdateCategoryRequest;
 use App\Http\Requests\Dashboard\Product\CreateProductRequest;
+use App\Http\Requests\Dashboard\Product\UpdateProductRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -17,6 +18,7 @@ use App\Traits\Images\ImagesPaths;
 use App\Traits\Requests;
 use App\Traits\Utils\Dates;
 use App\Utils\Table;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -75,7 +77,7 @@ class ProductsController extends Controller
           'products' => Product::count()
         ],
         'brands' => Brand::select('name', 'id')->get(),
-        'categories' => Brand::select('name', 'id')->get(),
+        'categories' => Category::select('name', 'id')->get(),
       ]
     );
   } // End Method
@@ -123,9 +125,9 @@ class ProductsController extends Controller
   /**
    * create brand.
    * @param CreateBrandRequest $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @return RedirectResponse
    */
-  public function createBrand(CreateBrandRequest $request): \Illuminate\Http\RedirectResponse
+  public function createBrand(CreateBrandRequest $request): RedirectResponse
   {
     $imageName = null;
 
@@ -150,9 +152,9 @@ class ProductsController extends Controller
   /**
    * Create Category
    * @param CreateCategoryRequest $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @return RedirectResponse
    */
-  public function createCategory(CreateCategoryRequest $request): \Illuminate\Http\RedirectResponse
+  public function createCategory(CreateCategoryRequest $request): RedirectResponse
   {
     Category::create([
       "name" => $request->name,
@@ -164,9 +166,9 @@ class ProductsController extends Controller
   /**
    * Create Product
    * @param CreateProductRequest $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @return RedirectResponse
    */
-  public function createProduct(CreateProductRequest $request): \Illuminate\Http\RedirectResponse
+  public function createProduct(CreateProductRequest $request): RedirectResponse
   {
     # Errors
     if (empty(Category::find($request->category)))
@@ -185,7 +187,7 @@ class ProductsController extends Controller
     if ($request->hasFile('image')) {
       $file = $request->file('image');
       $imageName = $this->generateImageName($file->getClientOriginalName());
-      Storage::disk('public')->putFileAs("products", $request->file('image'), $imageName);
+      Storage::disk('public')->putFileAs($this->imagesPaths['products'], $request->file('image'), $imageName);
     }
 
     # Create product
@@ -201,23 +203,54 @@ class ProductsController extends Controller
       'created_by' => $request->user()->id
     ]);
 
-    # Create our colors
-    if (!empty($request->colors)) {
-      foreach ($request->colors as $color) {
-        if (!ProductHasColor::where('product_id', $product->id)->where('color', $color)->exists()) {
-          ProductHasColor::create(['color' => $color, 'product_id' => $product->id]);
-        }
-      }
-    }
-
     return back()->with($this->createRequestNotification(__('pages/dashboard/products.product_created_successfully'), 'success'));
+  } // End Method
+
+  /**
+   * Update product.
+   * @param UpdateProductRequest $request
+   * @return RedirectResponse
+   */
+  public function updateProduct(UpdateProductRequest $request): RedirectResponse
+  {
+    $product = Product::findOrFail($request->id);
+
+    # Product image
+    if ($request->file('image')) {
+      $image = $request->file("image");
+      $imageName = $this->generateImageName($image->getClientOriginalName());
+      $product->image !== null && Storage::disk('public')->delete($this->imagesPaths['products'] . "/{$product->image}");
+      Storage::disk("public")->putFileAs($this->imagesPaths['products'], $image, $imageName);
+      $product->image = $imageName;
+    }
+    $product->name = $request->name;
+    $product->price = $request->price;
+    $product->rate = $request->rate;
+    $product->description = $request->description;
+    $product->brand_id = $request->brand_id;
+    $product->category_id = $request->category_id;
+    $product->save();
+    return back()->with($this->createRequestNotification(__('pages/dashboard/products.product_updated_successfully'), 'success'));
+  } // End Method
+
+  /**
+   * Delete product
+   * @param int $id
+   * @return RedirectResponse
+   */
+  public function deleteProduct(int $id): RedirectResponse
+  {
+    $product = Product::findOrFail($id);
+    $product->image !== null && Storage::delete($this->imagesPaths['products'] . "/{$product->image}");
+    $product->delete();
+    return back()->with($this->createRequestNotification(__('pages/dashboard/products.product_deleted_successfully'), "success"));
   } // End Method
 
   /** Update category
    * @param UpdateCategoryRequest $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @return RedirectResponse
    */
-  public function updateCategory(UpdateCategoryRequest $request): \Illuminate\Http\RedirectResponse
+  public function updateCategory(UpdateCategoryRequest $request): RedirectResponse
   {
     $category = Category::findOrFail($request->id);
     $category->name = $request->name;
@@ -228,9 +261,9 @@ class ProductsController extends Controller
 
   /** Update brand
    * @param UpdateBrandRequest $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @return RedirectResponse
    */
-  public function updateBrand(UpdateBrandRequest $request): \Illuminate\Http\RedirectResponse
+  public function updateBrand(UpdateBrandRequest $request): RedirectResponse
   {
     $brand = Brand::findOrFail($request->id);
     $imageName = null;
@@ -254,9 +287,9 @@ class ProductsController extends Controller
   /**
    * Delete Category
    * @param int $id
-   * @return  \Illuminate\Http\RedirectResponse
+   * @return  RedirectResponse
    */
-  public function deleteCategory(int $id): \Illuminate\Http\RedirectResponse
+  public function deleteCategory(int $id): RedirectResponse
   {
     Category::findOrFail($id)->delete();
     return back()->with($this->createRequestNotification(__('pages/dashboard/products.category_deleted_successfully'), 'success'));
@@ -265,9 +298,9 @@ class ProductsController extends Controller
   /**
    * Delete Brand
    * @param int $id
-   * @return \Illuminate\Http\RedirectResponse
+   * @return RedirectResponse
    */
-  public function deleteBrand(int $id): \Illuminate\Http\RedirectResponse
+  public function deleteBrand(int $id): RedirectResponse
   {
     $brand = Brand::findOrFail($id);
     $brand->image !== null && Storage::disk('public')->delete("brands/" . $brand->image);

@@ -15,6 +15,7 @@ import ProductsTable from "./components/ProductsTable";
 import UpdateCategoryModal from "./components/UpdateCategoryModal";
 import CreateProductModal from "./components/CreateProduct";
 import UpdateBrandModal from "./components/UpdateBrandModal";
+import UpdateProductModal from "./components/UpdateProductModal";
 
 const Products: RP = () => {
   const { pageWords } = usePage().props as ServerProps;
@@ -26,7 +27,7 @@ const Products: RP = () => {
       <CreateBrandModal />
       <UpdateBrandModal />
       <CreateProductModal />
-
+      <UpdateProductModal />
       <Row className="gap-7">
         <Col xs="12">
           <Header title={pageWords?.products} />
