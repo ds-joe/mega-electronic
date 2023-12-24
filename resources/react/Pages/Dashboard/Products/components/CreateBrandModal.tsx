@@ -14,6 +14,7 @@ import FormError from "@/Components/Form/FormError";
 
 // Types
 import { RootState } from "@/redux/store";
+import ReactQuill from "react-quill";
 
 const CreateBrandModal: RC = () => {
   const { pageWords } = usePage().props as ServerProps;
@@ -84,12 +85,10 @@ const CreateBrandModal: RC = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel className={"form-label"}>{pageWords?.description}</FormLabel>
-            <textarea
-              name="description"
-              className={`form-control  ${errors.description && "is-invalid"}`}
+            <ReactQuill
+              theme="snow"
               placeholder={pageWords?.brand_description}
-              onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setData('description', e.target.value)}
-              rows={7}
+              onChange={(e) => setData('description', e)}
               value={data.description}
             />
             <FormError message={errors.description} />

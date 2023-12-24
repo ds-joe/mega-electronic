@@ -71,7 +71,7 @@ const UpdateCategoryModal: RC = () => {
           </FormGroup>
           <FormGroup className="flex items-center gap-2">
             <Button type="submit" disabled={processing} >
-              {pageWords?.create}
+              {pageWords?.update}
             </Button>
             <Button type="button" className="btn-danger" onClick={handleCloseModal}>
               {pageWords?.cancel}

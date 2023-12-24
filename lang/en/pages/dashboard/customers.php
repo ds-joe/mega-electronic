@@ -23,5 +23,6 @@ return [
   "update_customer" => "Update Customer",
   "edit" => "Edit",
   "delete" => "Delete",
+  'update' => "Update",
   'customers_table_description' => "You can edit and remove any customer you want, also you can sort and search for any customer. "
 ];

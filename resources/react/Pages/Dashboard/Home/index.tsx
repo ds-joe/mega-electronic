@@ -23,6 +23,7 @@ const Home: RP = () => {
         </Col>
         <Col xs="12">
           {/* <StateChart /> */}
+
         </Col>
       </Row>
     </Dashboard>

@@ -43,7 +43,7 @@ const ImagesButtons: RC = () => {
       </Card.Body>
       <Card.Body className="flex items-center gap-3 flex-wrap">
         <FormGroup>
-          <FormLabel className="btn btn-primary btn-icon w-fit" htmlFor="avatar" >
+          <FormLabel className="btn btn-outline-primary btn-icon w-fit" htmlFor="avatar" >
             <i className="fas fa-image" />
             {pageWords?.avatar}
           </FormLabel>

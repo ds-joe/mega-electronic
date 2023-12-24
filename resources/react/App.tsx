@@ -2,6 +2,7 @@
 import "~/libs/fontawesome/css/all.min.css";
 import "@/styles/bootstrap.scss";
 import "react-toastify/dist/ReactToastify.css";
+import 'react-quill/dist/quill.snow.css';
 import '@/styles/main.scss';
 
 // Types

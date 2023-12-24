@@ -14,6 +14,7 @@ import FormError from "@/Components/Form/FormError";
 
 // Types
 import { RootState } from "@/redux/store";
+import ReactQuill from "react-quill";
 
 const UpdateCustomerModal: RC = () => {
   const dispatch = useDispatch();
@@ -111,17 +112,17 @@ const UpdateCustomerModal: RC = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel className={"form-label"}>{pageWords?.address}</FormLabel>
-            <FormControl
-              className={errors.address && "is-invalid"}
+            <ReactQuill
+              theme="snow"
               placeholder={pageWords?.address}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setData('address', e.target.value)}
+              onChange={(e) => setData('address', e)}
               value={data.address}
             />
             <FormError message={errors.address} />
           </FormGroup>
           <FormGroup className="flex items-center gap-2 mt-2">
             <Button type="submit" disabled={processing} >
-              {pageWords?.create}
+              {pageWords?.update}
             </Button>
             <Button type="button" className="btn-danger" onClick={handleCloseModal}>
               {pageWords?.cancel}

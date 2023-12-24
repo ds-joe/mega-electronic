@@ -18,6 +18,7 @@ import { ProductsProps } from "@/types/Pages/Products";
 import { Category } from "@/types/Models/Category";
 import { Brand } from "@/types/Models/Brand";
 import { Product } from "@/types/Models/Product";
+import ReactQuill from "react-quill";
 
 const UpdateProductModal: RC = () => {
   const { pageWords, pageData } = usePage().props as ServerProps<ProductsProps>;
@@ -162,12 +163,10 @@ const UpdateProductModal: RC = () => {
           </div>
           <FormGroup>
             <FormLabel className={"form-label"}>{pageWords?.description}</FormLabel>
-            <textarea
-              name="description"
-              className={`form-control  ${errors.description && "is-invalid"}`}
+            <ReactQuill
+              theme="snow"
               placeholder={pageWords?.description}
-              onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setData('description', e.target.value)}
-              rows={7}
+              onChange={(e) => setData('description', e)}
               value={data.description}
             />
             <FormError message={errors.description} />

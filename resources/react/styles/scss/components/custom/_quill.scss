@@ -1,0 +1,57 @@
+.quill {
+  .ql-toolbar {
+    @apply border-base-color;
+
+
+    .ql-formats {
+      .ql-picker-label {
+        @apply border-base-color;
+      }
+
+      .ql-header {
+        @apply text-base-color;
+      }
+
+      .ql-picker {
+
+        svg {
+          @apply hidden;
+        }
+      }
+
+      .ql-picker-options {
+        @apply bg-base border-none;
+
+
+      }
+
+      button {
+        &:hover {
+          .ql-stroke {
+            @apply stroke-primary;
+          }
+        }
+
+        .ql-stroke {
+          @apply stroke-gray-700 dark:stroke-white;
+        }
+      }
+
+    }
+
+  }
+
+  .ql-container {
+    @apply border-base-color;
+
+    .ql-editor {
+      @apply text-base-color;
+      text-align: unset;
+
+      // .ql-blank {
+      // }
+
+    }
+  }
+
+}
