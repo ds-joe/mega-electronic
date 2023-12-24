@@ -12,6 +12,7 @@ import Header from "@/Components/Layout/Header";
 const Home: RP = () => {
   const { pageWords } = usePage().props as ServerProps;
 
+
   return (
     <Dashboard pageTitle={pageWords?.dashboard}>
       <Row className="gap-7">

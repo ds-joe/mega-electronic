@@ -1,7 +1,7 @@
 .#{$layout-prefix} {
   @include stander-height($layout-height);
-  @apply bg-gray-50;
-  @apply flex min-w-full overflow-y-auto font-poppins dark:bg-deep-dark;
+  @apply bg-[url('~/images/dashboard/light-background.svg')];
+  @apply flex min-w-full overflow-y-auto font-poppins dark:bg-[url('~/images/dashboard/dark-background.svg')];
 
 
   .#{$layout-prefix}-main-content {
