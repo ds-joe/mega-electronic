@@ -12,7 +12,7 @@ return new class extends Migration {
   {
     Schema::create('user_settings', function (Blueprint $table) {
       $table->id();
-      $table->boolean('dark_mode')->default(true);
+      $table->boolean('dark_mode')->default(false);
       $table->string('language')->default('en');
       $table->string('direction')->default('ltr');
       $table->unsignedBigInteger('user_id');
