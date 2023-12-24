@@ -34,4 +34,14 @@
   .avatar-4xl {
     @apply min-w-[16rem] min-h-[16rem] max-w-[16rem] max-h-[16rem];
   }
+
+  .avatar-ping {
+
+    @apply relative;
+
+    &::before {
+      content: "";
+      @apply animate-ping w-full h-full absolute top-0 left-0 rounded-full bg-primary;
+    }
+  }
 }

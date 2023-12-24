@@ -12,7 +12,8 @@
     .#{$navbar-prefix}-user-dropdown {
 
       .#{$navbar-prefix}-user-dropdown-toggle {
-        @apply p-0 m-0 flex items-center justify-center;
+        @apply p-0 m-0 flex items-center justify-center relative;
+
       }
 
       .#{$navbar-prefix}-dropdown-user-information {

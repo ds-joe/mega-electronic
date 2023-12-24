@@ -13,7 +13,7 @@ const Header: RC<HeaderProps> = ({ title, children }) => {
       <h3 className={"pf-header-title"}>{title}</h3>
       <div className={'pf-header-buttons'}>
         <Link href={route('sales.create.show')}>
-          <button className={"btn btn-outline-success btn-icon"}>
+          <button className={"btn btn-outline-primary btn-icon"}>
             <i className={"fal fa-cart-plus "} />
             <span>{layoutsWords?.new_sale}</span>
           </button>

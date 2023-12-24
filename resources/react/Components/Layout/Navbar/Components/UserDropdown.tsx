@@ -17,7 +17,9 @@ const UserDropdown: RC = () => {
   return (
     <Dropdown className={'pf-navbar-user-dropdown'}>
       <Dropdown.Toggle className="pf-navbar-user-dropdown-toggle toggle-clean" as={'span'}>
-        <img className="avatar avatar-xxs" src={userAvatar} alt="something" />
+        <div className="avatar-ping ">
+          <img className="avatar avatar-xxs relative" src={userAvatar} alt="something" />
+        </div>
       </Dropdown.Toggle>
       <Dropdown.Menu>
         <Dropdown.Header>

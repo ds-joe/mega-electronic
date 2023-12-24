@@ -62,6 +62,10 @@
     @apply hidden;
   }
 
+  .disabled-route {
+    @apply hidden;
+  }
+
   .#{$sidebar-prefix}-header {
     @apply justify-center;
 
