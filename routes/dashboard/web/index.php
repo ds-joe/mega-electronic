@@ -18,5 +18,5 @@ Route::middleware('auth')->group(function () {
   require(__DIR__ . "/customers.php");
   require(__DIR__ . "/profile.php");
   require(__DIR__ . "/sales.php");
-
+  require(__DIR__ . "/expenses.php");
 });

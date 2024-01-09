@@ -59,7 +59,7 @@ const dashboardRoutes: RoutesFun = (words: ServerWords): Routes => {
       permissions: [],
       url: `${DASHBOARD_BASE}/expenses`,
       icon: "far fa-chart-pie",
-      available: false,
+      available: true,
     },
     {
       name: words?.tickets,

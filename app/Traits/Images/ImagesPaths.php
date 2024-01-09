@@ -16,7 +16,8 @@ trait ImagesPaths
       'users' => "users",
       'profile' => "users/profile",
       "brands" => "brands",
-      'products' => "products"
+      'products' => "products",
+      'expenses' => "expenses"
     ];
   }
 

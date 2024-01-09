@@ -8,7 +8,7 @@ import productsPage from './slicers/pages/products';
 import customersPage from './slicers/pages/customers';
 import usersPage from "./slicers/pages/users";
 import salesPage from "./slicers/pages/sales";
-
+import expensesPage from "./slicers/pages/expenses";
 
 // Reducers
 const reducers = combineReducers({
@@ -17,7 +17,8 @@ const reducers = combineReducers({
   productsPage,
   customersPage,
   usersPage,
-  salesPage
+  salesPage,
+  expensesPage
 });
 
 // Store

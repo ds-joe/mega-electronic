@@ -1,0 +1,28 @@
+{
+  "manifest_version": "1.0.0",
+  "short_name": "Mega electronic",
+  "name": "Mega electronic",
+  "icons": [
+    {
+      "src": "image.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "image.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "image.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "fullscreen",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "scope": ".",
+  "description": "A multi-tenant ecommerce project is a software application that allows multiple businesses to operate their own online stores on a single platform. This is in contrast to a single-tenant ecommerce project, where each business has its own dedicated platform."
+}
