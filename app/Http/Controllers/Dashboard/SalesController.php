@@ -149,7 +149,7 @@ class SalesController extends Controller
     ]);
     $this->createSaleProducts($sale->id, $products);
 
-    return back()->with($this->createRequestNotification(__("pages/dashboard/sales.sale_created_successfully"), 'success'));
+    return redirect()->route('sales.show')->with($this->createRequestNotification(__("pages/dashboard/sales.sale_created_successfully"), 'success'));
   } // End Method
 
   /**
@@ -194,7 +194,7 @@ class SalesController extends Controller
         ->update(['quantity' => $product['quantity']]);
     }
 
-    return back()->with($this->createRequestNotification(__("pages/dashboard/sales.sale_updated_successfully"), 'success'));
+    return redirect()->route('sales.show')->with($this->createRequestNotification(__("pages/dashboard/sales.sale_updated_successfully"), 'success'));
   } // End Method
 
   /**

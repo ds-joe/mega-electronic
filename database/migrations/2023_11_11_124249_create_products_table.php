@@ -15,7 +15,7 @@ return new class extends Migration {
       $table->string('sku');
       $table->string('name')->unique();
       $table->decimal('price', 12, 2);
-      $table->decimal('rate', 12, 2);
+      $table->decimal('rate', 12, 1);
       $table->string('image')->nullable();
       $table->text('description')->nullable();
       $table->unsignedBigInteger('brand_id');

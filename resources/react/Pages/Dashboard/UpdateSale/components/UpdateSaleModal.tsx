@@ -22,7 +22,7 @@ const UpdateSaleModal: RC = () => {
   const cartProducts = useSelector((state: RootState) => state.cart.products);
   const cartQuantity: number = useSelector((state: RootState) => state.cart.products).reduce((a, b) => a + Number(b.quantity), 0);
   const cartAmount: number = useSelector((state: RootState) => state.cart.products).reduce((a, b) => a + (Number(b.price as number) * Number(b.quantity)), 0);
-  const { setData, post, wasSuccessful } = useForm({
+  const { data, setData, post, wasSuccessful } = useForm({
     ...sale,
     method: sale.method,
     customer_id: sale.customer_id,
@@ -92,9 +92,9 @@ const UpdateSaleModal: RC = () => {
             <FormControl
               type='number'
               step={0.01}
-
               onChange={(e: ChangeEvent<HTMLInputElement>) => setData('discount', Number(e.target.value))}
               placeholder={pageWords?.discount}
+              value={data.discount || 0}
             />
           </FormGroup>
           <FormGroup className="form-double font-semibold">
