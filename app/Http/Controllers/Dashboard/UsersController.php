@@ -121,14 +121,18 @@ class UsersController extends Controller
   /**
    * Delete user.
    * @param int $id
+   * @param Request $request
    * @return \Illuminate\Http\RedirectResponse
    */
-  public function delete(int $id): \Illuminate\Http\RedirectResponse
+  public function delete(int $id, Request $request): \Illuminate\Http\RedirectResponse
   {
     $user = User::findOrFail($id);
-    $user->avatar !== null && Storage::disk('public')->delete($this->imagesPaths['profile'] . "/" . $user->avatar);
-    $user->delete();
-    return back()->with($this->createRequestNotification(__('pages/dashboard/users.user_deleted_successfully'), 'success'));
+    if ($user->id !== $request->user()->id) {
+      $user->avatar !== null && Storage::disk('public')->delete($this->imagesPaths['profile'] . "/" . $user->avatar);
+      $user->delete();
+      return back()->with($this->createRequestNotification(__('pages/dashboard/users.user_deleted_successfully'), 'success'));
+    }
+    return back()->with($this->createRequestNotification(__('pages/dashboard/users.you_cant_delete_your_self'), 'warning'));
   } // End Method
 
 }

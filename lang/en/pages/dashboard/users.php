@@ -33,4 +33,5 @@ return [
   'user_created_successfully' => "User Created Successfully.",
   'user_updated_successfully' => "User Updated Successfully.",
   'user_deleted_successfully' => "User Deleted Successfully.",
+  'you_cant_delete_your_self' => "You can't delete your self 😂"
 ];
