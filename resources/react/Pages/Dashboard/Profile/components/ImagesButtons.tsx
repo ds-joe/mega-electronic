@@ -30,7 +30,6 @@ const ImagesButtons: RC = () => {
 
   // Clean up
   useEffect(() => {
-    wasSuccessful && setTimeout(() => location.reload(), 1000);
     return () => {
       reset("avatar")
     }
@@ -43,8 +42,8 @@ const ImagesButtons: RC = () => {
       </Card.Body>
       <Card.Body className="flex items-center gap-3 flex-wrap">
         <FormGroup>
-          <FormLabel className="btn btn-outline-primary btn-icon w-fit" htmlFor="avatar" >
-            <i className="fas fa-image" />
+          <FormLabel className="btn btn-primary btn-icon w-fit" htmlFor="avatar" >
+            <i className="fas fa-upload" />
             {pageWords?.avatar}
           </FormLabel>
           <FormControl type="file" className={`hide`} id="avatar" onChange={handleUploadAvatar} />

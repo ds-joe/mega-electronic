@@ -17,6 +17,7 @@ import DetailsArea from "./components/DetailsArea";
 const Profile: RP = () => {
   const { pageWords, pageData } = usePage().props as ServerProps<ProfileProps>;
   const { user_data } = pageData;
+
   return (
     <Dashboard pageTitle={pageWords?.profile} >
       <main className="pf-profile-page">

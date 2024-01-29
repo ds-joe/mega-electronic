@@ -62,15 +62,15 @@ const UpdateExpenseModal: RC = () => {
     modalDisplay && setData(updatingExpense as any);
   }, [updatingExpense]);
 
-
   return (
     <Modal show={modalDisplay} onHide={handleCloseModal}>
       <Modal.Header>
-        <Modal.Title >{pageWords?.create_product}</Modal.Title>
+        <Modal.Title >{pageWords?.update_expense}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form className={'form'} onSubmit={handleSubmit}>
           <div className="form-double">
+
             <FormGroup>
               <FormLabel>{pageWords?.method}</FormLabel>
               <FormSelect
@@ -81,6 +81,7 @@ const UpdateExpenseModal: RC = () => {
                 <option value="payment">{pageWords?.payment}</option>
               </FormSelect>
             </FormGroup>
+
             <FormGroup>
               <FormLabel className={"form-label"}>{pageWords?.amount}</FormLabel>
               <FormControl
@@ -94,6 +95,7 @@ const UpdateExpenseModal: RC = () => {
               <FormError message={errors.amount} />
             </FormGroup>
           </div>
+
           <FormGroup>
             <FormLabel className={"form-label"}>{pageWords?.date}</FormLabel>
             <FormControl
@@ -105,6 +107,7 @@ const UpdateExpenseModal: RC = () => {
             />
             <FormError message={errors.date} />
           </FormGroup>
+
           <FormGroup>
             <FormLabel className={"form-label"}>{pageWords?.receipt}</FormLabel>
             <FormControl
@@ -114,6 +117,7 @@ const UpdateExpenseModal: RC = () => {
             />
             <FormError message={errors.receipt} />
           </FormGroup>
+
           <FormGroup>
             <FormLabel className={"form-label"}>{pageWords?.description}</FormLabel>
             <ReactQuill

@@ -20,7 +20,8 @@ import { RootState } from "@/redux/store";
 import fakeAvatar from "~/images/auth/userAvatar.svg";
 
 const UpdateUserModal: RC = () => {
-  const { pageWords } = usePage().props as ServerProps;
+  const { pageWords, paths } = usePage().props as ServerProps;
+  const images_paths = paths.images_paths;
   const dispatch = useDispatch();
   const modalDisplay = useSelector((state: RootState) => state.usersPage.updateUserModalDisplay);
   const updatingUser = useSelector((state: RootState) => state.usersPage.updatingUser);
@@ -68,6 +69,7 @@ const UpdateUserModal: RC = () => {
         type: updatingUser.type as string,
         verified: updatingUser.verified as boolean,
       });
+      updatingUser?.avatar && setAvatar(`${images_paths.root}/${images_paths.profile}/${updatingUser.avatar}`);
     }
   }, [updatingUser]);
 

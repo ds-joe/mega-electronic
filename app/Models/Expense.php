@@ -10,8 +10,10 @@ class Expense extends Model
   use HasFactory;
   protected $casts = [
     'created_at' => 'date:Y-m-d',
-    'updated_at' => 'date:Y-m-d'
+    'updated_at' => 'date:Y-m-d',
+    'date' => "date:Y-m-d"
   ];
+
   protected $fillable = [
     'amount',
     'date',

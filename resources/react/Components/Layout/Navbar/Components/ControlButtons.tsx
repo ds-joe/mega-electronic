@@ -31,7 +31,7 @@ const ControlButtons: RC = () => {
           <Link method={"post"} onSuccess={() => location.reload()} href={route('user.settings.toggle.dark_mode')} className={`setting-label-icon fal fa-${settings.dark_mode ? 'sun' : 'moon'}`} as="button"></Link>
         </FormGroup>
         <FormGroup className="setting-block">
-          <Link method={"post"} onSuccess={() => location.reload()} href={route('user.settings.toggle.direction')} className="setting-label-icon fal fa-arrow-right-arrow-left" as="button"></Link>
+          <Link method={"post"} href={route('user.settings.toggle.direction')} className="setting-label-icon fal fa-arrow-right-arrow-left" as="button"></Link>
         </FormGroup>
         <FormGroup className="setting-block">
           <i className="setting-label-icon fal fa-shopping-cart" onClick={toggleCartOpen} />

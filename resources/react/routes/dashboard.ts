@@ -2,14 +2,14 @@
 import { ServerWords } from "@/types/Server";
 
 const dashboardRoutes: RoutesFun = (words: ServerWords): Routes => {
-  const DASHBOARD_BASE = "/dashboard";
+  const DASHBOARD_BASE = "";
 
   return [
     {
       'name': words?.dashboard,
       'category': "dashboard",
       "permissions": [],
-      "url": `${DASHBOARD_BASE}`,
+      "url": `${DASHBOARD_BASE}/`,
       "icon": "far fa-robot",
       available: true,
     },
