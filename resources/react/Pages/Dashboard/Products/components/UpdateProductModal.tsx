@@ -34,8 +34,6 @@ const UpdateProductModal: RC = () => {
     setData('image', file as any);
   }
 
-  console.log(pageData)
-
   // Handle close modal function
   const handleCloseModal = () => {
     dispatch(toggleUpdateProductModalDisplay());
